@@ -1,0 +1,69 @@
+export interface IUser {
+  id: string;
+  name: string;
+  email: string;
+  password?: string;
+  role: 'admin' | 'user';
+  createdAt: string;
+}
+
+export interface IProject {
+  id: string;
+  title: string;
+  slug: string;
+  subtitle: string;
+  category: 'Full-Stack' | 'Mobile' | 'Fintech' | 'AI/ML' | 'Cloud';
+  description: string;
+  problem: string;
+  solution: string;
+  contribution: string;
+  technologies: string[];
+  image: string;
+  githubUrl: string;
+  liveUrl?: string;
+  featured: boolean;
+  order: number;
+  caseStudy: {
+    architecture: string;
+    challenges: string[];
+    metrics: string[];
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IExperience {
+  id: string;
+  company: string;
+  position: string;
+  location: string;
+  period: string;
+  startDate: string;
+  endDate?: string;
+  isCurrent?: boolean;
+  type: 'Full-time' | 'Contract' | 'Education';
+  description: string[];
+  technologies: string[];
+  highlights: string[];
+  order: number;
+}
+
+export interface ISkill {
+  id: string;
+  name: string;
+  category: 'Frontend' | 'Backend' | 'DevOps & Cloud' | 'Tools';
+  proficiency: 'Expert' | 'Advanced' | 'Intermediate';
+  yearsOfExperience: number;
+  highlight: string;
+  order: number;
+}
+
+export interface IContact {
+  id: string;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  status: 'unread' | 'read' | 'replied';
+  createdAt: string;
+}

@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  portfolio-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sohail-portfolio-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - MONGODB_URI=mongodb://mongodb:27017/sohail_portfolio
+      - JWT_SECRET=production_secure_jwt_token_secret_replace_in_prod
+      - GITHUB_USERNAME=sohailshah
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:7.0
+    container_name: sohail-portfolio-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=sohail_portfolio
+
+volumes:
+  mongo-data:
+    driver: local

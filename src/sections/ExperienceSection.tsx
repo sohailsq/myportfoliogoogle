@@ -126,12 +126,12 @@ export const ExperienceSection: React.FC = () => {
   }, []);
 
   return (
-    <section id="experience" className="py-20 md:py-28 border-t border-slate-800/80 bg-[#080c14]">
+    <section id="experience" className="py-20 md:py-28 border-t border-slate-800/80 bg-[#080b11]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <span className="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold flex items-center gap-2">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-amber-400 font-semibold flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
               04. Professional History
             </span>
@@ -144,12 +144,12 @@ export const ExperienceSection: React.FC = () => {
           </div>
 
           {/* View toggle */}
-          <div className="flex items-center gap-1 p-1 bg-slate-900/80 border border-slate-800 rounded-lg shrink-0">
+          <div className="flex items-center gap-1 p-1 bg-[#0e131f]/80 border border-slate-800 rounded-xl shrink-0 backdrop-blur-sm">
             <button
               onClick={() => setViewMode('timeline')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-colors cursor-pointer ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors cursor-pointer ${
                 viewMode === 'timeline'
-                  ? 'bg-amber-400 text-slate-950 font-semibold shadow-sm'
+                  ? 'bg-amber-400 text-slate-950 font-semibold shadow-xs'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
@@ -158,9 +158,9 @@ export const ExperienceSection: React.FC = () => {
             </button>
             <button
               onClick={() => setViewMode('compact')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-colors cursor-pointer ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors cursor-pointer ${
                 viewMode === 'compact'
-                  ? 'bg-amber-400 text-slate-950 font-semibold shadow-sm'
+                  ? 'bg-amber-400 text-slate-950 font-semibold shadow-xs'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
@@ -177,29 +177,29 @@ export const ExperienceSection: React.FC = () => {
               {Array.from({ length: 3 }).map((_, i) => (
                 <div
                   key={i}
-                  className="h-44 rounded-xl bg-slate-900/40 animate-pulse border border-slate-800/60"
+                  className="h-44 rounded-2xl bg-[#0e131f]/40 animate-pulse border border-slate-800/60"
                 />
               ))}
             </div>
           ) : viewMode === 'timeline' ? (
             /* Vertical Connected Timeline */
-            <div className="relative pl-6 sm:pl-10 space-y-10 border-l border-slate-800/90 ml-3 sm:ml-4">
-              {experiences.map((exp, index) => {
+            <div className="relative pl-6 sm:pl-10 space-y-10 border-l border-slate-800/80 ml-3 sm:ml-4">
+              {experiences.map((exp) => {
                 const isEdu = exp.type === 'Education';
                 return (
                   <div key={exp.id} className="relative group">
                     {/* Glowing Timeline Marker Node */}
                     <div
-                      className={`absolute -left-[31px] sm:-left-[47px] top-1.5 w-6 h-6 rounded-full flex items-center justify-center border-2 transition-all ${
+                      className={`absolute -left-[31px] sm:-left-[47px] top-2 w-6 h-6 rounded-full flex items-center justify-center border-2 transition-all ${
                         exp.isCurrent
-                          ? 'bg-amber-400/20 border-amber-400 text-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.35)]'
+                          ? 'bg-emerald-500/20 border-emerald-400 text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.35)]'
                           : isEdu
                           ? 'bg-indigo-500/10 border-indigo-400 text-indigo-400'
                           : 'bg-slate-900 border-slate-700 text-slate-400 group-hover:border-amber-400/60 group-hover:text-amber-400'
                       }`}
                     >
                       {exp.isCurrent ? (
-                        <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                       ) : isEdu ? (
                         <GraduationCap className="w-3 h-3" />
                       ) : (
@@ -208,7 +208,7 @@ export const ExperienceSection: React.FC = () => {
                     </div>
 
                     {/* Experience Card */}
-                    <div className="p-6 sm:p-7 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition-all card-glow">
+                    <div className="p-6 sm:p-7 rounded-2xl bg-[#0e131f]/75 border border-slate-800/80 hover:border-slate-700/90 transition-all card-glow shadow-md">
                       {/* Top Header */}
                       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-slate-800/80 pb-4">
                         <div>
@@ -242,7 +242,7 @@ export const ExperienceSection: React.FC = () => {
                               Active Role
                             </span>
                           ) : (
-                            <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700/60">
+                            <span className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-slate-800 text-slate-400 border border-slate-700/60">
                               {isEdu ? 'Education' : 'Completed'}
                             </span>
                           )}
@@ -272,7 +272,7 @@ export const ExperienceSection: React.FC = () => {
                             {exp.highlights.map((h, i) => (
                               <div
                                 key={i}
-                                className="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 text-slate-300 text-xs flex items-start gap-2"
+                                className="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 text-slate-300 text-xs flex items-start gap-2 shadow-xs"
                               >
                                 <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0 mt-1.5" />
                                 <span className="leading-snug">{h}</span>
@@ -307,7 +307,7 @@ export const ExperienceSection: React.FC = () => {
                 return (
                   <div
                     key={exp.id}
-                    className="p-5 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition-all flex flex-col justify-between"
+                    className="p-5 rounded-2xl bg-[#0e131f]/75 border border-slate-800/80 hover:border-slate-700/90 transition-all card-glow shadow-md flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center justify-between gap-2 mb-2">
@@ -344,7 +344,7 @@ export const ExperienceSection: React.FC = () => {
                       {exp.technologies.slice(0, 4).map((tech) => (
                         <span
                           key={tech}
-                          className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/50"
+                          className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-slate-800/80 text-slate-300 border border-slate-700/50"
                         >
                           {tech}
                         </span>

@@ -133,11 +133,11 @@ const connectDatabase = async () => {
   };
 
   return (
-    <section id="devops" className="py-20 md:py-28 border-t border-slate-800/80 bg-[#090e18]/40">
+    <section id="devops" className="py-20 md:py-28 border-t border-slate-800/80 bg-[#0a0e17]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl">
-          <span className="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold flex items-center gap-2">
+          <span className="text-[11px] font-mono uppercase tracking-widest text-amber-400 font-semibold flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
             05. DevOps &amp; Cloud Lifecycle
           </span>
@@ -150,17 +150,17 @@ const connectDatabase = async () => {
         </div>
 
         {/* Visual Pipeline Stepper */}
-        <div className="mt-10 grid grid-cols-2 sm:grid-cols-5 gap-2 border-b border-slate-800 pb-6">
+        <div className="mt-10 grid grid-cols-2 sm:grid-cols-5 gap-2 border-b border-slate-800/80 pb-6">
           {stages.map((stage) => {
             const isSelected = stage.id === selectedStageId;
             return (
               <button
                 key={stage.id}
                 onClick={() => setSelectedStageId(stage.id)}
-                className={`p-3 rounded-lg text-left transition-all cursor-pointer border ${
+                className={`p-3.5 rounded-xl text-left transition-all cursor-pointer border ${
                   isSelected
-                    ? 'bg-slate-900 border-amber-400/80 text-slate-100 shadow-sm'
-                    : 'bg-slate-950/40 border-slate-800/60 text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                    ? 'bg-[#0e131f] border-amber-400/80 text-slate-100 shadow-sm'
+                    : 'bg-[#0e131f]/40 border-slate-800/80 text-slate-400 hover:text-slate-200 hover:border-slate-700'
                 }`}
               >
                 <span className="block text-[11px] font-mono text-amber-400 font-semibold">
@@ -179,16 +179,16 @@ const connectDatabase = async () => {
 
         {/* Stage Content Detail & Terminal Code View */}
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Description (4 cols) */}
+          {/* Left Description (5 cols) */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="p-6 rounded-xl bg-slate-900/50 border border-slate-800 space-y-3">
+            <div className="p-6 rounded-2xl bg-[#0e131f]/75 border border-slate-800/80 space-y-3 shadow-md">
               <span className="text-xs font-mono text-amber-400 font-semibold block">
                 {activeStage.name}
               </span>
               <h3 className="text-lg font-bold font-display text-slate-100">
                 {activeStage.tool}
               </h3>
-              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-sans">
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
                 {activeStage.description}
               </p>
 
@@ -210,9 +210,9 @@ const connectDatabase = async () => {
           </div>
 
           {/* Right Code Viewer (7 cols) */}
-          <div className="lg:col-span-7 rounded-xl bg-[#070b12] border border-slate-800 overflow-hidden shadow-2xl">
+          <div className="lg:col-span-7 rounded-2xl bg-[#070a12] border border-slate-800/90 overflow-hidden shadow-2xl">
             {/* Terminal Window Header */}
-            <div className="flex items-center justify-between px-4 py-2.5 bg-slate-900/90 border-b border-slate-800">
+            <div className="flex items-center justify-between px-4 py-3 bg-[#0c101a] border-b border-slate-800/80">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
@@ -224,7 +224,7 @@ const connectDatabase = async () => {
 
               <button
                 onClick={handleCopy}
-                className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+                className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors cursor-pointer"
                 title="Copy configuration snippet"
               >
                 {copied ? (
@@ -242,7 +242,7 @@ const connectDatabase = async () => {
             </div>
 
             {/* Code Body */}
-            <pre className="p-4 sm:p-5 text-xs font-mono text-slate-300 overflow-x-auto leading-relaxed">
+            <pre className="p-4 sm:p-5 text-xs font-mono text-slate-300 overflow-x-auto leading-relaxed bg-[#070a12]">
               <code>{activeStage.codeSnippet}</code>
             </pre>
           </div>

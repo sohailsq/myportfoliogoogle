@@ -22,12 +22,12 @@ export const GithubSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-20 md:py-28 border-t border-slate-800/80 bg-[#080c14]">
+    <section className="py-20 md:py-28 border-t border-slate-800/80 bg-[#080b11]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <span className="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold flex items-center gap-2">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-amber-400 font-semibold flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
               06. Open Source &amp; Velocity
             </span>
@@ -43,7 +43,7 @@ export const GithubSection: React.FC = () => {
             href={stats?.profileUrl || 'https://github.com/mohammadsohailshahquadri14'}
             target="_blank"
             rel="noreferrer noopener"
-            className="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium text-slate-200 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 rounded-lg transition-colors w-fit"
+            className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-medium text-slate-200 bg-[#0e131f] hover:bg-slate-800 border border-slate-800 hover:border-slate-700 rounded-xl transition-colors w-fit shadow-xs"
           >
             <Github className="w-4 h-4 text-amber-400" />
             <span>Visit @mohammadsohailshahquadri14</span>
@@ -54,28 +54,28 @@ export const GithubSection: React.FC = () => {
         {/* Top Summary Metrics */}
         {stats && (
           <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div className="p-4 rounded-xl bg-slate-900/50 border border-slate-800">
+            <div className="p-4 sm:p-5 rounded-2xl bg-[#0e131f]/75 border border-slate-800/80 shadow-xs">
               <span className="text-xs text-slate-400 block font-mono">Public Repos</span>
               <span className="text-2xl font-bold font-mono text-slate-100 mt-1 block tabular-nums">
                 {stats.totalRepos}
               </span>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-900/50 border border-slate-800">
+            <div className="p-4 sm:p-5 rounded-2xl bg-[#0e131f]/75 border border-slate-800/80 shadow-xs">
               <span className="text-xs text-slate-400 block font-mono">Contributions</span>
               <span className="text-2xl font-bold font-mono text-amber-400 mt-1 block tabular-nums">
                 {stats.totalContributionsLastYear}+
               </span>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-900/50 border border-slate-800">
+            <div className="p-4 sm:p-5 rounded-2xl bg-[#0e131f]/75 border border-slate-800/80 shadow-xs">
               <span className="text-xs text-slate-400 block font-mono">Current Streak</span>
               <span className="text-2xl font-bold font-mono text-emerald-400 mt-1 block tabular-nums">
                 {stats.streakDays} days
               </span>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-900/50 border border-slate-800">
+            <div className="p-4 sm:p-5 rounded-2xl bg-[#0e131f]/75 border border-slate-800/80 shadow-xs">
               <span className="text-xs text-slate-400 block font-mono">Followers</span>
               <span className="text-2xl font-bold font-mono text-slate-100 mt-1 block tabular-nums">
                 {stats.followers}
@@ -89,7 +89,7 @@ export const GithubSection: React.FC = () => {
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Recent Key Repos (Left 7 cols) */}
             <div className="lg:col-span-7 space-y-3">
-              <h3 className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold mb-3 flex items-center gap-2">
+              <h3 className="text-[11px] font-mono uppercase tracking-widest text-slate-400 font-semibold mb-3 flex items-center gap-2">
                 <GitPullRequest className="w-3.5 h-3.5 text-amber-400" />
                 <span>Featured Open Source Projects</span>
               </h3>
@@ -101,7 +101,7 @@ export const GithubSection: React.FC = () => {
                     href={repo.url}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="p-4 rounded-xl bg-slate-900/40 border border-slate-800 hover:border-slate-700 transition-all flex flex-col justify-between group block card-glow"
+                    className="p-5 rounded-2xl bg-[#0e131f]/60 border border-slate-800/80 hover:border-slate-700/90 transition-all flex flex-col justify-between group block card-glow shadow-xs"
                   >
                     <div>
                       <div className="flex items-center justify-between">
@@ -110,13 +110,13 @@ export const GithubSection: React.FC = () => {
                         </span>
                         <ExternalLink className="w-3.5 h-3.5 text-slate-500 group-hover:text-slate-300 transition-colors" />
                       </div>
-                      <p className="text-xs text-slate-400 mt-1.5 font-sans leading-relaxed">
+                      <p className="text-xs text-slate-300 mt-1.5 font-sans leading-relaxed">
                         {repo.description}
                       </p>
                     </div>
 
-                    <div className="flex items-center gap-4 mt-3 pt-2 border-t border-slate-800/60 text-[11px] font-mono text-slate-400">
-                      <span className="flex items-center gap-1">
+                    <div className="flex items-center gap-4 mt-3 pt-2.5 border-t border-slate-800/60 text-[11px] font-mono text-slate-400">
+                      <span className="flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-amber-400" />
                         {repo.language}
                       </span>
@@ -135,14 +135,14 @@ export const GithubSection: React.FC = () => {
             </div>
 
             {/* Language Distribution Breakdown (Right 5 cols) */}
-            <div className="lg:col-span-5 p-6 rounded-xl bg-slate-900/50 border border-slate-800 space-y-4">
-              <h3 className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold flex items-center gap-2">
+            <div className="lg:col-span-5 p-6 sm:p-7 rounded-2xl bg-[#0e131f]/75 border border-slate-800/80 space-y-4 shadow-md">
+              <h3 className="text-[11px] font-mono uppercase tracking-widest text-slate-400 font-semibold flex items-center gap-2">
                 <Activity className="w-3.5 h-3.5 text-amber-400" />
                 <span>Primary Language Distribution</span>
               </h3>
 
               {/* Progress stack bar */}
-              <div className="h-3 rounded-full overflow-hidden flex bg-slate-950 border border-slate-800">
+              <div className="h-3 rounded-full overflow-hidden flex bg-slate-950 border border-slate-800/80">
                 {stats.primaryLanguages.map((lang) => (
                   <div
                     key={lang.name}
@@ -169,7 +169,7 @@ export const GithubSection: React.FC = () => {
                 ))}
               </div>
 
-              <div className="pt-3 border-t border-slate-800 text-[11px] text-slate-500 font-mono">
+              <div className="pt-3 border-t border-slate-800/80 text-[11px] text-slate-500 font-mono">
                 Telemetry aggregated from public Git commit trees &amp; repositories.
               </div>
             </div>

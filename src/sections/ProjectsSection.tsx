@@ -133,12 +133,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   const hasActiveFilters = selectedCategory !== 'All' || selectedTech !== null || searchQuery !== '';
 
   return (
-    <section id="projects" className="py-20 md:py-28 border-t border-slate-800/80 bg-[#090d16]">
+    <section id="projects" className="py-20 md:py-28 border-t border-slate-800/80 bg-[#080b11]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <span className="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold flex items-center gap-2">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-amber-400 font-semibold flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
               03. Featured Engineering
             </span>
@@ -155,22 +155,22 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             {onOpenAIAssistant && (
               <button
                 onClick={onOpenAIAssistant}
-                className="inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-lg bg-amber-400/10 hover:bg-amber-400 text-amber-300 hover:text-slate-950 border border-amber-400/40 transition-all cursor-pointer whitespace-nowrap shadow-sm"
+                className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-xl bg-amber-400/10 hover:bg-amber-400 text-amber-300 hover:text-slate-950 border border-amber-400/35 transition-all cursor-pointer whitespace-nowrap shadow-xs active:scale-95"
                 title="Open AI Career & Architecture Assistant"
               >
-                <Sparkles className="w-3.5 h-3.5" />
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
                 <span>AI Architecture Inspector</span>
               </button>
             )}
 
             <div className="relative w-full sm:w-64">
-              <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search projects by name, stack..."
-                className="w-full pl-9 pr-8 py-2 text-xs bg-slate-900/80 border border-slate-800 focus:border-amber-400/80 rounded-lg text-slate-100 placeholder:text-slate-500 focus:outline-none transition-colors"
+                className="w-full pl-10 pr-8 py-2 text-xs bg-[#0e131f]/90 border border-slate-800 focus:border-amber-400/80 rounded-xl text-slate-100 placeholder:text-slate-500 focus:outline-none transition-colors shadow-xs"
               />
               {searchQuery && (
                 <button
@@ -187,7 +187,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
         {/* Filter Toolbar */}
         <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
           {/* Category Tabs */}
-          <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-900/50 rounded-lg border border-slate-800/80">
+          <div className="flex flex-wrap items-center gap-1.5 p-1 bg-[#0e131f]/70 rounded-xl border border-slate-800/80 backdrop-blur-sm">
             {filterTabs.map((tab) => {
               const count = categoryCounts[tab.value] ?? 0;
               const isSelected = selectedCategory === tab.value;
@@ -195,16 +195,16 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                 <button
                   key={tab.value}
                   onClick={() => setSelectedCategory(tab.value)}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-all whitespace-nowrap cursor-pointer ${
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-all whitespace-nowrap cursor-pointer ${
                     isSelected
-                      ? 'bg-amber-400 text-slate-950 font-semibold shadow-sm'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                      ? 'bg-amber-400 text-slate-950 font-semibold shadow-xs'
+                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
                   }`}
                 >
                   <span>{tab.label}</span>
                   <span
                     className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full ${
-                      isSelected ? 'bg-amber-500/30 text-slate-950' : 'bg-slate-800 text-slate-400'
+                      isSelected ? 'bg-amber-500/30 text-slate-950 font-bold' : 'bg-slate-800 text-slate-400'
                     }`}
                   >
                     {count}
@@ -218,7 +218,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
           {hasActiveFilters && (
             <div className="flex items-center gap-2 text-xs">
               {selectedTech && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-amber-400/10 text-amber-300 border border-amber-400/30 font-mono text-[11px]">
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-400/10 text-amber-300 border border-amber-400/30 font-mono text-[11px]">
                   <span>Tech: {selectedTech}</span>
                   <button onClick={() => setSelectedTech(null)} className="hover:text-white">
                     <X className="w-3 h-3" />
@@ -242,11 +242,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             Array.from({ length: 3 }).map((_, i) => (
               <div
                 key={i}
-                className="h-96 rounded-xl bg-slate-900/40 animate-pulse border border-slate-800/80"
+                className="h-96 rounded-2xl bg-[#0e131f]/40 animate-pulse border border-slate-800/80"
               />
             ))
           ) : filteredProjects.length === 0 ? (
-            <div className="col-span-full py-16 text-center border border-dashed border-slate-800 rounded-xl bg-slate-900/20">
+            <div className="col-span-full py-16 text-center border border-dashed border-slate-800 rounded-2xl bg-[#0e131f]/30">
               <Filter className="w-8 h-8 text-slate-500 mx-auto mb-3" />
               <p className="text-sm text-slate-300 font-display">No matching projects found</p>
               <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
@@ -254,7 +254,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               </p>
               <button
                 onClick={handleClearFilters}
-                className="mt-4 px-4 py-2 text-xs font-semibold bg-amber-400 text-slate-950 rounded-lg hover:bg-amber-300 transition-colors"
+                className="mt-4 px-4 py-2 text-xs font-semibold bg-amber-400 text-slate-950 rounded-xl hover:bg-amber-300 transition-colors cursor-pointer"
               >
                 Reset Filters
               </button>
@@ -263,21 +263,21 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             filteredProjects.map((project) => (
               <div
                 key={project.id}
-                className="group rounded-xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition-all duration-300 flex flex-col justify-between overflow-hidden card-glow"
+                className="group rounded-2xl bg-[#0e131f]/75 border border-slate-800/80 hover:border-slate-700/90 transition-all duration-300 flex flex-col justify-between overflow-hidden card-glow shadow-md"
               >
                 <div>
                   {/* Image / Thumbnail Container */}
-                  <div className="relative h-48 overflow-hidden bg-slate-950 border-b border-slate-800/80">
+                  <div className="relative h-52 overflow-hidden bg-slate-950 border-b border-slate-800/80">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0d131f] via-transparent to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0e131f] via-black/25 to-transparent opacity-90" />
 
                     <div className="absolute top-3 left-3">
-                      <span className="text-[10px] font-mono px-2.5 py-1 rounded bg-[#080c14]/90 text-amber-400 border border-amber-400/30 backdrop-blur-md font-semibold">
+                      <span className="text-[10px] font-mono px-2.5 py-1 rounded-md bg-[#080b11]/90 text-amber-400 border border-amber-400/25 backdrop-blur-md font-medium">
                         {project.category}
                       </span>
                     </div>
@@ -288,7 +288,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                           href={project.secondaryLiveUrl}
                           target="_blank"
                           rel="noreferrer noopener"
-                          className="px-2 py-1 rounded bg-[#080c14]/85 hover:bg-amber-400 hover:text-slate-950 text-slate-300 border border-slate-700/60 transition-all flex items-center gap-1 text-[10px] font-mono backdrop-blur-md"
+                          className="px-2 py-1 rounded-md bg-[#080b11]/90 hover:bg-amber-400 hover:text-slate-950 text-slate-300 border border-slate-700/60 transition-all flex items-center gap-1 text-[10px] font-mono backdrop-blur-md font-medium shadow-xs"
                           title="Open official site (jetfyx.com)"
                         >
                           <span>Site</span>
@@ -300,7 +300,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                           href={project.liveUrl}
                           target="_blank"
                           rel="noreferrer noopener"
-                          className="px-2 py-1 rounded bg-[#080c14]/85 hover:bg-amber-400 hover:text-slate-950 text-slate-300 border border-slate-700/60 transition-all flex items-center gap-1 text-[10px] font-mono backdrop-blur-md"
+                          className="px-2 py-1 rounded-md bg-[#080b11]/90 hover:bg-amber-400 hover:text-slate-950 text-slate-300 border border-slate-700/60 transition-all flex items-center gap-1 text-[10px] font-mono backdrop-blur-md font-medium shadow-xs"
                           title={project.secondaryLiveUrl ? 'Open Trading App / Signup' : 'Open live website'}
                         >
                           <span>{project.secondaryLiveUrl ? 'App' : 'Live'}</span>
@@ -309,14 +309,14 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       )}
                     </div>
 
-                    {/* AI Architecture Insight Trigger */}
+                    {/* AI Architecture Insight Trigger on Thumbnail */}
                     {onOpenAIProject && (
                       <button
                         onClick={() => onOpenAIProject(project)}
-                        className="absolute bottom-3 right-3 z-10 inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#080c14]/90 hover:bg-amber-400 text-amber-300 hover:text-slate-950 border border-amber-400/40 text-[10px] font-mono font-semibold backdrop-blur-md transition-all cursor-pointer shadow-md"
+                        className="absolute bottom-3 right-3 z-10 inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#080b11]/90 hover:bg-amber-400 text-amber-300 hover:text-slate-950 border border-amber-400/35 text-[10px] font-mono font-medium backdrop-blur-md transition-all cursor-pointer shadow-md"
                         title={`Ask Gemini AI about ${project.title} architecture`}
                       >
-                        <Sparkles className="w-3 h-3" />
+                        <Sparkles className="w-3 h-3 text-amber-400" />
                         <span>Ask AI</span>
                       </button>
                     )}
@@ -328,7 +328,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       {project.title}
                     </h3>
 
-                    <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed font-sans">
+                    <p className="text-xs text-slate-300 line-clamp-3 leading-relaxed font-sans">
                       {project.description}
                     </p>
 
@@ -340,7 +340,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                           <button
                             key={t}
                             onClick={() => setSelectedTech(isTechSelected ? null : t)}
-                            className={`text-[11px] font-mono px-2 py-0.5 rounded border transition-colors cursor-pointer ${
+                            className={`text-[11px] font-mono px-2 py-0.5 rounded-md border transition-colors cursor-pointer ${
                               isTechSelected
                                 ? 'bg-amber-400 text-slate-950 border-amber-400 font-semibold'
                                 : 'bg-slate-800/80 hover:bg-slate-800 text-slate-300 border-slate-700/60'
@@ -369,10 +369,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     {onOpenAIProject && (
                       <button
                         onClick={() => onOpenAIProject(project)}
-                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-amber-400/10 hover:bg-amber-400 text-amber-300 hover:text-slate-950 border border-amber-400/30 text-[11px] font-mono font-medium transition-all cursor-pointer"
+                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-amber-400/10 hover:bg-amber-400 text-amber-300 hover:text-slate-950 border border-amber-400/25 text-[11px] font-mono font-medium transition-all cursor-pointer"
                         title="Ask AI questions about this architecture"
                       >
-                        <Sparkles className="w-3 h-3" />
+                        <Sparkles className="w-3 h-3 text-amber-400" />
                         <span>Ask AI</span>
                       </button>
                     )}
@@ -381,7 +381,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       href={project.githubUrl}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="p-1.5 text-slate-400 hover:text-slate-200 transition-colors"
+                      className="p-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 rounded-md transition-colors"
                       title="View GitHub repository"
                     >
                       <Github className="w-4 h-4" />

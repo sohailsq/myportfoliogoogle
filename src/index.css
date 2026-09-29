@@ -5,6 +5,13 @@
     --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-display: 'Syne', 'Plus Jakarta Sans', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+
+    /* Surface palette tokens */
+    --bg-base: #080b11;
+    --bg-surface: #0e131f;
+    --bg-elevated: #131929;
+    --border-subtle: rgba(255, 255, 255, 0.07);
+    --border-hover: rgba(245, 158, 11, 0.35);
   }
 
   html {
@@ -12,14 +19,26 @@
     scroll-behavior: smooth;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    background-color: #080c14;
-    color: #f8fafc;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #080b11;
+    color: #f1f5f9;
   }
 
   body {
-    background-color: #080c14;
-    color: #f8fafc;
+    background-color: #080b11;
+    color: #f1f5f9;
     overflow-x: hidden;
+  }
+
+  /* Accessible high-contrast focus rings with amber accent */
+  :focus-visible {
+    outline: 2px solid #f59e0b;
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: rgba(245, 158, 11, 0.22);
+    color: #fde68a;
   }
 }
 
@@ -29,37 +48,68 @@
 
 .font-mono {
   font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
 }
 
 /* Custom sleek dark scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #080c14;
+  background: #080b11;
 }
 ::-webkit-scrollbar-thumb {
   background: #1e293b;
-  border-radius: 4px;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #334155;
 }
 
-/* Background grid pattern */
+/* Precision engineered background grid pattern */
 .bg-grid-pattern {
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
 }
 
-/* Card hover glow utility */
+/* Subtle dot grid pattern */
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Premium Card hover elevation and subtle border highlight */
 .card-glow {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.25s ease;
 }
 .card-glow:hover {
-  border-color: rgba(245, 158, 11, 0.35);
-  box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.08);
+  transform: translateY(-2px);
+  border-color: rgba(245, 158, 11, 0.28);
+  box-shadow: 0 16px 32px -10px rgba(0, 0, 0, 0.6), 0 0 20px -6px rgba(245, 158, 11, 0.08);
+}
+
+/* Text balance helper */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Smooth line clamp */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

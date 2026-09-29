@@ -149,13 +149,13 @@ export const AIProjectModal: React.FC<AIProjectModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-3xl bg-[#0c101a] border border-amber-500/30 rounded-2xl shadow-2xl p-5 sm:p-7 my-6 text-slate-100 transition-all max-h-[92vh] flex flex-col overflow-hidden"
+        className="relative w-full max-w-3xl bg-[#0e131f] border border-slate-800/90 rounded-2xl shadow-2xl p-5 sm:p-7 my-6 text-slate-100 transition-all max-h-[92vh] flex flex-col overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header Bar */}
         <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-800/80">
           <div className="flex items-start gap-3">
-            <div className="p-2.5 rounded-xl bg-amber-400/10 border border-amber-400/30 text-amber-400 shrink-0">
+            <div className="p-2.5 rounded-xl bg-amber-400/10 border border-amber-400/25 text-amber-400 shrink-0">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
@@ -164,7 +164,7 @@ export const AIProjectModal: React.FC<AIProjectModalProps> = ({
                 <span>·</span>
                 <span className="text-slate-400">Gemini 3.8 Flash</span>
                 <span>·</span>
-                <span className="px-1.5 py-0.2 rounded bg-slate-800 text-[10px] text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
+                <span className="px-2 py-0.5 rounded-md bg-slate-800/80 text-[10px] text-emerald-400 border border-emerald-500/25 flex items-center gap-1 font-medium">
                   <ShieldCheck className="w-3 h-3" /> Grounded with Google Search
                 </span>
               </div>
@@ -176,10 +176,10 @@ export const AIProjectModal: React.FC<AIProjectModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-slate-100 rounded-lg hover:bg-slate-800 transition-colors"
+            className="p-2 text-slate-400 hover:text-slate-100 rounded-xl hover:bg-slate-800/80 transition-colors cursor-pointer border border-slate-800/60"
             aria-label="Close modal"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 

@@ -156,7 +156,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl bg-[#0d131f] border border-slate-800 rounded-xl shadow-2xl p-6 sm:p-8 my-8 text-slate-100 transition-all max-h-[90vh] overflow-y-auto"
+        className="relative w-full max-w-4xl bg-[#0e131f] border border-slate-800/90 rounded-2xl shadow-2xl p-6 sm:p-8 my-8 text-slate-100 transition-all max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}

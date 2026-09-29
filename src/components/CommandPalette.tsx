@@ -221,11 +221,11 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       onClick={onClose}
     >
       <div
-        className="w-full max-w-xl bg-[#0d131f] border border-slate-800 rounded-xl shadow-2xl overflow-hidden text-slate-100 animate-in fade-in zoom-in-95 duration-150"
+        className="w-full max-w-xl bg-[#0e131f] border border-slate-800/90 rounded-2xl shadow-2xl overflow-hidden text-slate-100 animate-in fade-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input Bar */}
-        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-slate-800">
+        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-slate-800/80">
           <Search className="w-4 h-4 text-slate-400" />
           <input
             ref={inputRef}
@@ -239,7 +239,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
             placeholder="Type a command or jump to section..."
             className="w-full bg-transparent text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none font-sans"
           />
-          <kbd className="hidden sm:inline-block font-mono text-[10px] text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700">
+          <kbd className="hidden sm:inline-block font-mono text-[10px] text-slate-400 bg-slate-800/80 px-2 py-0.5 rounded-md border border-slate-700/60">
             ESC
           </kbd>
         </div>
@@ -264,9 +264,9 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                   key={item.id}
                   onClick={item.action}
                   onMouseEnter={() => setSelectedIndex(index)}
-                  className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-xs cursor-pointer transition-colors ${
+                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs cursor-pointer transition-colors ${
                     isSelected
-                      ? 'bg-amber-400/10 text-amber-300 font-medium'
+                      ? 'bg-amber-400/15 text-amber-300 font-medium'
                       : 'text-slate-300 hover:bg-slate-800/60'
                   }`}
                 >
@@ -285,7 +285,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         </div>
 
         {/* Footer shortcuts */}
-        <div className="px-4 py-2 border-t border-slate-800/80 bg-[#090d16] flex items-center justify-between text-[11px] text-slate-500 font-mono">
+        <div className="px-4 py-2.5 border-t border-slate-800/80 bg-[#090d16] flex items-center justify-between text-[11px] text-slate-500 font-mono">
           <span>Navigate ↑ ↓ · Enter to select</span>
           <span>Sohail Shah Portfolio</span>
         </div>

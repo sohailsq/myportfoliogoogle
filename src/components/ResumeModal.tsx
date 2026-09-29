@@ -33,11 +33,11 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl bg-[#0d131f] border border-slate-800 rounded-xl shadow-2xl p-6 sm:p-10 my-8 text-slate-100 transition-all max-h-[92vh] overflow-y-auto print:bg-white print:text-black print:p-0 print:border-none print:shadow-none"
+        className="relative w-full max-w-4xl bg-[#0e131f] border border-slate-800/90 rounded-2xl shadow-2xl p-6 sm:p-10 my-8 text-slate-100 transition-all max-h-[92vh] overflow-y-auto print:bg-white print:text-black print:p-0 print:border-none print:shadow-none"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Control Bar (Hidden during print) */}
-        <div className="flex items-center justify-between pb-6 mb-6 border-b border-slate-800 print:hidden">
+        <div className="flex items-center justify-between pb-6 mb-6 border-b border-slate-800/80 print:hidden">
           <div className="flex items-center gap-2">
             <span className="text-sm font-semibold font-display text-slate-200">
               Curriculum Vitae Preview
@@ -48,7 +48,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
           <div className="flex items-center gap-3">
             <button
               onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-slate-950 bg-amber-400 hover:bg-amber-300 rounded-lg transition-colors shadow-sm cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-slate-950 bg-amber-400 hover:bg-amber-300 rounded-xl transition-all shadow-md shadow-amber-400/10 cursor-pointer active:scale-95"
               title="Print or save as PDF"
             >
               <Printer className="w-3.5 h-3.5" />
@@ -56,10 +56,10 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
             </button>
             <button
               onClick={onClose}
-              className="p-1.5 text-slate-400 hover:text-slate-100 rounded-lg hover:bg-slate-800 transition-colors"
+              className="p-2 text-slate-400 hover:text-slate-100 rounded-xl hover:bg-slate-800/80 transition-colors cursor-pointer border border-slate-800/60"
               aria-label="Close resume"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
           </div>
         </div>

@@ -56,7 +56,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#080c14]/85 backdrop-blur-md border-b border-slate-800/80 shadow-lg shadow-black/40'
+          ? 'bg-[#080b11]/90 backdrop-blur-md border-b border-slate-800/80 shadow-lg shadow-black/50'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
@@ -64,25 +64,27 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Zone 1: Wordmark */}
         <a
           href="#"
-          className="group flex items-center gap-2 text-base sm:text-lg font-bold font-display tracking-tight text-slate-100 hover:text-white transition-colors"
+          className="group flex items-center gap-2.5 text-base sm:text-lg font-bold font-display tracking-tight text-slate-100 hover:text-white transition-colors"
         >
-          <span className="w-2.5 h-2.5 rounded-full bg-amber-400 group-hover:scale-125 transition-transform" />
+          <span className="w-2 h-2 rounded-full bg-amber-400 group-hover:scale-125 transition-transform" />
           <span>Sohail Shah</span>
-          <span className="hidden sm:inline-block text-[11px] font-mono text-slate-500 font-normal ml-1">/ dev</span>
+          <span className="hidden sm:inline-block text-[11px] font-mono text-slate-500 font-normal">
+            / dev
+          </span>
         </a>
 
         {/* Zone 2: Navigation Links */}
-        <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+        <nav className="hidden md:flex items-center gap-1 p-1 rounded-xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-sm">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <a
                 key={link.label}
                 href={link.href}
-                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                   isActive
-                    ? 'text-amber-400 bg-amber-400/10 font-semibold'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+                    ? 'text-amber-300 bg-amber-400/10 font-semibold shadow-xs'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
                 }`}
               >
                 {link.label}
@@ -91,14 +93,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </nav>
 
-        {/* Zone 3: Actions (No Theme Toggle) */}
+        {/* Zone 3: Actions */}
         <div className="flex items-center gap-2">
           {/* AI Career & Tech Assistant Trigger */}
           {onOpenAIAssistant && (
             <button
               onClick={onOpenAIAssistant}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-amber-300 hover:text-amber-200 border border-amber-400/40 hover:border-amber-400/80 rounded-lg transition-all bg-amber-400/10 cursor-pointer shadow-sm"
-              title="Ask Sohail's AI Career & Architecture Assistant (Gemini 3.8 Flash)"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-amber-300 hover:text-amber-200 border border-amber-400/30 hover:border-amber-400/60 rounded-lg transition-all bg-amber-400/10 hover:bg-amber-400/15 cursor-pointer shadow-xs active:scale-95"
+              title="Ask Sohail's AI Career & Architecture Assistant"
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               <span className="hidden sm:inline font-mono font-medium text-[11px]">AI Agent</span>
@@ -108,7 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Command Palette Trigger */}
           <button
             onClick={onOpenCommandPalette}
-            className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-slate-400 hover:text-slate-200 border border-slate-800 hover:border-slate-700 rounded-lg transition-colors bg-slate-900/60"
+            className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-slate-400 hover:text-slate-200 border border-slate-800 hover:border-slate-700 rounded-lg transition-all bg-slate-900/60 hover:bg-slate-900 active:scale-95 cursor-pointer"
             title="Search and commands (⌘K or Ctrl+K)"
             aria-label="Open command palette"
           >
@@ -121,10 +123,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Admin portal trigger */}
           <button
             onClick={onOpenAdmin}
-            className={`p-1.5 border rounded-lg transition-colors ${
+            className={`p-1.5 border rounded-lg transition-all active:scale-95 cursor-pointer ${
               isAdmin
                 ? 'border-emerald-500/50 bg-emerald-500/10 text-emerald-400'
-                : 'border-slate-800 hover:border-slate-700 text-slate-400 hover:text-slate-200 bg-slate-900/60'
+                : 'border-slate-800 hover:border-slate-700 text-slate-400 hover:text-slate-200 bg-slate-900/60 hover:bg-slate-900'
             }`}
             title={isAdmin ? `Admin active: ${user?.email}` : 'Admin portal'}
             aria-label="Admin portal"
@@ -144,7 +146,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-1.5 text-slate-400 hover:text-slate-200 border border-slate-800 rounded-lg bg-slate-900/60"
+            className="md:hidden p-1.5 text-slate-400 hover:text-slate-200 border border-slate-800 rounded-lg bg-slate-900/60 active:scale-95"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -154,18 +156,18 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-slate-800 bg-[#080c14]/95 backdrop-blur-xl px-4 pt-3 pb-5 space-y-1">
+        <div className="md:hidden border-b border-slate-800 bg-[#080b11]/98 backdrop-blur-xl px-4 pt-3 pb-5 space-y-1">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 text-sm font-medium text-slate-300 hover:text-amber-400 hover:bg-slate-900 rounded-md transition-colors"
+              className="block px-3 py-2 text-sm font-medium text-slate-300 hover:text-amber-400 hover:bg-slate-900/80 rounded-md transition-colors"
             >
               {link.label}
             </a>
           ))}
-          <div className="pt-3 border-t border-slate-800">
+          <div className="pt-3 border-t border-slate-800/80">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);

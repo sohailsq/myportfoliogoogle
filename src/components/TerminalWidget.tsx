@@ -158,9 +158,9 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
   const quickCommands = ['help', 'projects', 'skills', 'experience', 'contact', 'resume', 'clear'];
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-[#070b13] overflow-hidden shadow-2xl font-mono">
+    <div className="rounded-2xl border border-slate-800/90 bg-[#070a12] overflow-hidden shadow-2xl font-mono">
       {/* Top Window Chrome Bar */}
-      <div className="flex items-center justify-between px-4 py-2.5 bg-slate-900/90 border-b border-slate-800">
+      <div className="flex items-center justify-between px-4 py-3 bg-[#0b0f19] border-b border-slate-800/80">
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
           <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
@@ -171,7 +171,7 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex items-center gap-1 bg-slate-950 p-0.5 rounded-lg border border-slate-800 text-[11px]">
+        <div className="flex items-center gap-1 bg-slate-950/80 p-0.5 rounded-lg border border-slate-800/80 text-[11px]">
           <button
             onClick={() => setActiveTab('shell')}
             className={`px-2.5 py-1 rounded-md transition-colors flex items-center gap-1 cursor-pointer ${
@@ -232,9 +232,9 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
           </div>
 
           {/* Prompt input & quick command chips */}
-          <div className="mt-4 pt-3 border-t border-slate-800/80 space-y-2">
-            <div className="flex items-center gap-2">
-              <span className="text-amber-400 shrink-0">sohail@host:~$</span>
+          <div className="mt-4 pt-3 border-t border-slate-800/80 space-y-2.5">
+            <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#090d16]/90 border border-slate-800/80 shadow-xs">
+              <span className="text-amber-400 font-semibold shrink-0">sohail@host:~$</span>
               <input
                 ref={inputRef}
                 type="text"
@@ -246,7 +246,7 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
               />
               <button
                 onClick={() => handleCommand(inputVal)}
-                className="p-1 text-slate-500 hover:text-amber-400 cursor-pointer"
+                className="p-1 text-slate-500 hover:text-amber-400 cursor-pointer transition-colors"
                 title="Execute command"
               >
                 <CornerDownLeft className="w-3.5 h-3.5" />
@@ -254,13 +254,13 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
             </div>
 
             {/* Quick chips */}
-            <div className="flex flex-wrap items-center gap-1.5 pt-1 text-[11px]">
+            <div className="flex flex-wrap items-center gap-1.5 pt-0.5 text-[11px]">
               <span className="text-slate-500">Quick run:</span>
               {quickCommands.map((qc) => (
                 <button
                   key={qc}
                   onClick={() => handleCommand(qc)}
-                  className="px-2 py-0.5 rounded bg-slate-800/80 hover:bg-slate-800 text-slate-300 hover:text-amber-400 border border-slate-700/60 transition-colors font-mono cursor-pointer"
+                  className="px-2.5 py-1 rounded-lg bg-slate-800/80 hover:bg-slate-800 text-slate-300 hover:text-amber-400 border border-slate-700/60 transition-colors font-mono cursor-pointer shadow-xs active:scale-95"
                 >
                   {qc}
                 </button>
@@ -278,28 +278,28 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-2.5 text-center">
-            <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800">
+            <div className="p-3.5 rounded-xl bg-[#0e131f]/80 border border-slate-800/80 shadow-xs">
               <span className="text-amber-400 font-semibold block text-[11px] mb-1">01. Client Edge</span>
               <p className="text-[11px] text-slate-300 font-sans">Next.js &amp; React SPA / Flutter &amp; React Native Mobile</p>
             </div>
 
-            <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800">
+            <div className="p-3.5 rounded-xl bg-[#0e131f]/80 border border-slate-800/80 shadow-xs">
               <span className="text-sky-400 font-semibold block text-[11px] mb-1">02. API &amp; Real-Time</span>
               <p className="text-[11px] text-slate-300 font-sans">Node.js Express / WebSockets Cluster</p>
             </div>
 
-            <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800">
+            <div className="p-3.5 rounded-xl bg-[#0e131f]/80 border border-slate-800/80 shadow-xs">
               <span className="text-emerald-400 font-semibold block text-[11px] mb-1">03. Persistence</span>
               <p className="text-[11px] text-slate-300 font-sans">MongoDB Atlas / Mongoose Modeling</p>
             </div>
 
-            <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800">
+            <div className="p-3.5 rounded-xl bg-[#0e131f]/80 border border-slate-800/80 shadow-xs">
               <span className="text-purple-400 font-semibold block text-[11px] mb-1">04. Cloud Infrastructure</span>
               <p className="text-[11px] text-slate-300 font-sans">AWS EC2 / Docker &amp; CI/CD Pipelines</p>
             </div>
           </div>
 
-          <div className="mt-4 p-3 rounded-lg bg-slate-950/40 border border-slate-800 text-[11px] text-slate-400 font-sans">
+          <div className="mt-4 p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 text-[11px] text-slate-400 font-sans">
             <span className="text-slate-200 font-medium">Engineering Approach: </span>
             &quot;I don&apos;t just write code — I build and deploy complete products from concept to containerized production.&quot;
           </div>
@@ -310,29 +310,29 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
       {activeTab === 'telemetry' && (
         <div className="p-4 sm:p-5 min-h-[300px] flex flex-col justify-center text-xs space-y-3">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <div className="p-3 rounded-lg bg-slate-950/80 border border-slate-800">
+            <div className="p-3.5 rounded-xl bg-[#0e131f]/80 border border-slate-800/80 shadow-xs">
               <span className="text-xs text-slate-400 block font-sans">Experience</span>
               <span className="text-lg font-bold text-slate-100 font-mono tabular-nums">2+ Years</span>
               <span className="text-[10px] text-slate-500 block mt-0.5">Software Dev</span>
             </div>
-            <div className="p-3 rounded-lg bg-slate-950/80 border border-slate-800">
+            <div className="p-3.5 rounded-xl bg-[#0e131f]/80 border border-slate-800/80 shadow-xs">
               <span className="text-xs text-slate-400 block font-sans">Tick Latency</span>
               <span className="text-lg font-bold text-amber-400 font-mono tabular-nums">&lt; 45ms</span>
               <span className="text-[10px] text-slate-500 block mt-0.5">JetFyx Platform</span>
             </div>
-            <div className="p-3 rounded-lg bg-slate-950/80 border border-slate-800">
+            <div className="p-3.5 rounded-xl bg-[#0e131f]/80 border border-slate-800/80 shadow-xs">
               <span className="text-xs text-slate-400 block font-sans">Deployment</span>
               <span className="text-lg font-bold text-emerald-400 font-mono tabular-nums">100% CI/CD</span>
               <span className="text-[10px] text-slate-500 block mt-0.5">Automated Gate</span>
             </div>
-            <div className="p-3 rounded-lg bg-slate-950/80 border border-slate-800">
+            <div className="p-3.5 rounded-xl bg-[#0e131f]/80 border border-slate-800/80 shadow-xs">
               <span className="text-xs text-slate-400 block font-sans">Education</span>
               <span className="text-lg font-bold text-sky-400 font-mono tabular-nums">B.E. CS</span>
               <span className="text-[10px] text-slate-500 block mt-0.5">Deccan (2021-25)</span>
             </div>
           </div>
 
-          <div className="p-3 rounded-lg bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
+          <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 text-[11px] text-slate-400 flex items-center justify-between">
             <span>Engineering Status: Active &amp; Ready for Production</span>
             <span className="flex items-center gap-1.5 text-emerald-400 font-semibold font-mono">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />

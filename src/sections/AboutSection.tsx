@@ -30,11 +30,11 @@ export const AboutSection: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 md:py-28 border-t border-slate-800/80 bg-[#090e18]/40">
+    <section id="about" className="py-20 md:py-28 border-t border-slate-800/80 bg-[#080b11]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl">
-          <span className="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold flex items-center gap-2">
+          <span className="text-[11px] font-mono uppercase tracking-widest text-amber-400 font-semibold flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
             01. Engineering Profile
           </span>
@@ -61,45 +61,45 @@ export const AboutSection: React.FC = () => {
             </p>
 
             {/* Quick Metrics */}
-            <div className="pt-4 grid grid-cols-3 gap-4 border-t border-slate-800">
-              <div className="p-3 rounded-lg bg-slate-900/50 border border-slate-800/80">
+            <div className="pt-4 grid grid-cols-3 gap-3.5 border-t border-slate-800/80">
+              <div className="p-4 rounded-xl bg-[#0e131f]/70 border border-slate-800/80 shadow-xs">
                 <span className="text-2xl font-bold font-mono text-slate-100 tabular-nums">2+</span>
-                <span className="block text-xs text-slate-400 mt-0.5">Years Professional Dev</span>
+                <span className="block text-xs text-slate-400 mt-1">Years Professional Dev</span>
               </div>
-              <div className="p-3 rounded-lg bg-slate-900/50 border border-slate-800/80">
+              <div className="p-4 rounded-xl bg-[#0e131f]/70 border border-slate-800/80 shadow-xs">
                 <span className="text-2xl font-bold font-mono text-amber-400 tabular-nums">5+</span>
-                <span className="block text-xs text-slate-400 mt-0.5">Production Systems</span>
+                <span className="block text-xs text-slate-400 mt-1">Production Systems</span>
               </div>
-              <div className="p-3 rounded-lg bg-slate-900/50 border border-slate-800/80">
+              <div className="p-4 rounded-xl bg-[#0e131f]/70 border border-slate-800/80 shadow-xs">
                 <span className="text-2xl font-bold font-mono text-emerald-400 tabular-nums">99.9%</span>
-                <span className="block text-xs text-slate-400 mt-0.5">Deployment Uptime</span>
+                <span className="block text-xs text-slate-400 mt-1">Deployment Uptime</span>
               </div>
             </div>
           </div>
 
           {/* Right: Engineering Principles (5 cols) */}
-          <div className="lg:col-span-5 p-6 rounded-xl bg-slate-900/50 border border-slate-800 shadow-sm space-y-4">
+          <div className="lg:col-span-5 p-6 sm:p-7 rounded-2xl bg-[#0e131f]/70 border border-slate-800/80 shadow-md space-y-4">
             <h3 className="text-sm font-semibold font-display text-slate-100 flex items-center gap-2">
               <Award className="w-4 h-4 text-amber-400" />
               <span>Engineering Principles</span>
             </h3>
 
-            <ul className="space-y-3.5 text-xs text-slate-300 font-sans">
+            <ul className="space-y-3.5 text-xs text-slate-300 font-sans leading-relaxed">
               <li className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span><strong className="text-slate-100">Reusable &amp; Modular Code:</strong> Construct clean, self-contained components and decoupled services that simplify team development and scaling.</span>
+                <span><strong className="text-slate-100 font-medium">Reusable &amp; Modular Code:</strong> Construct clean, self-contained components and decoupled services that simplify team development and scaling.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span><strong className="text-slate-100">Systematic Debugging:</strong> Isolate frontend, API, UI, and application-level issues methodically using browser devtools and telemetry.</span>
+                <span><strong className="text-slate-100 font-medium">Systematic Debugging:</strong> Isolate frontend, API, UI, and application-level issues methodically using browser devtools and telemetry.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span><strong className="text-slate-100">Performance &amp; State Management:</strong> Handle asynchronous data efficiently using TanStack Query / RTK Query with background caching and zero UI stutter.</span>
+                <span><strong className="text-slate-100 font-medium">Performance &amp; State Management:</strong> Handle asynchronous data efficiently using TanStack Query / RTK Query with background caching and zero UI stutter.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span><strong className="text-slate-100">Production-Ready Deployment:</strong> Containerize workloads with Docker and automate tests and staging via CI/CD pipelines before any code hits production.</span>
+                <span><strong className="text-slate-100 font-medium">Production-Ready Deployment:</strong> Containerize workloads with Docker and automate tests and staging via CI/CD pipelines before any code hits production.</span>
               </li>
             </ul>
           </div>
@@ -110,10 +110,10 @@ export const AboutSection: React.FC = () => {
           {pillars.map((p, idx) => (
             <div
               key={idx}
-              className="p-5 rounded-xl bg-slate-900/40 border border-slate-800 hover:border-slate-700 transition-all card-glow flex flex-col justify-between"
+              className="p-5 rounded-2xl bg-[#0e131f]/60 border border-slate-800/80 hover:border-slate-700/90 transition-all card-glow flex flex-col justify-between"
             >
               <div>
-                <div className="w-10 h-10 rounded-lg bg-slate-800/80 flex items-center justify-center mb-3">
+                <div className="w-10 h-10 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-center mb-3.5">
                   {p.icon}
                 </div>
                 <h4 className="text-sm font-semibold font-display text-slate-100 mb-2">

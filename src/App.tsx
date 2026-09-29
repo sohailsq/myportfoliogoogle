@@ -36,7 +36,7 @@ export default function App() {
 
   return (
     <AuthProvider>
-      <div className="min-h-screen bg-[#080c14] text-slate-100 selection:bg-amber-400/20 selection:text-amber-200 antialiased font-sans">
+      <div className="min-h-screen bg-[#080b11] text-slate-100 selection:bg-amber-400/20 selection:text-amber-200 antialiased font-sans">
         {/* Top Bar Navigation */}
         <Navbar
           onOpenCommandPalette={() => setCommandPaletteOpen(true)}

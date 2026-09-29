@@ -31,14 +31,14 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-3xl bg-[#0d131f] border border-slate-800 rounded-xl shadow-2xl p-6 sm:p-8 my-8 text-slate-100 transition-all max-h-[90vh] overflow-y-auto"
+        className="relative w-full max-w-3xl bg-[#0e131f] border border-slate-800/90 rounded-2xl shadow-2xl p-6 sm:p-8 my-8 text-slate-100 transition-all max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header bar */}
-        <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-800">
+        <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-800/80">
           <div>
             <div className="flex items-center gap-2 text-xs text-slate-400 font-mono mb-1">
-              <span>{project.category}</span>
+              <span className="text-amber-400 font-medium">{project.category}</span>
               <span aria-hidden="true">·</span>
               <span>Architecture Case Study</span>
               <span aria-hidden="true">·</span>
@@ -53,15 +53,15 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-slate-100 rounded-lg hover:bg-slate-800 transition-colors"
+            className="p-2 text-slate-400 hover:text-slate-100 rounded-xl hover:bg-slate-800/80 transition-colors cursor-pointer border border-slate-800/60"
             aria-label="Close modal"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Featured Preview Visual */}
-        <div className="mt-5 rounded-lg overflow-hidden border border-slate-800 aspect-video max-h-72 bg-slate-950 relative">
+        <div className="mt-5 rounded-xl overflow-hidden border border-slate-800/80 aspect-video max-h-72 bg-slate-950 relative shadow-inner">
           <img
             src={project.image}
             alt={`${project.title} interface preview`}
@@ -80,7 +80,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
         </div>
 
         {/* Key Project Meta Bar */}
-        <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-lg bg-slate-950/60 border border-slate-800 text-xs font-sans">
+        <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-xl bg-slate-950/70 border border-slate-800/80 text-xs font-sans">
           <div>
             <span className="text-slate-400 block mb-1 font-medium font-mono">My Engineering Contribution</span>
             <p className="text-slate-200 leading-relaxed">{project.contribution}</p>
@@ -89,7 +89,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
             <span className="text-slate-400 block mb-1 font-medium font-mono">Technologies Leveraged</span>
             <div className="flex flex-wrap gap-1.5 text-slate-300 font-mono">
               {project.technologies.map((tech) => (
-                <span key={tech} className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-200">
+                <span key={tech} className="px-2.5 py-0.5 rounded-md bg-slate-800/80 border border-slate-700/60 text-slate-200 text-[11px]">
                   {tech}
                 </span>
               ))}
@@ -99,7 +99,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
 
         {/* Problem vs Solution */}
         <div className="mt-6 space-y-4">
-          <div className="p-4 rounded-lg border border-rose-500/20 bg-rose-950/10">
+          <div className="p-4 rounded-xl border border-rose-500/20 bg-rose-950/10">
             <div className="flex items-center gap-2 text-xs font-semibold text-rose-400 mb-1.5">
               <Target className="w-4 h-4" />
               <span>The Engineering Challenge</span>
@@ -109,7 +109,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
             </p>
           </div>
 
-          <div className="p-4 rounded-lg border border-emerald-500/20 bg-emerald-950/10">
+          <div className="p-4 rounded-xl border border-emerald-500/20 bg-emerald-950/10">
             <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400 mb-1.5">
               <CheckCircle2 className="w-4 h-4" />
               <span>Architectural Solution</span>
@@ -122,12 +122,12 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
 
         {/* Architecture Topology */}
         {project.caseStudy?.architecture && (
-          <div className="mt-6 p-4 rounded-lg border border-slate-800 bg-slate-950/60">
+          <div className="mt-6 p-4 rounded-xl border border-slate-800 bg-slate-950/70">
             <div className="flex items-center gap-2 text-xs font-semibold text-slate-300 mb-2">
               <Layers className="w-4 h-4 text-amber-400" />
               <span>System Topology &amp; Data Flow</span>
             </div>
-            <div className="font-mono text-xs text-amber-300/90 bg-slate-900 p-3 rounded border border-slate-800 overflow-x-auto whitespace-pre-wrap">
+            <div className="font-mono text-xs text-amber-300/90 bg-slate-900/90 p-3 rounded-lg border border-slate-800 overflow-x-auto whitespace-pre-wrap">
               {project.caseStudy.architecture}
             </div>
           </div>
@@ -174,14 +174,14 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
         )}
 
         {/* Action Buttons */}
-        <div className="mt-8 pt-5 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex flex-wrap items-center gap-3">
+        <div className="mt-8 pt-5 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-2.5">
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-slate-950 bg-amber-400 hover:bg-amber-300 rounded-lg transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-semibold text-slate-950 bg-amber-400 hover:bg-amber-300 rounded-xl transition-all shadow-md shadow-amber-400/10 active:scale-95 cursor-pointer"
               >
                 <span>{project.secondaryLiveUrl ? 'Trading Platform (Signup)' : 'Live Demonstration'}</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -193,7 +193,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
                 href={project.secondaryLiveUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 hover:text-white border border-slate-700 rounded-lg transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium text-slate-200 bg-slate-900/90 hover:bg-slate-850 hover:text-white border border-slate-800 hover:border-slate-700 rounded-xl transition-all active:scale-95 cursor-pointer"
               >
                 <span>Official Website</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -203,9 +203,9 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
             {onOpenAIProject && (
               <button
                 onClick={() => onOpenAIProject(project)}
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-amber-300 bg-amber-400/10 hover:bg-amber-400 hover:text-slate-950 border border-amber-400/40 rounded-lg transition-all cursor-pointer shadow-sm"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-semibold text-amber-300 bg-amber-400/10 hover:bg-amber-400 hover:text-slate-950 border border-amber-400/35 rounded-xl transition-all cursor-pointer shadow-xs active:scale-95"
               >
-                <Sparkles className="w-3.5 h-3.5" />
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
                 <span>Ask AI Architecture</span>
               </button>
             )}
@@ -214,10 +214,10 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
               href={project.githubUrl}
               target="_blank"
               rel="noreferrer noopener"
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 hover:text-white rounded-lg transition-colors"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2.5 text-xs font-medium text-slate-300 hover:text-white bg-slate-900/80 hover:bg-slate-850 border border-slate-800 hover:border-slate-700 rounded-xl transition-colors cursor-pointer"
             >
               <Github className="w-3.5 h-3.5" />
-              <span>View Source Code</span>
+              <span>Source</span>
             </a>
           </div>
 
@@ -225,7 +225,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
             onClick={onClose}
             className="text-xs text-slate-400 hover:text-slate-200 transition-colors cursor-pointer font-mono"
           >
-            Close Window (ESC)
+            Close (ESC)
           </button>
         </div>
       </div>

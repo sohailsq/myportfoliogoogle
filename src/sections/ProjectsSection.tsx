@@ -1,16 +1,23 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { ExternalLink, Github, BookOpen, ArrowUpRight, Search, X, Filter } from 'lucide-react';
+import { ExternalLink, Github, BookOpen, ArrowUpRight, Search, X, Filter, Sparkles, Bot } from 'lucide-react';
 import { IProject } from '../types';
 import { api } from '../services/api';
 
 interface ProjectsSectionProps {
   onOpenCaseStudy: (project: IProject) => void;
+  onOpenAIProject?: (project: IProject) => void;
+  onOpenAIAssistant?: () => void;
 }
 
-export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenCaseStudy }) => {
+export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
+  onOpenCaseStudy,
+  onOpenAIProject,
+  onOpenAIAssistant,
+}) => {
   const [projects, setProjects] = useState<IProject[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [selectedTech, setSelectedTech] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
@@ -27,34 +34,31 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenCaseStud
     loadProjects();
   }, []);
 
-  const filterOptions = [
-    { id: 'All', label: 'All Projects' },
-    { id: 'React', label: 'React / Next.js' },
-    { id: 'DevOps', label: 'DevOps & Cloud' },
-    { id: 'Mobile', label: 'Mobile' },
-    { id: 'Full-Stack', label: 'Full-Stack' },
-    { id: 'Fintech', label: 'Fintech' },
-    { id: 'AI/ML', label: 'AI / ML' },
+  const filterTabs = [
+    { label: 'All Projects', value: 'All' },
+    { label: 'React', value: 'React' },
+    { label: 'DevOps', value: 'DevOps' },
+    { label: 'Mobile', value: 'Mobile' },
+    { label: 'Full-Stack', value: 'Full-Stack' },
+    { label: 'Fintech', value: 'Fintech' },
   ];
 
-  // Helper function to test if a project matches a specific category/technology filter
-  const matchesCategoryFilter = (p: IProject, category: string): boolean => {
-    if (category === 'All') return true;
-
-    const catLower = category.toLowerCase();
+  const matchesCategoryFilter = (p: IProject, cat: string): boolean => {
+    if (cat === 'All') return true;
+    const catLower = cat.toLowerCase();
     const projectCategoryLower = p.category.toLowerCase();
     const techsLower = p.technologies.map((t) => t.toLowerCase());
 
     if (catLower === 'react') {
       return (
-        projectCategoryLower.includes('react') ||
-        techsLower.some((t) => t.includes('react') || t.includes('next.js')) ||
+        techsLower.some((t) => t.includes('react')) ||
         p.title.toLowerCase().includes('react') ||
         p.description.toLowerCase().includes('react')
       );
     }
 
     if (catLower === 'devops') {
+      const arch = p.caseStudy?.architecture?.toLowerCase() || '';
       return (
         projectCategoryLower.includes('cloud') ||
         projectCategoryLower.includes('devops') ||
@@ -62,347 +66,326 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenCaseStud
           (t) =>
             t.includes('aws') ||
             t.includes('docker') ||
-            t.includes('devops') ||
             t.includes('ci/cd') ||
-            t.includes('cloud') ||
-            t.includes('fastapi')
+            t.includes('jenkins') ||
+            t.includes('terraform') ||
+            t.includes('cloud')
         ) ||
-        p.description.toLowerCase().includes('aws') ||
-        p.description.toLowerCase().includes('docker') ||
-        p.description.toLowerCase().includes('cloud') ||
-        Boolean(p.caseStudy?.architecture?.toLowerCase().includes('aws'))
+        arch.includes('aws') ||
+        arch.includes('cloud')
       );
     }
 
     if (catLower === 'mobile') {
       return (
-        projectCategoryLower === 'mobile' ||
-        techsLower.some((t) => t.includes('mobile') || t.includes('react native') || t.includes('flutter')) ||
-        p.description.toLowerCase().includes('mobile') ||
-        p.subtitle.toLowerCase().includes('mobile')
+        projectCategoryLower.includes('mobile') ||
+        techsLower.some(
+          (t) =>
+            t.includes('mobile') ||
+            t.includes('react native') ||
+            t.includes('flutter') ||
+            t.includes('expo')
+        )
       );
     }
 
-    if (catLower === 'full-stack') {
-      return (
-        projectCategoryLower === 'full-stack' ||
-        (techsLower.some((t) => t.includes('node') || t.includes('express')) &&
-          techsLower.some((t) => t.includes('react') || t.includes('next')))
-      );
-    }
-
-    if (catLower === 'fintech') {
-      return (
-        projectCategoryLower === 'fintech' ||
-        p.title.toLowerCase().includes('jetfyx') ||
-        p.title.toLowerCase().includes('richesse') ||
-        p.description.toLowerCase().includes('trading') ||
-        p.description.toLowerCase().includes('fintech')
-      );
-    }
-
-    if (catLower === 'ai/ml') {
-      return (
-        projectCategoryLower === 'ai/ml' ||
-        techsLower.some((t) => t.includes('ai') || t.includes('machine learning') || t.includes('ml')) ||
-        p.description.toLowerCase().includes('ai') ||
-        p.description.toLowerCase().includes('machine learning')
-      );
-    }
-
-    // Default exact category or tech match
     return (
-      projectCategoryLower === catLower ||
+      projectCategoryLower.includes(catLower) ||
       techsLower.some((t) => t.includes(catLower))
     );
   };
 
-  // Count items for each filter option
-  const counts = useMemo(() => {
-    const map: Record<string, number> = {};
-    for (const opt of filterOptions) {
-      map[opt.id] = projects.filter((p) => matchesCategoryFilter(p, opt.id)).length;
-    }
-    return map;
-  }, [projects]);
-
-  // Filter projects by both category and optional search query
-  const filtered = useMemo(() => {
+  const filteredProjects = useMemo(() => {
     return projects.filter((p) => {
       const matchCat = matchesCategoryFilter(p, selectedCategory);
-      if (!matchCat) return false;
+      const matchTech =
+        !selectedTech ||
+        p.technologies.some((t) => t.toLowerCase() === selectedTech.toLowerCase());
 
-      if (!searchQuery.trim()) return true;
+      const query = searchQuery.trim().toLowerCase();
+      const matchQuery =
+        !query ||
+        p.title.toLowerCase().includes(query) ||
+        p.description.toLowerCase().includes(query) ||
+        p.technologies.some((t) => t.toLowerCase().includes(query)) ||
+        p.category.toLowerCase().includes(query) ||
+        p.problem.toLowerCase().includes(query) ||
+        p.solution.toLowerCase().includes(query);
 
-      const q = searchQuery.toLowerCase().trim();
-      return (
-        p.title.toLowerCase().includes(q) ||
-        p.subtitle.toLowerCase().includes(q) ||
-        p.description.toLowerCase().includes(q) ||
-        p.problem.toLowerCase().includes(q) ||
-        p.solution.toLowerCase().includes(q) ||
-        p.category.toLowerCase().includes(q) ||
-        p.technologies.some((t) => t.toLowerCase().includes(q))
-      );
+      return matchCat && matchTech && matchQuery;
     });
-  }, [projects, selectedCategory, searchQuery]);
+  }, [projects, selectedCategory, selectedTech, searchQuery]);
 
-  const handleSelectTech = (tech: string) => {
-    // If clicking a tech tag that corresponds to a major category
-    const lower = tech.toLowerCase();
-    if (lower.includes('react native') || lower.includes('mobile')) {
-      setSelectedCategory('Mobile');
-    } else if (lower.includes('aws') || lower.includes('docker') || lower.includes('cloud')) {
-      setSelectedCategory('DevOps');
-    } else if (lower.includes('react') || lower.includes('next')) {
-      setSelectedCategory('React');
-    } else {
-      setSearchQuery(tech);
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const tab of filterTabs) {
+      counts[tab.value] = projects.filter((p) => matchesCategoryFilter(p, tab.value)).length;
     }
-  };
+    return counts;
+  }, [projects]);
 
-  const clearAllFilters = () => {
+  const handleClearFilters = () => {
     setSelectedCategory('All');
+    setSelectedTech(null);
     setSearchQuery('');
   };
 
+  const hasActiveFilters = selectedCategory !== 'All' || selectedTech !== null || searchQuery !== '';
+
   return (
-    <section id="projects" className="py-20 md:py-28 border-t border-neutral-800/80 light:border-neutral-200 bg-neutral-950/40 light:bg-neutral-50/50">
+    <section id="projects" className="py-20 md:py-28 border-t border-slate-800/80 bg-[#090d16]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <span className="text-xs font-mono uppercase tracking-wider text-amber-400 light:text-amber-800 font-semibold">
+            <span className="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
               03. Featured Engineering
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-display tracking-tight text-neutral-100 light:text-neutral-900 mt-2 text-balance">
+            <h2 className="text-3xl sm:text-4xl font-bold font-display tracking-tight text-slate-100 mt-2 text-balance">
               Production Applications &amp; Case Studies
             </h2>
-            <p className="text-sm sm:text-base text-neutral-400 light:text-neutral-600 mt-2">
-              End-to-end applications demonstrating high-concurrency client design, streaming protocols, resilient API microservices, and cloud deployments.
+            <p className="text-sm sm:text-base text-slate-400 mt-2 font-sans">
+              Real-world systems engineered across web, mobile, and cloud environments with end-to-end architecture breakdowns.
             </p>
           </div>
 
-          {/* Quick Search Input */}
-          <div className="relative w-full md:w-72">
-            <Search className="w-4 h-4 text-neutral-500 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by tech or keyword..."
-              className="w-full pl-9 pr-8 py-2 text-xs bg-neutral-900 light:bg-white border border-neutral-800 light:border-neutral-300 rounded-lg text-neutral-100 light:text-neutral-900 placeholder:text-neutral-500 focus:outline-none focus:border-amber-400"
-            />
-            {searchQuery && (
+          {/* Search & AI Actions Box */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto">
+            {onOpenAIAssistant && (
               <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-200 p-0.5"
-                title="Clear search"
-                aria-label="Clear search"
+                onClick={onOpenAIAssistant}
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-lg bg-amber-400/10 hover:bg-amber-400 text-amber-300 hover:text-slate-950 border border-amber-400/40 transition-all cursor-pointer whitespace-nowrap shadow-sm"
+                title="Open AI Career & Architecture Assistant"
               >
-                <X className="w-3.5 h-3.5" />
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>AI Architecture Inspector</span>
               </button>
             )}
+
+            <div className="relative w-full sm:w-64">
+              <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search projects by name, stack..."
+                className="w-full pl-9 pr-8 py-2 text-xs bg-slate-900/80 border border-slate-800 focus:border-amber-400/80 rounded-lg text-slate-100 placeholder:text-slate-500 focus:outline-none transition-colors"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Category Tabs with dynamic badge counts */}
-        <div className="mt-8 flex flex-wrap items-center gap-1.5 p-1 bg-neutral-900/60 light:bg-neutral-100 rounded-lg border border-neutral-800/80 light:border-neutral-200 w-fit">
-          {filterOptions.map((opt) => {
-            const isSelected = selectedCategory === opt.id;
-            const count = counts[opt.id] ?? 0;
-            return (
-              <button
-                key={opt.id}
-                onClick={() => setSelectedCategory(opt.id)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-colors cursor-pointer whitespace-nowrap ${
-                  isSelected
-                    ? 'bg-neutral-800 text-amber-400 light:bg-white light:text-neutral-900 shadow-sm font-semibold'
-                    : 'text-neutral-400 light:text-neutral-600 hover:text-neutral-200 light:hover:text-neutral-900'
-                }`}
-              >
-                <span>{opt.label}</span>
-                <span
-                  className={`text-[10px] font-mono px-1.5 py-0.2 rounded ${
+        {/* Filter Toolbar */}
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+          {/* Category Tabs */}
+          <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-900/50 rounded-lg border border-slate-800/80">
+            {filterTabs.map((tab) => {
+              const count = categoryCounts[tab.value] ?? 0;
+              const isSelected = selectedCategory === tab.value;
+              return (
+                <button
+                  key={tab.value}
+                  onClick={() => setSelectedCategory(tab.value)}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-all whitespace-nowrap cursor-pointer ${
                     isSelected
-                      ? 'bg-amber-400/20 text-amber-300 light:bg-neutral-100 light:text-neutral-900 font-bold'
-                      : 'text-neutral-500'
+                      ? 'bg-amber-400 text-slate-950 font-semibold shadow-sm'
+                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
                   }`}
                 >
-                  {count}
+                  <span>{tab.label}</span>
+                  <span
+                    className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full ${
+                      isSelected ? 'bg-amber-500/30 text-slate-950' : 'bg-slate-800 text-slate-400'
+                    }`}
+                  >
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Filter Bar & Reset */}
+          {hasActiveFilters && (
+            <div className="flex items-center gap-2 text-xs">
+              {selectedTech && (
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-amber-400/10 text-amber-300 border border-amber-400/30 font-mono text-[11px]">
+                  <span>Tech: {selectedTech}</span>
+                  <button onClick={() => setSelectedTech(null)} className="hover:text-white">
+                    <X className="w-3 h-3" />
+                  </button>
                 </span>
+              )}
+
+              <button
+                onClick={handleClearFilters}
+                className="inline-flex items-center gap-1 text-slate-400 hover:text-amber-400 text-xs font-mono transition-colors"
+              >
+                <span>Reset all filters</span>
               </button>
-            );
-          })}
+            </div>
+          )}
         </div>
 
-        {/* Active Filter Feedback & Reset */}
-        {(selectedCategory !== 'All' || searchQuery.trim() !== '') && (
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 px-3.5 py-2 rounded-lg bg-neutral-900/40 light:bg-neutral-100/70 border border-neutral-800/60 light:border-neutral-200 text-xs">
-            <div className="flex items-center gap-2 text-neutral-400 light:text-neutral-600">
-              <Filter className="w-3.5 h-3.5 text-amber-400" />
-              <span>
-                Showing <strong className="text-neutral-200 light:text-neutral-900 font-mono">{filtered.length}</strong> {filtered.length === 1 ? 'project' : 'projects'}
-                {selectedCategory !== 'All' && (
-                  <span> in <strong className="text-amber-400 font-medium">{filterOptions.find(o => o.id === selectedCategory)?.label || selectedCategory}</strong></span>
-                )}
-                {searchQuery.trim() && (
-                  <span> matching &quot;<strong className="text-neutral-200 light:text-neutral-900">{searchQuery}</strong>&quot;</span>
-                )}
-              </span>
-            </div>
-
-            <button
-              onClick={clearAllFilters}
-              className="text-xs text-amber-400 hover:text-amber-300 light:text-amber-700 hover:underline flex items-center gap-1 cursor-pointer font-medium"
-            >
-              <X className="w-3 h-3" />
-              <span>Reset all filters</span>
-            </button>
-          </div>
-        )}
-
-        {/* Projects Grid */}
+        {/* Project Cards Grid */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {loading ? (
-            Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="h-96 rounded-xl bg-neutral-900/40 animate-pulse border border-neutral-800" />
+            Array.from({ length: 3 }).map((_, i) => (
+              <div
+                key={i}
+                className="h-96 rounded-xl bg-slate-900/40 animate-pulse border border-slate-800/80"
+              />
             ))
-          ) : filtered.length === 0 ? (
-            <div className="col-span-full py-16 text-center text-xs text-neutral-400 border border-dashed border-neutral-800 light:border-neutral-300 rounded-xl p-8 space-y-3">
-              <p className="text-sm font-semibold text-neutral-200 light:text-neutral-800">
-                No projects found matching the selected criteria.
-              </p>
-              <p className="text-neutral-500 max-w-sm mx-auto">
-                Try selecting a different filter category like &quot;React&quot;, &quot;DevOps&quot;, or &quot;Mobile&quot;, or clear the search query.
+          ) : filteredProjects.length === 0 ? (
+            <div className="col-span-full py-16 text-center border border-dashed border-slate-800 rounded-xl bg-slate-900/20">
+              <Filter className="w-8 h-8 text-slate-500 mx-auto mb-3" />
+              <p className="text-sm text-slate-300 font-display">No matching projects found</p>
+              <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+                No projects matched your criteria. Try switching categories or clearing search keywords.
               </p>
               <button
-                onClick={clearAllFilters}
-                className="mt-2 inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-neutral-950 bg-amber-400 hover:bg-amber-300 rounded-md transition-colors"
+                onClick={handleClearFilters}
+                className="mt-4 px-4 py-2 text-xs font-semibold bg-amber-400 text-slate-950 rounded-lg hover:bg-amber-300 transition-colors"
               >
-                <span>View All Projects</span>
+                Reset Filters
               </button>
             </div>
           ) : (
-            filtered.map((project) => (
+            filteredProjects.map((project) => (
               <div
                 key={project.id}
-                className="group flex flex-col rounded-xl overflow-hidden bg-neutral-900 light:bg-white border border-neutral-800/80 light:border-neutral-200 hover:border-amber-400/50 light:hover:border-amber-400 transition-all duration-200 shadow-sm"
+                className="group rounded-xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition-all duration-300 flex flex-col justify-between overflow-hidden card-glow"
               >
-                {/* Visual Thumbnail */}
-                <div
-                  className="aspect-[16/10] overflow-hidden bg-neutral-950 relative cursor-pointer"
-                  onClick={() => onOpenCaseStudy(project)}
-                >
-                  <img
-                    src={project.image}
-                    alt={`${project.title} screenshot`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      const target = e.currentTarget;
-                      target.style.display = 'none';
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-60" />
+                <div>
+                  {/* Image / Thumbnail Container */}
+                  <div className="relative h-48 overflow-hidden bg-slate-950 border-b border-slate-800/80">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0d131f] via-transparent to-transparent opacity-80" />
 
-                  {/* Category unboxed tag on image */}
-                  <div className="absolute top-3 left-3">
-                    <span className="text-[11px] font-mono font-medium px-2 py-0.5 rounded bg-neutral-950/80 text-neutral-200 backdrop-blur-sm border border-neutral-800">
-                      {project.category}
-                    </span>
-                  </div>
-
-                  <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-neutral-950 bg-amber-400 px-2.5 py-1 rounded shadow-md">
-                      <span>Case Study</span>
-                      <ArrowUpRight className="w-3 h-3" />
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content Body */}
-                <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                  <div>
-                    <h3
-                      onClick={() => onOpenCaseStudy(project)}
-                      className="text-lg font-bold font-display text-neutral-100 light:text-neutral-900 group-hover:text-amber-400 transition-colors cursor-pointer"
-                    >
-                      {project.title}
-                    </h3>
-                    <p className="text-xs text-neutral-400 light:text-neutral-600 mt-1 line-clamp-2 leading-relaxed">
-                      {project.description}
-                    </p>
-                  </div>
-
-                  {/* Problem / Solution preview snippet */}
-                  <div className="p-2.5 rounded bg-neutral-950/60 light:bg-neutral-50 border border-neutral-800/60 light:border-neutral-200 text-[11px] text-neutral-400 light:text-neutral-600">
-                    <span className="text-neutral-200 light:text-neutral-800 font-medium block">
-                      Core Problem Solved:
-                    </span>
-                    <span className="line-clamp-2 mt-0.5">{project.problem}</span>
-                  </div>
-
-                  {/* Technologies (Clickable tags that activate filter) */}
-                  <div className="pt-2 border-t border-neutral-800/60 light:border-neutral-100">
-                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-mono text-neutral-400 light:text-neutral-600">
-                      {project.technologies.slice(0, 4).map((tech, idx) => (
-                        <span key={tech} className="inline-flex items-center">
-                          <button
-                            onClick={() => handleSelectTech(tech)}
-                            className="hover:text-amber-400 hover:underline cursor-pointer transition-colors"
-                            title={`Filter by ${tech}`}
-                          >
-                            {tech}
-                          </button>
-                          {idx < Math.min(project.technologies.length, 4) - 1 && (
-                            <span className="text-neutral-600 ml-2">/</span>
-                          )}
-                        </span>
-                      ))}
-                      {project.technologies.length > 4 && (
-                        <span className="text-amber-400 font-semibold cursor-pointer" onClick={() => onOpenCaseStudy(project)}>
-                          +{project.technologies.length - 4}
-                        </span>
-                      )}
+                    <div className="absolute top-3 left-3">
+                      <span className="text-[10px] font-mono px-2.5 py-1 rounded bg-[#080c14]/90 text-amber-400 border border-amber-400/30 backdrop-blur-md font-semibold">
+                        {project.category}
+                      </span>
                     </div>
-                  </div>
 
-                  {/* Action Link Bar */}
-                  <div className="flex items-center justify-between pt-3 border-t border-neutral-800/60 light:border-neutral-100 text-xs">
-                    <button
-                      onClick={() => onOpenCaseStudy(project)}
-                      className="inline-flex items-center gap-1.5 font-medium text-amber-400 light:text-amber-700 hover:underline cursor-pointer"
-                    >
-                      <BookOpen className="w-3.5 h-3.5" />
-                      <span>Case Study</span>
-                    </button>
-
-                    <div className="flex items-center gap-3 text-neutral-400 light:text-neutral-600">
+                    <div className="absolute top-3 right-3 flex items-center gap-1.5">
+                      {project.secondaryLiveUrl && (
+                        <a
+                          href={project.secondaryLiveUrl}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          className="px-2 py-1 rounded bg-[#080c14]/85 hover:bg-amber-400 hover:text-slate-950 text-slate-300 border border-slate-700/60 transition-all flex items-center gap-1 text-[10px] font-mono backdrop-blur-md"
+                          title="Open official site (jetfyx.com)"
+                        >
+                          <span>Site</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      )}
                       {project.liveUrl && (
                         <a
                           href={project.liveUrl}
                           target="_blank"
                           rel="noreferrer noopener"
-                          className="hover:text-amber-400 transition-colors p-1"
-                          title="Live Demonstration"
-                          aria-label={`Live demo of ${project.title}`}
+                          className="px-2 py-1 rounded bg-[#080c14]/85 hover:bg-amber-400 hover:text-slate-950 text-slate-300 border border-slate-700/60 transition-all flex items-center gap-1 text-[10px] font-mono backdrop-blur-md"
+                          title={project.secondaryLiveUrl ? 'Open Trading App / Signup' : 'Open live website'}
                         >
-                          <ExternalLink className="w-4 h-4" />
+                          <span>{project.secondaryLiveUrl ? 'App' : 'Live'}</span>
+                          <ExternalLink className="w-3 h-3" />
                         </a>
                       )}
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        className="hover:text-amber-400 transition-colors p-1"
-                        title="GitHub Repository"
-                        aria-label={`GitHub repository for ${project.title}`}
-                      >
-                        <Github className="w-4 h-4" />
-                      </a>
                     </div>
+
+                    {/* AI Architecture Insight Trigger */}
+                    {onOpenAIProject && (
+                      <button
+                        onClick={() => onOpenAIProject(project)}
+                        className="absolute bottom-3 right-3 z-10 inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#080c14]/90 hover:bg-amber-400 text-amber-300 hover:text-slate-950 border border-amber-400/40 text-[10px] font-mono font-semibold backdrop-blur-md transition-all cursor-pointer shadow-md"
+                        title={`Ask Gemini AI about ${project.title} architecture`}
+                      >
+                        <Sparkles className="w-3 h-3" />
+                        <span>Ask AI</span>
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Card Content Body */}
+                  <div className="p-5 space-y-3">
+                    <h3 className="text-lg font-bold font-display text-slate-100 group-hover:text-amber-300 transition-colors">
+                      {project.title}
+                    </h3>
+
+                    <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed font-sans">
+                      {project.description}
+                    </p>
+
+                    {/* Tech Badges (Clickable) */}
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {project.technologies.map((t) => {
+                        const isTechSelected = selectedTech?.toLowerCase() === t.toLowerCase();
+                        return (
+                          <button
+                            key={t}
+                            onClick={() => setSelectedTech(isTechSelected ? null : t)}
+                            className={`text-[11px] font-mono px-2 py-0.5 rounded border transition-colors cursor-pointer ${
+                              isTechSelected
+                                ? 'bg-amber-400 text-slate-950 border-amber-400 font-semibold'
+                                : 'bg-slate-800/80 hover:bg-slate-800 text-slate-300 border-slate-700/60'
+                            }`}
+                          >
+                            {t}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card Actions Footer */}
+                <div className="p-5 pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2 text-xs">
+                  <button
+                    onClick={() => onOpenCaseStudy(project)}
+                    className="inline-flex items-center gap-1.5 font-semibold text-amber-400 hover:text-amber-300 transition-colors cursor-pointer font-sans"
+                  >
+                    <BookOpen className="w-3.5 h-3.5" />
+                    <span>Case Study</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </button>
+
+                  <div className="flex items-center gap-1.5">
+                    {onOpenAIProject && (
+                      <button
+                        onClick={() => onOpenAIProject(project)}
+                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-amber-400/10 hover:bg-amber-400 text-amber-300 hover:text-slate-950 border border-amber-400/30 text-[11px] font-mono font-medium transition-all cursor-pointer"
+                        title="Ask AI questions about this architecture"
+                      >
+                        <Sparkles className="w-3 h-3" />
+                        <span>Ask AI</span>
+                      </button>
+                    )}
+
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="p-1.5 text-slate-400 hover:text-slate-200 transition-colors"
+                      title="View GitHub repository"
+                    >
+                      <Github className="w-4 h-4" />
+                    </a>
                   </div>
                 </div>
               </div>

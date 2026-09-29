@@ -231,4 +231,62 @@ export const api = {
       return null;
     }
   },
+
+  // AI Features (Gemini 3.8 Flash)
+  async askProjectQuestion(
+    projectId: string,
+    question: string,
+    projectDetails?: any
+  ): Promise<{ answer: string; sources: { title: string; url: string }[] }> {
+    const res = await fetch(`${BASE_URL}/ai/project-question`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ projectId, question, projectDetails }),
+    });
+    const json = await res.json();
+    if (!json.success) throw new Error(json.message || 'Failed to get answer from Gemini AI');
+    return json.data;
+  },
+
+  async getProjectAudit(projectId: string): Promise<{ projectTitle: string; audit: string }> {
+    const res = await fetch(`${BASE_URL}/ai/project-audit`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ projectId }),
+    });
+    const json = await res.json();
+    if (!json.success) throw new Error(json.message || 'Failed to generate project audit');
+    return json.data;
+  },
+
+  async chatWithAI(
+    message: string,
+    history?: { role: string; content: string }[]
+  ): Promise<{ reply: string; sources: { title: string; url: string }[] }> {
+    const res = await fetch(`${BASE_URL}/ai/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message, history }),
+    });
+    const json = await res.json();
+    if (!json.success) throw new Error(json.message || 'Failed to chat with AI assistant');
+    return json.data;
+  },
+
+  async matchJobDescription(jobDescription: string): Promise<{
+    matchScore: number;
+    matchSummary: string;
+    matchingSkills: string[];
+    relevantProjects: string[];
+    keyStrengths: string[];
+  }> {
+    const res = await fetch(`${BASE_URL}/ai/match-role`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ jobDescription }),
+    });
+    const json = await res.json();
+    if (!json.success) throw new Error(json.message || 'Failed to analyze job description');
+    return json.data;
+  },
 };

@@ -5,6 +5,7 @@ import experienceRoutes from './experienceRoutes.js';
 import skillRoutes from './skillRoutes.js';
 import contactRoutes from './contactRoutes.js';
 import githubRoutes from './githubRoutes.js';
+import aiRoutes from './aiRoutes.js';
 
 const apiRouter = Router();
 
@@ -14,6 +15,7 @@ apiRouter.use('/experience', experienceRoutes);
 apiRouter.use('/skills', skillRoutes);
 apiRouter.use('/contact', contactRoutes);
 apiRouter.use('/github', githubRoutes);
+apiRouter.use('/ai', aiRoutes);
 
 apiRouter.get('/health', (req, res) => {
   res.json({

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -15,10 +14,15 @@ import { CaseStudyModal } from './components/CaseStudyModal';
 import { ResumeModal } from './components/ResumeModal';
 import { CommandPalette } from './components/CommandPalette';
 import { AdminModal } from './components/AdminModal';
+import { AIProjectModal } from './components/AIProjectModal';
+import { AICareerAssistantModal } from './components/AICareerAssistantModal';
+import { FloatingAITrigger } from './components/FloatingAITrigger';
 import { IProject } from './types';
 
 export default function App() {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<IProject | null>(null);
+  const [selectedAIProject, setSelectedAIProject] = useState<IProject | null>(null);
+  const [aiAssistantOpen, setAiAssistantOpen] = useState(false);
   const [resumeOpen, setResumeOpen] = useState(false);
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
   const [adminOpen, setAdminOpen] = useState(false);
@@ -31,58 +35,79 @@ export default function App() {
   };
 
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <div className="min-h-screen bg-neutral-950 light:bg-white text-neutral-100 light:text-neutral-900 transition-colors selection:bg-amber-400/20 selection:text-amber-200">
-          {/* Top Bar Navigation */}
-          <Navbar
-            onOpenCommandPalette={() => setCommandPaletteOpen(true)}
+    <AuthProvider>
+      <div className="min-h-screen bg-[#080c14] text-slate-100 selection:bg-amber-400/20 selection:text-amber-200 antialiased font-sans">
+        {/* Top Bar Navigation */}
+        <Navbar
+          onOpenCommandPalette={() => setCommandPaletteOpen(true)}
+          onOpenResume={() => setResumeOpen(true)}
+          onOpenAdmin={() => setAdminOpen(true)}
+          onOpenAIAssistant={() => setAiAssistantOpen(true)}
+        />
+
+        {/* Main Portfolio Sections */}
+        <main>
+          <HeroSection
             onOpenResume={() => setResumeOpen(true)}
-            onOpenAdmin={() => setAdminOpen(true)}
+            onJumpToSection={jumpToSection}
           />
-
-          {/* Main Portfolio Sections */}
-          <main>
-            <HeroSection
-              onOpenResume={() => setResumeOpen(true)}
-              onJumpToSection={jumpToSection}
-            />
-            <AboutSection />
-            <SkillsSection />
-            <ProjectsSection onOpenCaseStudy={(proj) => setSelectedCaseStudy(proj)} />
-            <ExperienceSection />
-            <DevOpsSection />
-            <GithubSection />
-            <ContactSection />
-          </main>
-
-          {/* Footer */}
-          <Footer />
-
-          {/* Modals & Dialogs */}
-          <CaseStudyModal
-            project={selectedCaseStudy}
-            onClose={() => setSelectedCaseStudy(null)}
+          <AboutSection />
+          <SkillsSection />
+          <ProjectsSection
+            onOpenCaseStudy={(proj) => setSelectedCaseStudy(proj)}
+            onOpenAIProject={(proj) => setSelectedAIProject(proj)}
+            onOpenAIAssistant={() => setAiAssistantOpen(true)}
           />
+          <ExperienceSection />
+          <DevOpsSection />
+          <GithubSection />
+          <ContactSection />
+        </main>
 
-          <ResumeModal
-            isOpen={resumeOpen}
-            onClose={() => setResumeOpen(false)}
-          />
+        {/* Floating AI Assistant Trigger */}
+        <FloatingAITrigger onClick={() => setAiAssistantOpen(true)} />
 
-          <CommandPalette
-            isOpen={commandPaletteOpen}
-            onClose={() => setCommandPaletteOpen(false)}
-            onOpenResume={() => setResumeOpen(true)}
-            onOpenAdmin={() => setAdminOpen(true)}
-          />
+        {/* Footer */}
+        <Footer />
 
-          <AdminModal
-            isOpen={adminOpen}
-            onClose={() => setAdminOpen(false)}
-          />
-        </div>
-      </AuthProvider>
-    </ThemeProvider>
+        {/* Modals & Dialogs */}
+        <CaseStudyModal
+          project={selectedCaseStudy}
+          onClose={() => setSelectedCaseStudy(null)}
+          onOpenAIProject={(proj) => setSelectedAIProject(proj)}
+        />
+
+        <AIProjectModal
+          project={selectedAIProject}
+          isOpen={!!selectedAIProject}
+          onClose={() => setSelectedAIProject(null)}
+          onOpenCaseStudy={(proj) => setSelectedCaseStudy(proj)}
+        />
+
+        <AICareerAssistantModal
+          isOpen={aiAssistantOpen}
+          onClose={() => setAiAssistantOpen(false)}
+          onOpenResume={() => setResumeOpen(true)}
+        />
+
+        <ResumeModal
+          isOpen={resumeOpen}
+          onClose={() => setResumeOpen(false)}
+        />
+
+        <CommandPalette
+          isOpen={commandPaletteOpen}
+          onClose={() => setCommandPaletteOpen(false)}
+          onOpenResume={() => setResumeOpen(true)}
+          onOpenAdmin={() => setAdminOpen(true)}
+          onOpenAIAssistant={() => setAiAssistantOpen(true)}
+        />
+
+        <AdminModal
+          isOpen={adminOpen}
+          onClose={() => setAdminOpen(false)}
+        />
+      </div>
+    </AuthProvider>
   );
 }

@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
-import { X, ExternalLink, Github, Layers, Target, CheckCircle2, TrendingUp, Cpu } from 'lucide-react';
+import { X, ExternalLink, Github, Layers, Target, CheckCircle2, TrendingUp, Cpu, Sparkles } from 'lucide-react';
 import { IProject } from '../types';
 
 interface CaseStudyModalProps {
   project: IProject | null;
   onClose: () => void;
+  onOpenAIProject?: (project: IProject) => void;
 }
 
-export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose }) => {
+export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose, onOpenAIProject }) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -26,33 +27,33 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-neutral-950/80 backdrop-blur-sm transition-opacity"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/85 backdrop-blur-md transition-opacity"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-3xl bg-neutral-900 light:bg-white border border-neutral-800 light:border-neutral-200 rounded-xl shadow-2xl p-6 sm:p-8 my-8 text-neutral-100 light:text-neutral-900 transition-all max-h-[90vh] overflow-y-auto"
+        className="relative w-full max-w-3xl bg-[#0d131f] border border-slate-800 rounded-xl shadow-2xl p-6 sm:p-8 my-8 text-slate-100 transition-all max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header bar */}
-        <div className="flex items-start justify-between gap-4 pb-4 border-b border-neutral-800 light:border-neutral-200">
+        <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-800">
           <div>
-            <div className="flex items-center gap-2 text-xs text-neutral-400 light:text-neutral-600 mb-1">
+            <div className="flex items-center gap-2 text-xs text-slate-400 font-mono mb-1">
               <span>{project.category}</span>
               <span aria-hidden="true">·</span>
-              <span>Case Study</span>
+              <span>Architecture Case Study</span>
               <span aria-hidden="true">·</span>
-              <span>By Sohail Shah Quadri</span>
+              <span>Sohail Shah</span>
             </div>
-            <h2 className="text-2xl font-bold font-display tracking-tight text-neutral-100 light:text-neutral-900">
+            <h2 className="text-2xl font-bold font-display tracking-tight text-slate-100">
               {project.title}
             </h2>
-            <p className="text-sm text-neutral-400 light:text-neutral-600 mt-0.5">
+            <p className="text-sm text-slate-400 mt-0.5 font-sans">
               {project.subtitle}
             </p>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-neutral-400 hover:text-neutral-100 light:text-neutral-500 light:hover:text-neutral-900 rounded-md hover:bg-neutral-800 light:hover:bg-neutral-100 transition-colors"
+            className="p-1.5 text-slate-400 hover:text-slate-100 rounded-lg hover:bg-slate-800 transition-colors"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -60,39 +61,36 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
         </div>
 
         {/* Featured Preview Visual */}
-        <div className="mt-5 rounded-lg overflow-hidden border border-neutral-800 light:border-neutral-200 aspect-video max-h-72 bg-neutral-950 relative">
+        <div className="mt-5 rounded-lg overflow-hidden border border-slate-800 aspect-video max-h-72 bg-slate-950 relative">
           <img
             src={project.image}
             alt={`${project.title} interface preview`}
             className="w-full h-full object-cover"
             loading="lazy"
-            referrerPolicy="no-referrer"
             onError={(e) => {
-              // Zero-broken-image fallback container
               const target = e.currentTarget;
               target.style.display = 'none';
               const parent = target.parentElement;
               if (parent) {
-                parent.classList.add('flex', 'items-center', 'justify-center', 'bg-neutral-900');
-                parent.innerHTML = `<div class="text-center p-6"><span class="text-neutral-400 text-sm font-mono">${project.title} System Visual</span></div>`;
+                parent.classList.add('flex', 'items-center', 'justify-center', 'bg-slate-900');
+                parent.innerHTML = `<div class="text-center p-6"><span class="text-slate-400 text-sm font-mono">${project.title} System Visual</span></div>`;
               }
             }}
           />
         </div>
 
         {/* Key Project Meta Bar */}
-        <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-lg bg-neutral-950/60 light:bg-neutral-50 border border-neutral-800/60 light:border-neutral-200 text-xs">
+        <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-lg bg-slate-950/60 border border-slate-800 text-xs font-sans">
           <div>
-            <span className="text-neutral-400 light:text-neutral-600 block mb-1 font-medium">My Engineering Contribution</span>
-            <p className="text-neutral-200 light:text-neutral-800">{project.contribution}</p>
+            <span className="text-slate-400 block mb-1 font-medium font-mono">My Engineering Contribution</span>
+            <p className="text-slate-200 leading-relaxed">{project.contribution}</p>
           </div>
           <div>
-            <span className="text-neutral-400 light:text-neutral-600 block mb-1 font-medium">Technologies Leveraged</span>
-            <div className="flex flex-wrap gap-1.5 text-neutral-300 light:text-neutral-700">
-              {project.technologies.map((tech, idx) => (
-                <span key={tech}>
+            <span className="text-slate-400 block mb-1 font-medium font-mono">Technologies Leveraged</span>
+            <div className="flex flex-wrap gap-1.5 text-slate-300 font-mono">
+              {project.technologies.map((tech) => (
+                <span key={tech} className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-200">
                   {tech}
-                  {idx < project.technologies.length - 1 && <span className="text-neutral-600 ml-1.5">·</span>}
                 </span>
               ))}
             </div>
@@ -101,22 +99,22 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
 
         {/* Problem vs Solution */}
         <div className="mt-6 space-y-4">
-          <div className="p-4 rounded-lg border border-red-500/20 bg-red-950/10 light:bg-red-50/50">
-            <div className="flex items-center gap-2 text-xs font-semibold text-red-400 light:text-red-700 mb-1.5">
+          <div className="p-4 rounded-lg border border-rose-500/20 bg-rose-950/10">
+            <div className="flex items-center gap-2 text-xs font-semibold text-rose-400 mb-1.5">
               <Target className="w-4 h-4" />
               <span>The Engineering Challenge</span>
             </div>
-            <p className="text-sm text-neutral-300 light:text-neutral-700 leading-relaxed">
+            <p className="text-sm text-slate-300 leading-relaxed font-sans">
               {project.problem}
             </p>
           </div>
 
-          <div className="p-4 rounded-lg border border-emerald-500/20 bg-emerald-950/10 light:bg-emerald-50/50">
-            <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400 light:text-emerald-700 mb-1.5">
+          <div className="p-4 rounded-lg border border-emerald-500/20 bg-emerald-950/10">
+            <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400 mb-1.5">
               <CheckCircle2 className="w-4 h-4" />
               <span>Architectural Solution</span>
             </div>
-            <p className="text-sm text-neutral-300 light:text-neutral-700 leading-relaxed">
+            <p className="text-sm text-slate-300 leading-relaxed font-sans">
               {project.solution}
             </p>
           </div>
@@ -124,28 +122,28 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
 
         {/* Architecture Topology */}
         {project.caseStudy?.architecture && (
-          <div className="mt-6 p-4 rounded-lg border border-neutral-800 light:border-neutral-200 bg-neutral-950/50 light:bg-neutral-50">
-            <div className="flex items-center gap-2 text-xs font-semibold text-neutral-300 light:text-neutral-800 mb-2">
+          <div className="mt-6 p-4 rounded-lg border border-slate-800 bg-slate-950/60">
+            <div className="flex items-center gap-2 text-xs font-semibold text-slate-300 mb-2">
               <Layers className="w-4 h-4 text-amber-400" />
-              <span>System Topology & Data Flow</span>
+              <span>System Topology &amp; Data Flow</span>
             </div>
-            <div className="font-mono text-xs text-neutral-400 light:text-neutral-600 bg-neutral-900 light:bg-white p-3 rounded border border-neutral-800 light:border-neutral-200 overflow-x-auto whitespace-pre-wrap">
+            <div className="font-mono text-xs text-amber-300/90 bg-slate-900 p-3 rounded border border-slate-800 overflow-x-auto whitespace-pre-wrap">
               {project.caseStudy.architecture}
             </div>
           </div>
         )}
 
-        {/* Critical Implementation Challenges */}
+        {/* Implementation Challenges */}
         {project.caseStudy?.challenges && project.caseStudy.challenges.length > 0 && (
           <div className="mt-6">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400 light:text-neutral-600 flex items-center gap-2 mb-3">
-              <Cpu className="w-4 h-4 text-neutral-400" />
-              <span>Technical Hurdles & Breakthroughs</span>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-2 mb-3 font-mono">
+              <Cpu className="w-4 h-4 text-amber-400" />
+              <span>Technical Hurdles &amp; Breakthroughs</span>
             </h3>
-            <ul className="space-y-2 text-sm text-neutral-300 light:text-neutral-700">
+            <ul className="space-y-2 text-sm text-slate-300 font-sans">
               {project.caseStudy.challenges.map((c, i) => (
                 <li key={i} className="flex items-start gap-2.5">
-                  <span className="font-mono text-xs text-amber-400 mt-1">0{i + 1}.</span>
+                  <span className="font-mono text-xs text-amber-400 mt-0.5">0{i + 1}.</span>
                   <span>{c}</span>
                 </li>
               ))}
@@ -155,18 +153,18 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
 
         {/* Measurable Production Outcomes */}
         {project.caseStudy?.metrics && project.caseStudy.metrics.length > 0 && (
-          <div className="mt-6 pt-5 border-t border-neutral-800 light:border-neutral-200">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400 light:text-neutral-600 flex items-center gap-2 mb-3">
+          <div className="mt-6 pt-5 border-t border-slate-800">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-2 mb-3 font-mono">
               <TrendingUp className="w-4 h-4 text-amber-400" />
-              <span>Production Verification & Outcomes</span>
+              <span>Production Verification &amp; Outcomes</span>
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {project.caseStudy.metrics.map((m, idx) => (
                 <div
                   key={idx}
-                  className="p-3 rounded-lg border border-neutral-800/80 light:border-neutral-200 bg-neutral-950/40 light:bg-neutral-100 text-center"
+                  className="p-3 rounded-lg border border-slate-800 bg-slate-900/60 text-center"
                 >
-                  <span className="text-xs text-neutral-300 light:text-neutral-800 font-medium">
+                  <span className="text-xs text-slate-200 font-medium font-sans">
                     {m}
                   </span>
                 </div>
@@ -176,24 +174,47 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
         )}
 
         {/* Action Buttons */}
-        <div className="mt-8 pt-5 border-t border-neutral-800 light:border-neutral-200 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
+        <div className="mt-8 pt-5 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-3">
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-neutral-950 bg-amber-400 hover:bg-amber-300 rounded-md transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-slate-950 bg-amber-400 hover:bg-amber-300 rounded-lg transition-colors"
               >
-                <span>Live Demonstration</span>
+                <span>{project.secondaryLiveUrl ? 'Trading Platform (Signup)' : 'Live Demonstration'}</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             )}
+
+            {project.secondaryLiveUrl && (
+              <a
+                href={project.secondaryLiveUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 hover:text-white border border-slate-700 rounded-lg transition-colors"
+              >
+                <span>Official Website</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            )}
+
+            {onOpenAIProject && (
+              <button
+                onClick={() => onOpenAIProject(project)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-amber-300 bg-amber-400/10 hover:bg-amber-400 hover:text-slate-950 border border-amber-400/40 rounded-lg transition-all cursor-pointer shadow-sm"
+              >
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Ask AI Architecture</span>
+              </button>
+            )}
+
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noreferrer noopener"
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-neutral-300 light:text-neutral-700 bg-neutral-800 light:bg-neutral-100 hover:bg-neutral-700 light:hover:bg-neutral-200 rounded-md transition-colors"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 hover:text-white rounded-lg transition-colors"
             >
               <Github className="w-3.5 h-3.5" />
               <span>View Source Code</span>
@@ -202,7 +223,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
 
           <button
             onClick={onClose}
-            className="text-xs text-neutral-400 light:text-neutral-600 hover:text-neutral-200 transition-colors"
+            className="text-xs text-slate-400 hover:text-slate-200 transition-colors cursor-pointer font-mono"
           >
             Close Window (ESC)
           </button>

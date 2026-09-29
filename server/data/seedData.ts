@@ -29,7 +29,8 @@ export const initialProjects: IProject[] = [
     technologies: ['JavaScript', 'React.js', 'React Native', 'REST APIs', 'WebSockets', 'AWS'],
     image: '/src/assets/images/project_jetfyx_trading_1790605421873.jpg',
     githubUrl: 'https://github.com/mohammadsohailshahquadri14',
-    liveUrl: 'https://jetfyx.io',
+    liveUrl: 'https://trade.jetfyx.com/signup',
+    secondaryLiveUrl: 'https://jetfyx.com/',
     featured: true,
     order: 1,
     caseStudy: {
@@ -61,7 +62,7 @@ export const initialProjects: IProject[] = [
     technologies: ['Next.js', 'JavaScript', 'Flutter', 'HTML5', 'CSS3', 'REST APIs'],
     image: '/src/assets/images/hero_developer_workspace_1790605403219.jpg',
     githubUrl: 'https://github.com/mohammadsohailshahquadri14',
-    liveUrl: 'https://veedly.com',
+    liveUrl: 'https://veedly.in/',
     featured: true,
     order: 2,
     caseStudy: {
@@ -93,7 +94,7 @@ export const initialProjects: IProject[] = [
     technologies: ['React.js', 'Vite', 'JavaScript', 'Node.js', 'Express.js', 'MongoDB', 'Mongoose'],
     image: '/src/assets/images/project_nexadeutsch_learning_1790605451699.jpg',
     githubUrl: 'https://github.com/mohammadsohailshahquadri14',
-    liveUrl: 'https://nexadeutsch.com',
+    liveUrl: 'https://nexa-deutsch.vercel.app/',
     featured: true,
     order: 3,
     caseStudy: {
@@ -125,7 +126,7 @@ export const initialProjects: IProject[] = [
     technologies: ['React.js', 'JavaScript', 'TanStack Query', 'REST APIs', 'Node.js', 'Tailwind CSS'],
     image: '/src/assets/images/project_richesse_fintech_1790605439082.jpg',
     githubUrl: 'https://github.com/mohammadsohailshahquadri14',
-    liveUrl: 'https://richesse-solutions.com',
+    liveUrl: 'https://www.richesse.solutions/',
     featured: true,
     order: 4,
     caseStudy: {
@@ -203,29 +204,6 @@ export const initialExperience: IExperience[] = [
   },
   {
     id: 'exp-2',
-    company: 'Metagen Technologies',
-    position: 'Software Developer',
-    location: 'Hyderabad, Telangana, India',
-    period: 'September 2025 – April 2026',
-    startDate: '2025-09-01',
-    endDate: '2026-04-30',
-    isCurrent: false,
-    type: 'Full-time',
-    description: [
-      'Contributed to production web applications using modern JavaScript technologies, including frontend work for JetFyx.',
-      'Built reusable, responsive UI components; integrated backend APIs and implemented dynamic, data-driven workflows.',
-      'Investigated frontend and API issues through systematic debugging; used Git/GitHub for collaboration and contributed to cloud-based deployment and maintenance.'
-    ],
-    technologies: ['React.js', 'JavaScript', 'REST APIs', 'Git', 'GitHub', 'Cloud Deployment'],
-    highlights: [
-      'Contributed to production web applications including frontend work for JetFyx trading platform',
-      'Implemented dynamic, data-driven workflows with backend REST API integrations',
-      'Investigated and resolved frontend and API issues through systematic debugging'
-    ],
-    order: 2,
-  },
-  {
-    id: 'exp-3',
     company: 'Nafa Barter',
     position: 'Frontend Developer',
     location: 'Hyderabad, Telangana, India',
@@ -245,10 +223,10 @@ export const initialExperience: IExperience[] = [
       'Handled asynchronous real-time streaming data and complex application state management',
       'Improved platform reliability and user experience through collaborative feature development'
     ],
-    order: 3,
+    order: 2,
   },
   {
-    id: 'exp-4',
+    id: 'exp-3',
     company: 'Bitstek Consulting',
     position: 'Software Engineer Intern',
     location: 'Hyderabad, Telangana, India',
@@ -268,10 +246,10 @@ export const initialExperience: IExperience[] = [
       'Developed responsive frontend features and integrated dynamic application data',
       'Collaborated closely with senior developers on debugging, testing, and Git workflows'
     ],
-    order: 4,
+    order: 3,
   },
   {
-    id: 'exp-5',
+    id: 'exp-4',
     company: 'Deccan College of Engineering and Technology',
     position: 'Bachelor of Engineering - Computer Science',
     location: 'Hyderabad, Telangana, India',
@@ -291,7 +269,7 @@ export const initialExperience: IExperience[] = [
       'Intermediate: Narayana Junior College (88%)',
       'Secondary School: St. Francis Grammar High School (9.2 GPA)'
     ],
-    order: 5,
+    order: 4,
   }
 ];
 

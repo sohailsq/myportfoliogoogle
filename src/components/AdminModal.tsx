@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Lock, LogOut, Plus, Trash2, Edit3, Check, RefreshCw, Mail, Layers, Briefcase, Cpu, Database } from 'lucide-react';
+import { X, Lock, LogOut, Plus, Trash2, Check, RefreshCw, Mail, Layers, Briefcase, Cpu, Database } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../services/api';
 import { IProject, IExperience, ISkill, IContact } from '../types';
@@ -38,7 +38,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
     solution: '',
     contribution: '',
     technologies: 'React, Node.js, Express, MongoDB',
-    githubUrl: 'https://github.com/sohailshah',
+    githubUrl: 'https://github.com/mohammadsohailshahquadri14',
     liveUrl: '',
     featured: true,
   });
@@ -145,29 +145,32 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
       setActionMessage('New project added to portfolio database.');
       setTimeout(() => setActionMessage(''), 3000);
     } catch (err: any) {
-      alert(err.message || 'Failed to create project');
+      setActionMessage(err.message || 'Failed to create project');
+      setTimeout(() => setActionMessage(''), 4000);
     }
   };
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-neutral-950/85 backdrop-blur-sm transition-opacity"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/85 backdrop-blur-md transition-opacity"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl bg-neutral-900 light:bg-white border border-neutral-800 light:border-neutral-200 rounded-xl shadow-2xl p-6 sm:p-8 my-8 text-neutral-100 light:text-neutral-900 transition-all max-h-[90vh] overflow-y-auto"
+        className="relative w-full max-w-4xl bg-[#0d131f] border border-slate-800 rounded-xl shadow-2xl p-6 sm:p-8 my-8 text-slate-100 transition-all max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-neutral-800 light:border-neutral-200">
-          <div className="flex items-center gap-2">
-            <Lock className="w-5 h-5 text-amber-400" />
+        <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-amber-400/10 border border-amber-400/20 text-amber-400 flex items-center justify-center">
+              <Lock className="w-4 h-4" />
+            </div>
             <div>
-              <h2 className="text-lg font-bold font-display text-neutral-100 light:text-neutral-900">
+              <h2 className="text-base font-bold font-display text-slate-100">
                 Portfolio Administration Portal
               </h2>
-              <p className="text-xs text-neutral-400 light:text-neutral-600">
-                Manage live MongoDB data, inbound contact submissions, and portfolio projects
+              <p className="text-xs text-slate-400 font-sans">
+                Manage MongoDB data, inbound contact submissions, and portfolio projects
               </p>
             </div>
           </div>
@@ -176,7 +179,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
             {isAdmin && (
               <button
                 onClick={logout}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-red-400 hover:text-red-300 bg-red-950/20 border border-red-800/40 rounded-md transition-colors"
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-rose-400 hover:text-rose-300 bg-rose-950/20 border border-rose-800/40 rounded-lg transition-colors cursor-pointer"
                 title="Log out from admin"
               >
                 <LogOut className="w-3.5 h-3.5" />
@@ -185,7 +188,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
             )}
             <button
               onClick={onClose}
-              className="p-1.5 text-neutral-400 hover:text-neutral-100 rounded-md transition-colors"
+              className="p-1.5 text-slate-400 hover:text-slate-100 rounded-lg hover:bg-slate-800 transition-colors cursor-pointer"
               aria-label="Close admin modal"
             >
               <X className="w-5 h-5" />
@@ -200,23 +203,23 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
               <div className="w-12 h-12 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 flex items-center justify-center mx-auto mb-3">
                 <Lock className="w-6 h-6" />
               </div>
-              <h3 className="text-base font-semibold text-neutral-100 light:text-neutral-900">
+              <h3 className="text-base font-semibold text-slate-100 font-display">
                 Administrator Authentication
               </h3>
-              <p className="text-xs text-neutral-400 light:text-neutral-600 mt-1">
+              <p className="text-xs text-slate-400 mt-1 font-sans">
                 Enter your credentials to access the project management backend and contact messages.
               </p>
             </div>
 
             {loginError && (
-              <div className="mb-4 p-3 rounded bg-red-950/30 border border-red-800/50 text-red-400 text-xs">
+              <div className="mb-4 p-3 rounded-lg bg-rose-950/30 border border-rose-800/50 text-rose-400 text-xs">
                 {loginError}
               </div>
             )}
 
-            <form onSubmit={handleLoginSubmit} className="space-y-4">
+            <form onSubmit={handleLoginSubmit} className="space-y-4 font-sans">
               <div>
-                <label className="block text-xs font-medium text-neutral-300 light:text-neutral-700 mb-1">
+                <label className="block text-xs font-medium text-slate-300 mb-1">
                   Admin Email
                 </label>
                 <input
@@ -224,12 +227,12 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full px-3 py-2 text-xs bg-neutral-950 light:bg-neutral-50 border border-neutral-800 light:border-neutral-300 rounded-md focus:border-amber-400 focus:outline-none text-neutral-100 light:text-neutral-900"
+                  className="w-full px-3 py-2 text-xs bg-slate-950 border border-slate-800 rounded-lg focus:border-amber-400 focus:outline-none text-slate-100"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-neutral-300 light:text-neutral-700 mb-1">
+                <label className="block text-xs font-medium text-slate-300 mb-1">
                   Password
                 </label>
                 <input
@@ -237,13 +240,13 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="w-full px-3 py-2 text-xs bg-neutral-950 light:bg-neutral-50 border border-neutral-800 light:border-neutral-300 rounded-md focus:border-amber-400 focus:outline-none text-neutral-100 light:text-neutral-900"
+                  className="w-full px-3 py-2 text-xs bg-slate-950 border border-slate-800 rounded-lg focus:border-amber-400 focus:outline-none text-slate-100"
                 />
               </div>
 
-              <div className="p-3 bg-neutral-950/60 light:bg-neutral-100 rounded-md border border-neutral-800 light:border-neutral-300 text-xs">
-                <span className="text-neutral-400 block font-medium mb-1">Verified Demo Credentials:</span>
-                <div className="font-mono text-[11px] text-amber-400">
+              <div className="p-3 bg-slate-950/60 rounded-lg border border-slate-800 text-xs">
+                <span className="text-slate-400 block font-medium mb-1 font-mono text-[11px]">Verified Demo Credentials:</span>
+                <div className="font-mono text-xs text-amber-400">
                   admin@sohailshah.dev / admin123
                 </div>
               </div>
@@ -251,7 +254,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
               <button
                 type="submit"
                 disabled={loginLoading}
-                className="w-full py-2.5 px-4 bg-amber-400 hover:bg-amber-300 text-neutral-950 text-xs font-semibold rounded-md transition-colors disabled:opacity-50"
+                className="w-full py-2.5 px-4 bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-semibold rounded-lg transition-colors disabled:opacity-50 cursor-pointer"
               >
                 {loginLoading ? 'Authenticating with JWT...' : 'Authenticate & Open Dashboard'}
               </button>
@@ -261,32 +264,32 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
           /* When LOGGED IN: Full CRUD Admin Dashboard */
           <div className="mt-6 space-y-6">
             {/* Status bar */}
-            <div className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-lg bg-neutral-950/60 light:bg-neutral-50 border border-neutral-800 light:border-neutral-200 text-xs">
+            <div className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-lg bg-slate-950/60 border border-slate-800 text-xs">
               <div className="flex items-center gap-3">
-                <span className="flex items-center gap-1.5 text-emerald-400">
+                <span className="flex items-center gap-1.5 text-emerald-400 font-mono">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   Authenticated as {user?.email}
                 </span>
-                <span className="text-neutral-500">·</span>
-                <span className="flex items-center gap-1 text-neutral-400 light:text-neutral-600">
-                  <Database className="w-3.5 h-3.5" />
+                <span className="text-slate-600">·</span>
+                <span className="flex items-center gap-1 text-slate-400 font-mono">
+                  <Database className="w-3.5 h-3.5 text-amber-400" />
                   Live REST API / Database
                 </span>
               </div>
 
               {actionMessage && (
-                <span className="text-amber-400 font-medium">{actionMessage}</span>
+                <span className="text-amber-400 font-medium font-mono text-xs">{actionMessage}</span>
               )}
             </div>
 
             {/* Navigation tabs */}
-            <div className="flex items-center gap-2 border-b border-neutral-800 light:border-neutral-200 pb-2">
+            <div className="flex items-center gap-2 border-b border-slate-800 pb-2">
               <button
                 onClick={() => setActiveTab('messages')}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
                   activeTab === 'messages'
-                    ? 'bg-amber-400/10 text-amber-400 border border-amber-400/20'
-                    : 'text-neutral-400 hover:text-neutral-200'
+                    ? 'bg-amber-400/10 text-amber-400 border border-amber-400/30'
+                    : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
                 <Mail className="w-3.5 h-3.5" />
@@ -295,10 +298,10 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
 
               <button
                 onClick={() => setActiveTab('projects')}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
                   activeTab === 'projects'
-                    ? 'bg-amber-400/10 text-amber-400 border border-amber-400/20'
-                    : 'text-neutral-400 hover:text-neutral-200'
+                    ? 'bg-amber-400/10 text-amber-400 border border-amber-400/30'
+                    : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
                 <Layers className="w-3.5 h-3.5" />
@@ -307,10 +310,10 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
 
               <button
                 onClick={() => setActiveTab('experience')}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
                   activeTab === 'experience'
-                    ? 'bg-amber-400/10 text-amber-400 border border-amber-400/20'
-                    : 'text-neutral-400 hover:text-neutral-200'
+                    ? 'bg-amber-400/10 text-amber-400 border border-amber-400/30'
+                    : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
                 <Briefcase className="w-3.5 h-3.5" />
@@ -319,10 +322,10 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
 
               <button
                 onClick={() => setActiveTab('skills')}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
                   activeTab === 'skills'
-                    ? 'bg-amber-400/10 text-amber-400 border border-amber-400/20'
-                    : 'text-neutral-400 hover:text-neutral-200'
+                    ? 'bg-amber-400/10 text-amber-400 border border-amber-400/30'
+                    : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
                 <Cpu className="w-3.5 h-3.5" />
@@ -333,28 +336,28 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
             {/* TAB: Inbound Messages */}
             {activeTab === 'messages' && (
               <div className="space-y-3">
-                <div className="flex items-center justify-between text-xs text-neutral-400">
+                <div className="flex items-center justify-between text-xs text-slate-400">
                   <span>Messages submitted through contact form:</span>
-                  <button onClick={loadAdminData} className="hover:text-amber-400 flex items-center gap-1">
+                  <button onClick={loadAdminData} className="hover:text-amber-400 flex items-center gap-1 font-mono">
                     <RefreshCw className="w-3 h-3" /> Refresh
                   </button>
                 </div>
 
                 {contacts.length === 0 ? (
-                  <div className="py-12 text-center text-xs text-neutral-500 border border-dashed border-neutral-800 rounded-lg">
-                    No contact inquiries yet. Test the contact form on the home page!
+                  <div className="py-12 text-center text-xs text-slate-500 border border-dashed border-slate-800 rounded-lg">
+                    No contact inquiries yet.
                   </div>
                 ) : (
                   contacts.map((c) => (
                     <div
                       key={c.id}
-                      className="p-4 rounded-lg bg-neutral-950/40 light:bg-neutral-50 border border-neutral-800 light:border-neutral-200 text-xs space-y-2"
+                      className="p-4 rounded-lg bg-slate-950/60 border border-slate-800 text-xs space-y-2"
                     >
                       <div className="flex items-start justify-between">
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="font-semibold text-neutral-200 light:text-neutral-900">{c.name}</span>
-                            <span className="text-neutral-500">&lt;{c.email}&gt;</span>
+                            <span className="font-semibold text-slate-200">{c.name}</span>
+                            <span className="text-slate-500">&lt;{c.email}&gt;</span>
                             <span
                               className={`px-1.5 py-0.5 rounded text-[10px] uppercase font-mono ${
                                 c.status === 'unread'
@@ -367,7 +370,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
                               {c.status}
                             </span>
                           </div>
-                          <span className="font-medium text-neutral-300 light:text-neutral-800 block mt-1">
+                          <span className="font-medium text-slate-300 block mt-1">
                             {c.subject}
                           </span>
                         </div>
@@ -376,7 +379,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
                           <select
                             value={c.status}
                             onChange={(e) => handleContactStatus(c.id, e.target.value as any)}
-                            className="bg-neutral-900 light:bg-white border border-neutral-800 light:border-neutral-300 rounded px-2 py-1 text-[11px] text-neutral-300"
+                            className="bg-slate-900 border border-slate-800 rounded px-2 py-1 text-[11px] text-slate-300"
                           >
                             <option value="unread">Unread</option>
                             <option value="read">Read</option>
@@ -384,14 +387,14 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
                           </select>
                           <a
                             href={`mailto:${c.email}?subject=Re: ${encodeURIComponent(c.subject)}`}
-                            className="p-1 text-neutral-400 hover:text-amber-400"
+                            className="p-1 text-slate-400 hover:text-amber-400"
                             title="Reply via email"
                           >
                             <Mail className="w-4 h-4" />
                           </a>
                           <button
                             onClick={() => handleDeleteContact(c.id)}
-                            className="p-1 text-neutral-500 hover:text-red-400"
+                            className="p-1 text-slate-500 hover:text-rose-400 cursor-pointer"
                             title="Delete"
                           >
                             <Trash2 className="w-4 h-4" />
@@ -399,11 +402,11 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
                         </div>
                       </div>
 
-                      <p className="text-neutral-300 light:text-neutral-700 bg-neutral-900/60 light:bg-neutral-100 p-2.5 rounded border border-neutral-800/40">
+                      <p className="text-slate-300 bg-slate-900/60 p-2.5 rounded border border-slate-800/80 leading-relaxed font-sans">
                         {c.message}
                       </p>
 
-                      <span className="text-[10px] text-neutral-500 block">
+                      <span className="text-[10px] text-slate-500 block font-mono">
                         Received on {new Date(c.createdAt).toLocaleString()}
                       </span>
                     </div>
@@ -416,17 +419,17 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
             {activeTab === 'projects' && (
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-neutral-400">Current portfolio projects:</span>
+                  <span className="text-xs text-slate-400">Current portfolio projects:</span>
                   <div className="flex items-center gap-2">
                     <button
                       onClick={handleResetProjects}
-                      className="px-2.5 py-1 text-xs text-neutral-400 hover:text-neutral-200 border border-neutral-800 rounded-md hover:bg-neutral-800"
+                      className="px-2.5 py-1 text-xs text-slate-400 hover:text-slate-200 border border-slate-800 rounded-lg hover:bg-slate-800 font-mono cursor-pointer"
                     >
                       Reset Seeds
                     </button>
                     <button
                       onClick={() => setShowAddProject(!showAddProject)}
-                      className="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-neutral-950 bg-amber-400 hover:bg-amber-300 rounded-md"
+                      className="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-slate-950 bg-amber-400 hover:bg-amber-300 rounded-lg cursor-pointer"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>{showAddProject ? 'Cancel' : 'Add Project'}</span>
@@ -435,37 +438,37 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
                 </div>
 
                 {showAddProject && (
-                  <form onSubmit={handleCreateProject} className="p-4 rounded-lg bg-neutral-950/70 border border-neutral-800 space-y-3 text-xs">
-                    <h4 className="font-semibold text-neutral-200">Create New Project</h4>
+                  <form onSubmit={handleCreateProject} className="p-4 rounded-lg bg-slate-950 border border-slate-800 space-y-3 text-xs font-sans">
+                    <h4 className="font-semibold text-slate-200 font-display">Create New Project</h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-neutral-400 mb-1">Title</label>
+                        <label className="block text-slate-400 mb-1">Title</label>
                         <input
                           type="text"
                           required
                           value={newProject.title}
                           onChange={(e) => setNewProject({ ...newProject, title: e.target.value })}
-                          className="w-full px-2.5 py-1.5 bg-neutral-900 border border-neutral-700 rounded text-neutral-100"
+                          className="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-700 rounded text-slate-100"
                           placeholder="e.g. CloudScale Analytics"
                         />
                       </div>
                       <div>
-                        <label className="block text-neutral-400 mb-1">Subtitle</label>
+                        <label className="block text-slate-400 mb-1">Subtitle</label>
                         <input
                           type="text"
                           required
                           value={newProject.subtitle}
                           onChange={(e) => setNewProject({ ...newProject, subtitle: e.target.value })}
-                          className="w-full px-2.5 py-1.5 bg-neutral-900 border border-neutral-700 rounded text-neutral-100"
+                          className="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-700 rounded text-slate-100"
                           placeholder="e.g. Real-Time Telemetry Dashboard"
                         />
                       </div>
                       <div>
-                        <label className="block text-neutral-400 mb-1">Category</label>
+                        <label className="block text-slate-400 mb-1">Category</label>
                         <select
                           value={newProject.category}
                           onChange={(e) => setNewProject({ ...newProject, category: e.target.value as any })}
-                          className="w-full px-2.5 py-1.5 bg-neutral-900 border border-neutral-700 rounded text-neutral-100"
+                          className="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-700 rounded text-slate-100"
                         >
                           <option value="Full-Stack">Full-Stack</option>
                           <option value="Mobile">Mobile</option>
@@ -475,53 +478,53 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
                         </select>
                       </div>
                       <div>
-                        <label className="block text-neutral-400 mb-1">Technologies (comma separated)</label>
+                        <label className="block text-slate-400 mb-1">Technologies (comma separated)</label>
                         <input
                           type="text"
                           value={newProject.technologies}
                           onChange={(e) => setNewProject({ ...newProject, technologies: e.target.value })}
-                          className="w-full px-2.5 py-1.5 bg-neutral-900 border border-neutral-700 rounded text-neutral-100"
+                          className="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-700 rounded text-slate-100"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-neutral-400 mb-1">Description</label>
+                      <label className="block text-slate-400 mb-1">Description</label>
                       <textarea
                         required
                         rows={2}
                         value={newProject.description}
                         onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
-                        className="w-full px-2.5 py-1.5 bg-neutral-900 border border-neutral-700 rounded text-neutral-100"
+                        className="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-700 rounded text-slate-100"
                       />
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-neutral-400 mb-1">Problem Solved</label>
+                        <label className="block text-slate-400 mb-1">Problem Solved</label>
                         <textarea
                           required
                           rows={2}
                           value={newProject.problem}
                           onChange={(e) => setNewProject({ ...newProject, problem: e.target.value })}
-                          className="w-full px-2.5 py-1.5 bg-neutral-900 border border-neutral-700 rounded text-neutral-100"
+                          className="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-700 rounded text-slate-100"
                         />
                       </div>
                       <div>
-                        <label className="block text-neutral-400 mb-1">Architectural Solution</label>
+                        <label className="block text-slate-400 mb-1">Architectural Solution</label>
                         <textarea
                           required
                           rows={2}
                           value={newProject.solution}
                           onChange={(e) => setNewProject({ ...newProject, solution: e.target.value })}
-                          className="w-full px-2.5 py-1.5 bg-neutral-900 border border-neutral-700 rounded text-neutral-100"
+                          className="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-700 rounded text-slate-100"
                         />
                       </div>
                     </div>
 
                     <button
                       type="submit"
-                      className="px-4 py-2 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-semibold rounded"
+                      className="px-4 py-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-semibold rounded-lg cursor-pointer"
                     >
                       Save to Database
                     </button>
@@ -532,19 +535,19 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
                   {projects.map((p) => (
                     <div
                       key={p.id}
-                      className="flex items-center justify-between p-3 rounded-lg bg-neutral-950/40 light:bg-neutral-50 border border-neutral-800 light:border-neutral-200 text-xs"
+                      className="flex items-center justify-between p-3 rounded-lg bg-slate-950/60 border border-slate-800 text-xs"
                     >
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold text-neutral-200 light:text-neutral-900">{p.title}</span>
-                          <span className="text-neutral-500 font-mono text-[11px]">({p.category})</span>
+                          <span className="font-semibold text-slate-200">{p.title}</span>
+                          <span className="text-slate-500 font-mono text-[11px]">({p.category})</span>
                           {p.featured && (
                             <span className="px-1.5 py-0.5 rounded text-[10px] bg-amber-400/10 text-amber-400 border border-amber-400/20">
                               Featured
                             </span>
                           )}
                         </div>
-                        <p className="text-neutral-400 light:text-neutral-600 line-clamp-1 mt-0.5">
+                        <p className="text-slate-400 line-clamp-1 mt-0.5">
                           {p.subtitle}
                         </p>
                       </div>
@@ -552,7 +555,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleDeleteProject(p.id)}
-                          className="p-1.5 text-neutral-500 hover:text-red-400 rounded hover:bg-neutral-800"
+                          className="p-1.5 text-slate-500 hover:text-rose-400 rounded hover:bg-slate-800 cursor-pointer"
                           title="Delete project"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -567,20 +570,20 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
             {/* TAB: Experience */}
             {activeTab === 'experience' && (
               <div className="space-y-3">
-                <span className="text-xs text-neutral-400">Career timeline entries:</span>
+                <span className="text-xs text-slate-400">Career timeline entries:</span>
                 {experiences.map((exp) => (
                   <div
                     key={exp.id}
-                    className="p-3 rounded-lg bg-neutral-950/40 light:bg-neutral-50 border border-neutral-800 light:border-neutral-200 text-xs flex items-center justify-between"
+                    className="p-3 rounded-lg bg-slate-950/60 border border-slate-800 text-xs flex items-center justify-between"
                   >
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-neutral-200 light:text-neutral-900">{exp.position}</span>
+                        <span className="font-semibold text-slate-200">{exp.position}</span>
                         <span className="text-amber-400 font-medium">@ {exp.company}</span>
                       </div>
-                      <span className="text-neutral-400 text-[11px] font-mono">{exp.period} · {exp.location}</span>
+                      <span className="text-slate-400 text-[11px] font-mono">{exp.period} · {exp.location}</span>
                     </div>
-                    <span className="text-neutral-500 font-mono text-[11px]">{exp.type}</span>
+                    <span className="text-slate-500 font-mono text-[11px]">{exp.type}</span>
                   </div>
                 ))}
               </div>
@@ -589,16 +592,16 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
             {/* TAB: Skills */}
             {activeTab === 'skills' && (
               <div className="space-y-3">
-                <span className="text-xs text-neutral-400">Technical competency catalog:</span>
+                <span className="text-xs text-slate-400">Technical competency catalog:</span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {skills.map((s) => (
                     <div
                       key={s.id}
-                      className="p-2.5 rounded bg-neutral-950/40 light:bg-neutral-50 border border-neutral-800 light:border-neutral-200 text-xs flex items-center justify-between"
+                      className="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 text-xs flex items-center justify-between"
                     >
                       <div>
-                        <span className="font-medium text-neutral-200 light:text-neutral-900">{s.name}</span>
-                        <span className="text-[10px] text-neutral-500 block">{s.category} · {s.yearsOfExperience} yrs</span>
+                        <span className="font-medium text-slate-200">{s.name}</span>
+                        <span className="text-[10px] text-slate-500 block font-mono">{s.category}</span>
                       </div>
                       <span className="text-[10px] font-mono text-amber-400">{s.proficiency}</span>
                     </div>

@@ -21,6 +21,7 @@ export interface IProject {
   image: string;
   githubUrl: string;
   liveUrl?: string;
+  secondaryLiveUrl?: string;
   featured: boolean;
   order: number;
   caseStudy: {

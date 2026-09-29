@@ -23,6 +23,7 @@ const projectSchema = new Schema({
   image: { type: String, required: true },
   githubUrl: { type: String, required: true },
   liveUrl: { type: String },
+  secondaryLiveUrl: { type: String },
   featured: { type: Boolean, default: false },
   order: { type: Number, default: 0 },
   caseStudy: {

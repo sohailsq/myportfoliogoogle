@@ -18,13 +18,13 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
     {
       command: 'whoami',
       output: (
-        <div className="space-y-1 text-neutral-300">
-          <p className="text-amber-400 font-semibold">Sohail Shah Quadri</p>
-          <p className="text-xs text-neutral-400">
-            Software Engineer | Full-Stack Developer | React Native Developer | DevOps Enthusiast
+        <div className="space-y-1 text-slate-300">
+          <p className="text-amber-400 font-semibold font-display">Sohail Shah</p>
+          <p className="text-xs text-slate-400">
+            Software Developer | Full-Stack Web Developer
           </p>
-          <p className="text-xs text-neutral-400">
-            Based in Hyderabad, India · B.E. Computer Science (2021–2025)
+          <p className="text-xs text-slate-400">
+            Hyderabad, Telangana, India · B.E. Computer Science (2021–2025)
           </p>
         </div>
       ),
@@ -61,8 +61,8 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
       return;
     } else if (trimmed === 'help') {
       response = (
-        <div className="text-xs space-y-1 text-neutral-300">
-          <p className="text-neutral-400">Available commands:</p>
+        <div className="text-xs space-y-1 text-slate-300">
+          <p className="text-slate-400">Available commands:</p>
           <div className="grid grid-cols-2 gap-x-4 gap-y-1 font-mono text-[11px]">
             <span className="text-amber-400">projects</span> <span>List key production projects</span>
             <span className="text-amber-400">skills</span> <span>List core technology proficiencies</span>
@@ -75,18 +75,18 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
       );
     } else if (trimmed === 'projects') {
       response = (
-        <div className="text-xs space-y-1 text-neutral-300">
-          <p className="text-amber-400 font-semibold">Featured Engineering Projects:</p>
-          <ul className="list-disc list-inside space-y-0.5 text-neutral-400">
-            <li><span className="text-neutral-200">JetFyx:</span> High-frequency forex & crypto trading app (React Native + WebSockets)</li>
-            <li><span className="text-neutral-200">Richesse Solutions:</span> Fintech portfolio analytics suite (React + REST APIs)</li>
-            <li><span className="text-neutral-200">NexaDeutsch:</span> German A1 learning platform (Next.js + Node + MongoDB)</li>
-            <li><span className="text-neutral-200">SmartSync:</span> Medical vitals tracking system (MERN Stack + AI)</li>
-            <li><span className="text-neutral-200">Prodify:</span> Workload intelligence platform (MERN + FastAPI)</li>
+        <div className="text-xs space-y-1 text-slate-300">
+          <p className="text-amber-400 font-semibold font-display">Featured Projects:</p>
+          <ul className="list-disc list-inside space-y-0.5 text-slate-400 font-sans">
+            <li><span className="text-slate-200">JetFyx:</span> High-frequency forex &amp; trading platform (React, React Native, WebSockets)</li>
+            <li><span className="text-slate-200">Veedly:</span> Unified web &amp; mobile vendor commerce platform (Next.js, Flutter)</li>
+            <li><span className="text-slate-200">NexaDeutsch:</span> German language learning &amp; exam platform (React, Vite, Node, Express, MongoDB)</li>
+            <li><span className="text-slate-200">Richesse Solutions:</span> Fintech financial analytics web application (React, TanStack Query)</li>
+            <li><span className="text-slate-200">SmartSync:</span> Medical vitals tracking system with AI (MERN + LLaMA)</li>
           </ul>
           <button
             onClick={() => onJumpToSection('projects')}
-            className="text-amber-400 hover:underline mt-1 block font-mono text-[11px]"
+            className="text-amber-400 hover:underline mt-1 block font-mono text-[11px] cursor-pointer"
           >
             → Click to jump to Projects section
           </button>
@@ -94,17 +94,18 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
       );
     } else if (trimmed === 'skills') {
       response = (
-        <div className="text-xs space-y-1 text-neutral-300 font-mono">
-          <p><span className="text-amber-400">Frontend:</span> React, Next.js, React Native, JavaScript (ES6+), Tailwind CSS, Framer Motion</p>
-          <p><span className="text-amber-400">Backend:</span> Node.js, Express, REST APIs, MongoDB, Mongoose, WebSockets, JWT, Bcrypt</p>
-          <p><span className="text-amber-400">DevOps:</span> AWS (EC2), Docker, GitHub Actions, Jenkins, Linux, CI/CD, Terraform</p>
+        <div className="text-xs space-y-1 text-slate-300 font-mono">
+          <p><span className="text-amber-400">Languages:</span> JavaScript (ES6+), HTML5, CSS3, Java, SQL</p>
+          <p><span className="text-amber-400">Frontend:</span> React.js, Next.js, Vite, React Router, Redux Toolkit, RTK Query, TanStack Query, Bootstrap</p>
+          <p><span className="text-amber-400">Backend:</span> Node.js, Express.js, REST APIs, JWT, Mongoose, API Integration</p>
+          <p><span className="text-amber-400">Mobile:</span> Flutter, React Native, Expo</p>
+          <p><span className="text-amber-400">Cloud / DevOps:</span> AWS EC2, Docker, Jenkins, GitHub Actions, CI/CD, Terraform, Linux, Vercel, Render</p>
         </div>
       );
     } else if (trimmed === 'experience') {
       response = (
-        <div className="text-xs space-y-1 text-neutral-300 font-mono">
+        <div className="text-xs space-y-1 text-slate-300 font-mono">
           <p>• Veedly — Software Developer (Current · Hyderabad, India)</p>
-          <p>• Metagen Technologies — Software Developer (Sep 2025–Apr 2026)</p>
           <p>• Nafa Barter — Frontend Developer (May 2025–Apr 2026)</p>
           <p>• Bitstek Consulting — Software Engineer Intern (Sep 2024–Apr 2025 · 8 Months)</p>
           <p>• Deccan College of Engineering — B.E. Computer Science (2021–2025)</p>
@@ -112,12 +113,12 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
       );
     } else if (trimmed === 'contact') {
       response = (
-        <div className="text-xs space-y-1 text-neutral-300">
+        <div className="text-xs space-y-1 text-slate-300">
           <p>Direct Email: <span className="text-amber-400 font-mono">sohailshah14921@gmail.com</span></p>
           <p>Location: Hyderabad, Telangana, India</p>
           <button
             onClick={() => onJumpToSection('contact')}
-            className="text-amber-400 hover:underline mt-1 block font-mono text-[11px]"
+            className="text-amber-400 hover:underline mt-1 block font-mono text-[11px] cursor-pointer"
           >
             → Click to jump to Contact form
           </button>
@@ -125,21 +126,21 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
       );
     } else if (trimmed === 'resume') {
       response = (
-        <div className="text-xs text-neutral-300">
+        <div className="text-xs text-slate-300">
           <p className="text-emerald-400">Opening ATS printable resume...</p>
         </div>
       );
       onOpenResume();
     } else if (trimmed === 'whoami') {
       response = (
-        <div className="text-xs text-neutral-300 font-mono">
-          uid=1000(sohail) gid=1000(engineer) groups=fullstack,react-native,devops,cloud
+        <div className="text-xs text-slate-300 font-mono">
+          uid=1000(sohail) gid=1000(engineer) roles=software-developer,full-stack,mobile,devops
         </div>
       );
     } else {
       response = (
-        <div className="text-xs text-red-400 font-mono">
-          command not found: {trimmed}. Type <span className="text-amber-400">help</span> to view commands.
+        <div className="text-xs text-slate-400 font-mono">
+          command not found: {trimmed}. Type <span className="text-amber-400 font-semibold">&apos;help&apos;</span> for available commands.
         </div>
       );
     }
@@ -148,57 +149,57 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
     setInputVal('');
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       handleCommand(inputVal);
     }
   };
 
-  const quickCommands = ['help', 'projects', 'skills', 'experience', 'contact'];
+  const quickCommands = ['help', 'projects', 'skills', 'experience', 'contact', 'resume', 'clear'];
 
   return (
-    <div className="w-full bg-neutral-900/90 light:bg-neutral-900 border border-neutral-800 light:border-neutral-800 rounded-xl shadow-2xl overflow-hidden font-mono text-left transition-all">
-      {/* Top Bar with Tabs */}
-      <div className="flex items-center justify-between px-4 py-2.5 bg-neutral-950/80 border-b border-neutral-800">
+    <div className="rounded-xl border border-slate-800 bg-[#070b13] overflow-hidden shadow-2xl font-mono">
+      {/* Top Window Chrome Bar */}
+      <div className="flex items-center justify-between px-4 py-2.5 bg-slate-900/90 border-b border-slate-800">
         <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-          <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-          <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-          <span className="text-xs text-neutral-400 ml-2 font-mono hidden sm:inline">
-            sohail@dev-station:~
+          <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+          <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+          <span className="ml-2 text-xs text-slate-400 font-medium">
+            sohail@portfolio:~
           </span>
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex items-center gap-1 bg-neutral-900 p-0.5 rounded border border-neutral-800 text-[11px]">
+        <div className="flex items-center gap-1 bg-slate-950 p-0.5 rounded-lg border border-slate-800 text-[11px]">
           <button
             onClick={() => setActiveTab('shell')}
-            className={`flex items-center gap-1 px-2.5 py-1 rounded transition-colors ${
+            className={`px-2.5 py-1 rounded-md transition-colors flex items-center gap-1 cursor-pointer ${
               activeTab === 'shell'
-                ? 'bg-neutral-800 text-amber-400 font-medium'
-                : 'text-neutral-400 hover:text-neutral-200'
+                ? 'bg-slate-800 text-amber-400 font-medium'
+                : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             <Terminal className="w-3 h-3" />
-            <span>Interactive Shell</span>
+            <span>Shell</span>
           </button>
           <button
             onClick={() => setActiveTab('architecture')}
-            className={`flex items-center gap-1 px-2.5 py-1 rounded transition-colors ${
+            className={`px-2.5 py-1 rounded-md transition-colors flex items-center gap-1 cursor-pointer ${
               activeTab === 'architecture'
-                ? 'bg-neutral-800 text-amber-400 font-medium'
-                : 'text-neutral-400 hover:text-neutral-200'
+                ? 'bg-slate-800 text-amber-400 font-medium'
+                : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             <Layers className="w-3 h-3" />
-            <span className="hidden sm:inline">Architecture</span>
+            <span className="hidden sm:inline">Topology</span>
           </button>
           <button
             onClick={() => setActiveTab('telemetry')}
-            className={`flex items-center gap-1 px-2.5 py-1 rounded transition-colors ${
+            className={`px-2.5 py-1 rounded-md transition-colors flex items-center gap-1 cursor-pointer ${
               activeTab === 'telemetry'
-                ? 'bg-neutral-800 text-amber-400 font-medium'
-                : 'text-neutral-400 hover:text-neutral-200'
+                ? 'bg-slate-800 text-amber-400 font-medium'
+                : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             <Cpu className="w-3 h-3" />
@@ -212,17 +213,17 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
         <div className="p-4 sm:p-5 flex flex-col justify-between min-h-[300px] max-h-[360px] text-xs">
           {/* Scrollable history */}
           <div className="overflow-y-auto space-y-3 pr-2 scrollbar-thin">
-            <div className="text-[11px] text-neutral-400 border-b border-neutral-800/60 pb-2">
+            <div className="text-[11px] text-slate-500 border-b border-slate-800/60 pb-2">
               Type a command or click a quick suggestion below:
             </div>
 
             {history.map((item, idx) => (
               <div key={idx} className="space-y-1">
-                <div className="flex items-center gap-2 text-neutral-400">
+                <div className="flex items-center gap-2 text-slate-400">
                   <span className="text-amber-400">sohail@host:~$</span>
-                  <span className="text-neutral-100">{item.command}</span>
+                  <span className="text-slate-100">{item.command}</span>
                 </div>
-                <div className="pl-3 border-l border-neutral-800 text-neutral-300">
+                <div className="pl-3 border-l border-slate-800 text-slate-300">
                   {item.output}
                 </div>
               </div>
@@ -231,7 +232,7 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
           </div>
 
           {/* Prompt input & quick command chips */}
-          <div className="mt-4 pt-3 border-t border-neutral-800/80 space-y-2">
+          <div className="mt-4 pt-3 border-t border-slate-800/80 space-y-2">
             <div className="flex items-center gap-2">
               <span className="text-amber-400 shrink-0">sohail@host:~$</span>
               <input
@@ -241,11 +242,11 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
                 onChange={(e) => setInputVal(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Type 'help', 'projects', 'skills'..."
-                className="w-full bg-transparent text-neutral-100 placeholder:text-neutral-600 focus:outline-none font-mono text-xs"
+                className="w-full bg-transparent text-slate-100 placeholder:text-slate-600 focus:outline-none font-mono text-xs"
               />
               <button
                 onClick={() => handleCommand(inputVal)}
-                className="p-1 text-neutral-500 hover:text-amber-400"
+                className="p-1 text-slate-500 hover:text-amber-400 cursor-pointer"
                 title="Execute command"
               >
                 <CornerDownLeft className="w-3.5 h-3.5" />
@@ -254,12 +255,12 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
 
             {/* Quick chips */}
             <div className="flex flex-wrap items-center gap-1.5 pt-1 text-[11px]">
-              <span className="text-neutral-400">Quick run:</span>
+              <span className="text-slate-500">Quick run:</span>
               {quickCommands.map((qc) => (
                 <button
                   key={qc}
                   onClick={() => handleCommand(qc)}
-                  className="px-2 py-0.5 rounded bg-neutral-800/80 hover:bg-neutral-700 text-neutral-300 hover:text-amber-400 border border-neutral-700/60 transition-colors font-mono"
+                  className="px-2 py-0.5 rounded bg-slate-800/80 hover:bg-slate-800 text-slate-300 hover:text-amber-400 border border-slate-700/60 transition-colors font-mono cursor-pointer"
                 >
                   {qc}
                 </button>
@@ -272,34 +273,34 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
       {/* TAB CONTENT: Architecture Topology */}
       {activeTab === 'architecture' && (
         <div className="p-4 sm:p-5 min-h-[300px] flex flex-col justify-center text-xs">
-          <div className="text-neutral-400 text-[11px] mb-3">
+          <div className="text-slate-400 text-[11px] mb-3">
             Core Production Architecture Topology:
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-2.5 text-center">
-            <div className="p-3 rounded bg-neutral-950/70 border border-neutral-800">
+            <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800">
               <span className="text-amber-400 font-semibold block text-[11px] mb-1">01. Client Edge</span>
-              <p className="text-[11px] text-neutral-300">Next.js & React SPA / React Native Mobile</p>
+              <p className="text-[11px] text-slate-300 font-sans">Next.js &amp; React SPA / Flutter &amp; React Native Mobile</p>
             </div>
 
-            <div className="p-3 rounded bg-neutral-950/70 border border-neutral-800">
-              <span className="text-blue-400 font-semibold block text-[11px] mb-1">02. API & Real-Time</span>
-              <p className="text-[11px] text-neutral-300">Node.js Express / WebSockets Cluster</p>
+            <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800">
+              <span className="text-sky-400 font-semibold block text-[11px] mb-1">02. API &amp; Real-Time</span>
+              <p className="text-[11px] text-slate-300 font-sans">Node.js Express / WebSockets Cluster</p>
             </div>
 
-            <div className="p-3 rounded bg-neutral-950/70 border border-neutral-800">
+            <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800">
               <span className="text-emerald-400 font-semibold block text-[11px] mb-1">03. Persistence</span>
-              <p className="text-[11px] text-neutral-300">MongoDB Atlas / Mongoose Modeling</p>
+              <p className="text-[11px] text-slate-300 font-sans">MongoDB Atlas / Mongoose Modeling</p>
             </div>
 
-            <div className="p-3 rounded bg-neutral-950/70 border border-neutral-800">
+            <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800">
               <span className="text-purple-400 font-semibold block text-[11px] mb-1">04. Cloud Infrastructure</span>
-              <p className="text-[11px] text-neutral-300">AWS EC2 / Docker & CI/CD Pipelines</p>
+              <p className="text-[11px] text-slate-300 font-sans">AWS EC2 / Docker &amp; CI/CD Pipelines</p>
             </div>
           </div>
 
-          <div className="mt-4 p-3 rounded bg-neutral-950/40 border border-neutral-800/80 text-[11px] text-neutral-400">
-            <span className="text-neutral-200 font-medium">Engineering Motto: </span>
+          <div className="mt-4 p-3 rounded-lg bg-slate-950/40 border border-slate-800 text-[11px] text-slate-400 font-sans">
+            <span className="text-slate-200 font-medium">Engineering Approach: </span>
             &quot;I don&apos;t just write code — I build and deploy complete products from concept to containerized production.&quot;
           </div>
         </div>
@@ -309,31 +310,31 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
       {activeTab === 'telemetry' && (
         <div className="p-4 sm:p-5 min-h-[300px] flex flex-col justify-center text-xs space-y-3">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <div className="p-3 rounded bg-neutral-950/80 border border-neutral-800">
-              <span className="text-xs text-neutral-400 block">Experience</span>
-              <span className="text-lg font-bold text-neutral-100 font-mono tabular-nums">2+ Years</span>
-              <span className="text-[10px] text-neutral-400 block mt-0.5">Software Dev</span>
+            <div className="p-3 rounded-lg bg-slate-950/80 border border-slate-800">
+              <span className="text-xs text-slate-400 block font-sans">Experience</span>
+              <span className="text-lg font-bold text-slate-100 font-mono tabular-nums">2+ Years</span>
+              <span className="text-[10px] text-slate-500 block mt-0.5">Software Dev</span>
             </div>
-            <div className="p-3 rounded bg-neutral-950/80 border border-neutral-800">
-              <span className="text-xs text-neutral-400 block">Tick Latency</span>
+            <div className="p-3 rounded-lg bg-slate-950/80 border border-slate-800">
+              <span className="text-xs text-slate-400 block font-sans">Tick Latency</span>
               <span className="text-lg font-bold text-amber-400 font-mono tabular-nums">&lt; 45ms</span>
-              <span className="text-[10px] text-neutral-400 block mt-0.5">JetFyx Forex</span>
+              <span className="text-[10px] text-slate-500 block mt-0.5">JetFyx Platform</span>
             </div>
-            <div className="p-3 rounded bg-neutral-950/80 border border-neutral-800">
-              <span className="text-xs text-neutral-400 block">Deploy Cadence</span>
+            <div className="p-3 rounded-lg bg-slate-950/80 border border-slate-800">
+              <span className="text-xs text-slate-400 block font-sans">Deployment</span>
               <span className="text-lg font-bold text-emerald-400 font-mono tabular-nums">100% CI/CD</span>
-              <span className="text-[10px] text-neutral-400 block mt-0.5">Zero-Downtime</span>
+              <span className="text-[10px] text-slate-500 block mt-0.5">Automated Gate</span>
             </div>
-            <div className="p-3 rounded bg-neutral-950/80 border border-neutral-800">
-              <span className="text-xs text-neutral-400 block">Education</span>
-              <span className="text-lg font-bold text-blue-400 font-mono tabular-nums">B.E. CS</span>
-              <span className="text-[10px] text-neutral-400 block mt-0.5">Deccan 2021-25</span>
+            <div className="p-3 rounded-lg bg-slate-950/80 border border-slate-800">
+              <span className="text-xs text-slate-400 block font-sans">Education</span>
+              <span className="text-lg font-bold text-sky-400 font-mono tabular-nums">B.E. CS</span>
+              <span className="text-[10px] text-slate-500 block mt-0.5">Deccan (2021-25)</span>
             </div>
           </div>
 
-          <div className="p-3 rounded bg-neutral-950/60 border border-neutral-800 text-[11px] text-neutral-400 flex items-center justify-between">
-            <span>Current Status: Open to Engineering Opportunities</span>
-            <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
+          <div className="p-3 rounded-lg bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
+            <span>Engineering Status: Active &amp; Ready for Production</span>
+            <span className="flex items-center gap-1.5 text-emerald-400 font-semibold font-mono">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               Available for Full-Stack / Mobile
             </span>

@@ -19,12 +19,12 @@ export const DevOpsSection: React.FC = () => {
       id: 'stage-dev',
       name: '01. Local Development',
       tool: 'Git & Modular Architecture',
-      description: 'Modular ES modules codebase with strict linting, test-driven validation, and semantic version commits.',
+      description: 'Modular ES modules codebase with strict linting, test-driven validation, and clean version control workflows.',
       filename: 'commit-and-push.sh',
-      codeSnippet: `# Interactive rebase and feature branch validation
+      codeSnippet: `# Feature branch and code quality verification
 git checkout -b feature/trading-engine-sync
 npm run lint && npm test
-git commit -m "feat(core): implement zero-allocation binary parser for ticks"
+git commit -m "feat(core): implement resilient websocket stream handler"
 git push origin feature/trading-engine-sync`,
     },
     {
@@ -51,7 +51,7 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run build
-      - name: Build & Push Docker Image to Registry
+      - name: Build & Push Docker Image
         run: |
           docker build -t registry.aws/sohail/app:latest .
           docker push registry.aws/sohail/app:latest`,
@@ -88,13 +88,12 @@ CMD ["node", "server.js"]`,
       filename: '/etc/nginx/sites-available/portfolio.conf',
       codeSnippet: `server {
     listen 443 ssl http2;
-    server_name sohailshah.dev api.sohailshah.dev;
+    server_name api.sohailshah.dev;
 
     ssl_certificate /etc/letsencrypt/live/sohailshah.dev/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/sohailshah.dev/privkey.pem;
 
-    # Reverse proxy to Docker container running on port 3000
-    location / {
+    location /api/ {
         proxy_pass http://127.0.0.1:3000;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
@@ -106,26 +105,22 @@ CMD ["node", "server.js"]`,
     },
     {
       id: 'stage-db',
-      name: '05. Database & Persistence',
-      tool: 'MongoDB Atlas & Mongoose',
-      description: 'High-availability replica sets, automated daily snapshots, compound query indexing, and connection pool management.',
-      filename: 'server/config/mongoAtlas.ts',
-      codeSnippet: `import mongoose from 'mongoose';
+      name: '05. Database & Telemetry',
+      tool: 'MongoDB Atlas & Monitoring',
+      description: 'Managed replica set clusters with automated daily snapshots, connection pool throttling, and automated alerting.',
+      filename: 'mongo-connection.js',
+      codeSnippet: `// High-concurrency connection pooling
+const mongoose = require('mongoose');
 
-export async function initProductionDatabase() {
-  await mongoose.connect(process.env.MONGODB_URI!, {
-    maxPoolSize: 20,
+const connectDatabase = async () => {
+  await mongoose.connect(process.env.MONGODB_URI, {
+    maxPoolSize: 50,
     serverSelectionTimeoutMS: 5000,
     socketTimeoutMS: 45000,
+    autoIndex: process.env.NODE_ENV !== 'production',
   });
-
-  // Ensure compound index on active projects
-  await mongoose.connection.collection('projects').createIndex(
-    { featured: 1, order: 1 },
-    { background: true }
-  );
-  console.log('[Database] Atlas cluster synced with compound indexes.');
-}`,
+  console.log('MongoDB Atlas: Connection established with connection pool');
+};`,
     },
   ];
 
@@ -138,123 +133,118 @@ export async function initProductionDatabase() {
   };
 
   return (
-    <section id="devops" className="py-20 md:py-28 border-t border-neutral-800/80 light:border-neutral-200 bg-neutral-950/40 light:bg-neutral-50/50">
+    <section id="devops" className="py-20 md:py-28 border-t border-slate-800/80 bg-[#090e18]/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-2xl">
-          <span className="text-xs font-mono uppercase tracking-wider text-amber-400 light:text-amber-800 font-semibold">
-            05. Infrastructure &amp; Deployment
+        <div className="max-w-3xl">
+          <span className="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+            05. DevOps &amp; Cloud Lifecycle
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold font-display tracking-tight text-neutral-100 light:text-neutral-900 mt-2 text-balance">
-            From Code to Production
+          <h2 className="text-3xl sm:text-4xl font-bold font-display tracking-tight text-slate-100 mt-2 text-balance">
+            From Code to Production: The Deployment Pipeline
           </h2>
-          <p className="text-sm sm:text-base text-neutral-400 light:text-neutral-600 mt-2">
-            I understand that writing code is only half the battle. I engineer the entire automated journey from source commit to containerized cloud deployment.
+          <p className="text-sm sm:text-base text-slate-400 mt-2 leading-relaxed font-sans">
+            A reliable software product is only as good as its deployment pipeline. Here is how I architect, containerize, and deploy applications to production on AWS with Docker and CI/CD.
           </p>
         </div>
 
-        {/* Visual Deployment Flowchart Steps */}
-        <div className="mt-12 grid grid-cols-2 sm:grid-cols-5 gap-2.5">
-          {stages.map((stage, idx) => {
+        {/* Visual Pipeline Stepper */}
+        <div className="mt-10 grid grid-cols-2 sm:grid-cols-5 gap-2 border-b border-slate-800 pb-6">
+          {stages.map((stage) => {
             const isSelected = stage.id === selectedStageId;
             return (
               <button
                 key={stage.id}
                 onClick={() => setSelectedStageId(stage.id)}
-                className={`p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
+                className={`p-3 rounded-lg text-left transition-all cursor-pointer border ${
                   isSelected
-                    ? 'bg-neutral-900 light:bg-white border-amber-400 shadow-md ring-1 ring-amber-400/20'
-                    : 'bg-neutral-950/60 light:bg-neutral-100/60 border-neutral-800 light:border-neutral-300 hover:border-neutral-700'
+                    ? 'bg-slate-900 border-amber-400/80 text-slate-100 shadow-sm'
+                    : 'bg-slate-950/40 border-slate-800/60 text-slate-400 hover:text-slate-200 hover:border-slate-700'
                 }`}
               >
-                <span className="block text-[11px] font-mono text-amber-400 font-semibold mb-1">
-                  Step 0{idx + 1}
+                <span className="block text-[11px] font-mono text-amber-400 font-semibold">
+                  {stage.name.split('.')[0]}
                 </span>
-                <span className="block text-xs font-semibold text-neutral-200 light:text-neutral-900 leading-tight">
-                  {stage.tool}
-                </span>
-                <span className="block text-[10px] text-neutral-500 mt-1 line-clamp-1">
+                <span className="block text-xs font-semibold mt-0.5 truncate font-display">
                   {stage.name.split('. ')[1]}
+                </span>
+                <span className="block text-[10px] text-slate-500 font-mono truncate mt-0.5">
+                  {stage.tool.split('&')[0]}
                 </span>
               </button>
             );
           })}
         </div>
 
-        {/* Interactive Configuration & Topology Inspector */}
-        <div className="mt-6 rounded-xl bg-neutral-900 light:bg-white border border-neutral-800 light:border-neutral-200 overflow-hidden shadow-lg">
-          {/* Top Inspector Bar */}
-          <div className="px-5 py-3.5 bg-neutral-950 light:bg-neutral-100 border-b border-neutral-800 light:border-neutral-200 flex flex-wrap items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
-              <Terminal className="w-4 h-4 text-amber-400" />
-              <span className="font-mono text-xs text-neutral-300 light:text-neutral-800 font-medium">
-                {activeStage.filename}
+        {/* Stage Content Detail & Terminal Code View */}
+        <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left Description (4 cols) */}
+          <div className="lg:col-span-5 space-y-4">
+            <div className="p-6 rounded-xl bg-slate-900/50 border border-slate-800 space-y-3">
+              <span className="text-xs font-mono text-amber-400 font-semibold block">
+                {activeStage.name}
               </span>
-              <span className="text-neutral-600">·</span>
-              <span className="text-xs text-neutral-400 light:text-neutral-600 hidden sm:inline">
+              <h3 className="text-lg font-bold font-display text-slate-100">
                 {activeStage.tool}
-              </span>
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-sans">
+                {activeStage.description}
+              </p>
+
+              <div className="pt-3 border-t border-slate-800/80 space-y-2">
+                <div className="flex items-center gap-2 text-xs text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Automated linting and test validation</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Reproducible isolated environment</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Continuous delivery without manual steps</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Code Viewer (7 cols) */}
+          <div className="lg:col-span-7 rounded-xl bg-[#070b12] border border-slate-800 overflow-hidden shadow-2xl">
+            {/* Terminal Window Header */}
+            <div className="flex items-center justify-between px-4 py-2.5 bg-slate-900/90 border-b border-slate-800">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                <span className="ml-2 text-xs font-mono text-slate-400">
+                  {activeStage.filename}
+                </span>
+              </div>
+
+              <button
+                onClick={handleCopy}
+                className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+                title="Copy configuration snippet"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-3 h-3 text-emerald-400" />
+                    <span className="text-emerald-400">Copied</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3 h-3 text-slate-400" />
+                    <span>Copy</span>
+                  </>
+                )}
+              </button>
             </div>
 
-            <button
-              onClick={handleCopy}
-              className="flex items-center gap-1.5 px-2.5 py-1 text-xs text-neutral-400 hover:text-neutral-100 light:hover:text-neutral-900 bg-neutral-900 light:bg-white border border-neutral-800 light:border-neutral-300 rounded transition-colors"
-            >
-              {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copied ? 'Copied' : 'Copy snippet'}</span>
-            </button>
-          </div>
-
-          {/* Description banner */}
-          <div className="p-4 bg-neutral-950/40 light:bg-neutral-50 border-b border-neutral-800/60 light:border-neutral-200 text-xs text-neutral-300 light:text-neutral-700 flex items-start gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-            <span>{activeStage.description}</span>
-          </div>
-
-          {/* Code Viewer */}
-          <div className="p-5 font-mono text-xs text-neutral-300 bg-neutral-950 light:bg-neutral-950 overflow-x-auto leading-relaxed">
-            <pre>
+            {/* Code Body */}
+            <pre className="p-4 sm:p-5 text-xs font-mono text-slate-300 overflow-x-auto leading-relaxed">
               <code>{activeStage.codeSnippet}</code>
             </pre>
-          </div>
-        </div>
-
-        {/* DevOps Skill Badges Grid */}
-        <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="p-4 rounded-xl bg-neutral-900/40 light:bg-white border border-neutral-800/80 light:border-neutral-200">
-            <span className="text-xs font-semibold text-neutral-200 light:text-neutral-900 block mb-1">
-              Docker &amp; Containers
-            </span>
-            <p className="text-xs text-neutral-400 light:text-neutral-600">
-              Multi-stage builds, Alpine optimizations, Docker Compose multi-service environments.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-neutral-900/40 light:bg-white border border-neutral-800/80 light:border-neutral-200">
-            <span className="text-xs font-semibold text-neutral-200 light:text-neutral-900 block mb-1">
-              AWS Cloud Deployment
-            </span>
-            <p className="text-xs text-neutral-400 light:text-neutral-600">
-              EC2 host provisioning, security groups, IAM roles, S3 bucket storage, CloudWatch alarms.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-neutral-900/40 light:bg-white border border-neutral-800/80 light:border-neutral-200">
-            <span className="text-xs font-semibold text-neutral-200 light:text-neutral-900 block mb-1">
-              CI/CD Automation
-            </span>
-            <p className="text-xs text-neutral-400 light:text-neutral-600">
-              GitHub Actions &amp; Jenkins pipelines for automated linting, test suites, and zero-downtime releases.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-neutral-900/40 light:bg-white border border-neutral-800/80 light:border-neutral-200">
-            <span className="text-xs font-semibold text-neutral-200 light:text-neutral-900 block mb-1">
-              Linux System Admin
-            </span>
-            <p className="text-xs text-neutral-400 light:text-neutral-600">
-              Systemd daemons, NGINX reverse proxies, Bash automation scripts, and server hardening.
-            </p>
           </div>
         </div>
       </div>

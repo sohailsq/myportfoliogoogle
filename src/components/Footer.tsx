@@ -7,47 +7,48 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="border-t border-neutral-800/80 light:border-neutral-200 bg-neutral-950 light:bg-neutral-50 py-12 transition-colors">
+    <footer className="border-t border-slate-800/80 bg-[#06090f] py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
-            <span className="text-base font-bold font-display text-neutral-100 light:text-neutral-900">
-              Sohail Shah Quadri
+            <span className="text-base font-bold font-display text-slate-100 flex items-center justify-center md:justify-start gap-2">
+              <span className="w-2 h-2 rounded-full bg-amber-400" />
+              Sohail Shah
             </span>
-            <p className="text-xs text-neutral-400 light:text-neutral-600 mt-1 max-w-md">
-              Software Engineer & Full-Stack Developer based in Hyderabad, India. Focused on performant web, mobile, and cloud systems.
+            <p className="text-xs text-slate-400 mt-1 max-w-md font-sans">
+              Software Developer | Full-Stack Web Developer based in Hyderabad, India. Focused on performant web, mobile, and cloud systems.
             </p>
           </div>
 
-          <div className="flex items-center gap-5 text-neutral-400 light:text-neutral-600">
+          <div className="flex items-center gap-4 text-slate-400">
             <a
               href="https://github.com/mohammadsohailshahquadri14"
               target="_blank"
               rel="noreferrer noopener"
-              className="hover:text-amber-400 transition-colors"
+              className="p-2 rounded-lg bg-slate-900 border border-slate-800 hover:text-amber-400 hover:border-slate-700 transition-colors"
               aria-label="GitHub profile"
             >
-              <Github className="w-5 h-5" />
+              <Github className="w-4 h-4" />
             </a>
             <a
               href="https://linkedin.com/in/mssq14/"
               target="_blank"
               rel="noreferrer noopener"
-              className="hover:text-amber-400 transition-colors"
+              className="p-2 rounded-lg bg-slate-900 border border-slate-800 hover:text-amber-400 hover:border-slate-700 transition-colors"
               aria-label="LinkedIn profile"
             >
-              <Linkedin className="w-5 h-5" />
+              <Linkedin className="w-4 h-4" />
             </a>
             <a
               href="mailto:sohailshah14921@gmail.com"
-              className="hover:text-amber-400 transition-colors"
+              className="p-2 rounded-lg bg-slate-900 border border-slate-800 hover:text-amber-400 hover:border-slate-700 transition-colors"
               aria-label="Send email"
             >
-              <Mail className="w-5 h-5" />
+              <Mail className="w-4 h-4" />
             </a>
             <button
               onClick={scrollToTop}
-              className="p-2 border border-neutral-800 light:border-neutral-300 rounded-md hover:bg-neutral-900 light:hover:bg-neutral-200 transition-colors text-neutral-400 light:text-neutral-600 ml-2"
+              className="p-2 border border-slate-800 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors cursor-pointer"
               aria-label="Scroll back to top"
               title="Back to top"
             >
@@ -56,14 +57,17 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-neutral-800/40 light:border-neutral-200 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-400 light:text-neutral-600 gap-3">
+        <div className="mt-8 pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 font-mono gap-3">
           <div>
-            © {new Date().getFullYear()} Sohail Shah Quadri. Engineered with React, Node.js, Express & MongoDB.
+            © {new Date().getFullYear()} Sohail Shah. Engineered with React, Express &amp; MongoDB.
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <span>Hyderabad, Telangana, India</span>
-            <span aria-hidden="true">·</span>
-            <span>REST API Active</span>
+            <span>·</span>
+            <span className="flex items-center gap-1.5 text-emerald-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              REST API Active
+            </span>
           </div>
         </div>
       </div>

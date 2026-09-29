@@ -1,124 +1,128 @@
 import React from 'react';
-import { Code, Server, Smartphone, Cloud, CheckCircle2, Award, Terminal } from 'lucide-react';
+import { Code, Server, Smartphone, Cloud, CheckCircle2, Award, Terminal, Layers } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
   const pillars = [
     {
       icon: <Code className="w-5 h-5 text-amber-400" />,
-      title: 'Frontend Engineering',
+      title: 'Frontend & UI Architecture',
       description:
-        'Building responsive, high-fidelity user interfaces with React, Next.js, and Tailwind CSS. Specializing in state-machine caching (TanStack Query), virtual DOM optimization, and sub-second interaction speed.',
+        'Building responsive, modular UI components with React.js, Next.js, and modern CSS/Tailwind. Focused on component reusability, optimal render cycles, accessible design, and fluid user experiences across viewports.',
     },
     {
-      icon: <Server className="w-5 h-5 text-blue-400" />,
-      title: 'Resilient Backend Architecture',
+      icon: <Server className="w-5 h-5 text-sky-400" />,
+      title: 'Backend & RESTful Services',
       description:
-        'Engineering performant RESTful APIs and streaming WebSockets in Node.js and Express. Designing schema models in MongoDB and Mongoose with compound indexing, atomic transactions, and token security.',
+        'Designing performant REST APIs and WebSocket data streams in Node.js and Express.js. Engineering MongoDB and Mongoose database schemas with indexing, secure JWT authentication, and structured validation pipelines.',
     },
     {
       icon: <Smartphone className="w-5 h-5 text-emerald-400" />,
-      title: 'Mobile Development',
+      title: 'Cross-Platform Mobile Apps',
       description:
-        'Developing production mobile apps with React Native. Experienced in native gesture handlers, off-thread data processing, push notifications, and high-frequency real-time financial charting on mobile devices.',
+        'Developing production mobile applications with React Native and Flutter. Experienced with high-frequency trading clients (JetFyx), stateful workflows, and multi-tenant platforms (Veedly, Howzdat).',
     },
     {
       icon: <Cloud className="w-5 h-5 text-purple-400" />,
-      title: 'Cloud & DevOps Automation',
+      title: 'Cloud Deployment & DevOps',
       description:
-        'Managing infrastructure from local containerization to cloud environments: Docker multi-stage builds, AWS EC2 provisioning, reverse proxies (NGINX), and automated CI/CD pipelines via GitHub Actions and Jenkins.',
+        'Managing infrastructure from local containerization to cloud environments: Docker multi-stage builds, AWS EC2 provisioning, automated CI/CD pipelines via GitHub Actions and Jenkins, and cloud hosting on Vercel and Render.',
     },
   ];
 
   return (
-    <section id="about" className="py-20 md:py-28 border-t border-neutral-800/80 light:border-neutral-200 bg-neutral-950/40 light:bg-neutral-50/50">
+    <section id="about" className="py-20 md:py-28 border-t border-slate-800/80 bg-[#090e18]/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header (Anti-slop compliant: natural editorial typography, no comment prefixes) */}
+        {/* Section Header */}
         <div className="max-w-3xl">
-          <span className="text-xs font-mono uppercase tracking-wider text-amber-400 light:text-amber-800 font-semibold">
+          <span className="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
             01. Engineering Profile
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold font-display tracking-tight text-neutral-100 light:text-neutral-900 mt-2 text-balance">
-            From Code to Production: Building Software That Scales
+          <h2 className="text-3xl sm:text-4xl font-bold font-display tracking-tight text-slate-100 mt-2 text-balance">
+            Building Robust, Scalable Software for the Real World
           </h2>
-          <p className="text-sm sm:text-base text-neutral-400 light:text-neutral-600 mt-3 leading-relaxed">
-            I approach software engineering with a product-owner mindset. Writing clean syntax is just the baseline; ensuring it runs reliably under real user loads, survives network volatility, and deploys without downtime is where engineering value is created.
+          <p className="text-sm sm:text-base text-slate-400 mt-3 leading-relaxed font-sans">
+            I approach software engineering with a product-first mindset. Writing clean, maintainable code is the baseline; ensuring it performs reliably under high-frequency data loads, works seamlessly across devices, and deploys without downtime is where true engineering value is created.
           </p>
         </div>
 
         {/* Narrative & Background Breakdown */}
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Main Story */}
-          <div className="lg:col-span-7 space-y-4 text-sm text-neutral-300 light:text-neutral-700 leading-relaxed">
+          {/* Main Story (Left 7 cols) */}
+          <div className="lg:col-span-7 space-y-4 text-sm text-slate-300 leading-relaxed font-sans">
             <p>
-              I am a Software Engineer based in Hyderabad, India, with a Bachelor&apos;s degree in Computer Science from Deccan College of Engineering and Technology (2021–2025). Over the past 2+ years of professional development, I have worked across the entire engineering lifecycle—from whiteboarding system architecture and crafting intuitive interfaces to containerizing microservices and managing cloud deployments on AWS.
+              I am a Software Developer based in Hyderabad, India, with a Bachelor&apos;s degree in Computer Science from Deccan College of Engineering and Technology (2021–2025). Over the past 2+ years of professional development, I have worked across the entire engineering lifecycle—from whiteboarding system architecture and crafting intuitive interfaces to building backend APIs and deploying containerized applications.
             </p>
             <p>
-              My hands-on experience spans high-stakes trading applications (such as <strong className="text-neutral-100 light:text-neutral-950 font-medium">JetFyx</strong>), institutional wealth management dashboards (<strong className="text-neutral-100 light:text-neutral-950 font-medium">Richesse Solutions</strong>), interactive educational platforms (<strong className="text-neutral-100 light:text-neutral-950 font-medium">NexaDeutsch</strong>), and AI-assisted health tracking systems (<strong className="text-neutral-100 light:text-neutral-950 font-medium">SmartSync</strong>).
+              My hands-on experience spans high-stakes trading platforms (such as <strong className="text-slate-100 font-medium">JetFyx</strong>), multi-tenant vendor commerce platforms (<strong className="text-slate-100 font-medium">Veedly</strong>), interactive German language portals (<strong className="text-slate-100 font-medium">NexaDeutsch</strong>), fintech wealth dashboards (<strong className="text-slate-100 font-medium">Richesse Solutions</strong>), and healthcare applications (<strong className="text-slate-100 font-medium">SmartSync</strong>).
             </p>
             <p>
-              Whether it is keeping a mobile trading chart silky-smooth at 60 FPS while consuming hundreds of WebSocket ticks per second or setting up automated zero-downtime CI/CD pipelines, I focus on predictable, maintainable, and observable code.
+              Whether it is keeping a mobile trading chart responsive while consuming real-time WebSocket market streams or setting up automated CI/CD deployment pipelines on AWS EC2, I prioritize clean architecture, systematic debugging, and reliable user experiences.
             </p>
 
-            <div className="pt-4 grid grid-cols-2 sm:grid-cols-3 gap-4 border-t border-neutral-800 light:border-neutral-200">
-              <div>
-                <span className="text-2xl font-bold font-mono text-neutral-100 light:text-neutral-900 tabular-nums">2+</span>
-                <span className="block text-xs text-neutral-400 light:text-neutral-600 mt-0.5">Years Professional Dev</span>
+            {/* Quick Metrics */}
+            <div className="pt-4 grid grid-cols-3 gap-4 border-t border-slate-800">
+              <div className="p-3 rounded-lg bg-slate-900/50 border border-slate-800/80">
+                <span className="text-2xl font-bold font-mono text-slate-100 tabular-nums">2+</span>
+                <span className="block text-xs text-slate-400 mt-0.5">Years Professional Dev</span>
               </div>
-              <div>
-                <span className="text-2xl font-bold font-mono text-amber-400 light:text-amber-700 tabular-nums">5+</span>
-                <span className="block text-xs text-neutral-400 light:text-neutral-600 mt-0.5">Production Systems</span>
+              <div className="p-3 rounded-lg bg-slate-900/50 border border-slate-800/80">
+                <span className="text-2xl font-bold font-mono text-amber-400 tabular-nums">5+</span>
+                <span className="block text-xs text-slate-400 mt-0.5">Production Systems</span>
               </div>
-              <div>
-                <span className="text-2xl font-bold font-mono text-emerald-400 light:text-emerald-700 tabular-nums">99.9%</span>
-                <span className="block text-xs text-neutral-400 light:text-neutral-600 mt-0.5">Uptime Architecture</span>
+              <div className="p-3 rounded-lg bg-slate-900/50 border border-slate-800/80">
+                <span className="text-2xl font-bold font-mono text-emerald-400 tabular-nums">99.9%</span>
+                <span className="block text-xs text-slate-400 mt-0.5">Deployment Uptime</span>
               </div>
             </div>
           </div>
 
-          {/* Right: Key Engineering Commitments */}
-          <div className="lg:col-span-5 p-6 rounded-xl bg-neutral-900 light:bg-white border border-neutral-800 light:border-neutral-200 shadow-sm space-y-4">
-            <h3 className="text-sm font-semibold font-display text-neutral-100 light:text-neutral-900 flex items-center gap-2">
+          {/* Right: Engineering Principles (5 cols) */}
+          <div className="lg:col-span-5 p-6 rounded-xl bg-slate-900/50 border border-slate-800 shadow-sm space-y-4">
+            <h3 className="text-sm font-semibold font-display text-slate-100 flex items-center gap-2">
               <Award className="w-4 h-4 text-amber-400" />
-              <span>Engineering Standards</span>
+              <span>Engineering Principles</span>
             </h3>
 
-            <ul className="space-y-3 text-xs text-neutral-300 light:text-neutral-700">
+            <ul className="space-y-3.5 text-xs text-slate-300 font-sans">
               <li className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span><strong>No Mock Fallbacks in Production:</strong> Build real APIs, real data stores, robust error boundaries, and graceful network fallbacks.</span>
+                <span><strong className="text-slate-100">Reusable &amp; Modular Code:</strong> Construct clean, self-contained components and decoupled services that simplify team development and scaling.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span><strong>Performance First:</strong> Optimize client bundle size, leverage HTTP caching, implement database compound indexes, and eliminate layout shifts.</span>
+                <span><strong className="text-slate-100">Systematic Debugging:</strong> Isolate frontend, API, UI, and application-level issues methodically using browser devtools and telemetry.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span><strong>Infrastructure as Code:</strong> Keep services reproducible through Docker containers, declarative configs, and automated test gates.</span>
+                <span><strong className="text-slate-100">Performance &amp; State Management:</strong> Handle asynchronous data efficiently using TanStack Query / RTK Query with background caching and zero UI stutter.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span><strong>Clear Communication:</strong> Document API contracts, explain technical tradeoffs objectively, and deliver on engineering commitments.</span>
+                <span><strong className="text-slate-100">Production-Ready Deployment:</strong> Containerize workloads with Docker and automate tests and staging via CI/CD pipelines before any code hits production.</span>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* 4 Core Pillars Grid */}
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {pillars.map((pillar, idx) => (
+        {/* 4 Architectural Pillars Grid */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {pillars.map((p, idx) => (
             <div
               key={idx}
-              className="p-5 rounded-xl bg-neutral-900/50 light:bg-white border border-neutral-800/80 light:border-neutral-200 hover:border-neutral-700 light:hover:border-neutral-300 transition-colors"
+              className="p-5 rounded-xl bg-slate-900/40 border border-slate-800 hover:border-slate-700 transition-all card-glow flex flex-col justify-between"
             >
-              <div className="w-9 h-9 rounded-lg bg-neutral-800/80 light:bg-neutral-100 flex items-center justify-center mb-3">
-                {pillar.icon}
+              <div>
+                <div className="w-10 h-10 rounded-lg bg-slate-800/80 flex items-center justify-center mb-3">
+                  {p.icon}
+                </div>
+                <h4 className="text-sm font-semibold font-display text-slate-100 mb-2">
+                  {p.title}
+                </h4>
+                <p className="text-xs text-slate-400 leading-relaxed font-sans">
+                  {p.description}
+                </p>
               </div>
-              <h4 className="text-sm font-semibold text-neutral-100 light:text-neutral-900 mb-1.5">
-                {pillar.title}
-              </h4>
-              <p className="text-xs text-neutral-400 light:text-neutral-600 leading-relaxed">
-                {pillar.description}
-              </p>
             </div>
           ))}
         </div>

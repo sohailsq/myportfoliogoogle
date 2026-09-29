@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, FileText, Moon, Sun, Lock, Mail, ExternalLink, Code2, Layers, Briefcase, Cpu, Terminal, ArrowRight } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
+import { Search, FileText, Lock, Mail, ExternalLink, Code2, Layers, Briefcase, Cpu, Terminal, ArrowRight, Sparkles, Bot } from 'lucide-react';
 
 interface CommandPaletteProps {
   isOpen: boolean;
   onClose: () => void;
   onOpenResume: () => void;
   onOpenAdmin: () => void;
+  onOpenAIAssistant?: () => void;
 }
 
 export const CommandPalette: React.FC<CommandPaletteProps> = ({
@@ -14,13 +14,12 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   onClose,
   onOpenResume,
   onOpenAdmin,
+  onOpenAIAssistant,
 }) => {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const { theme, toggleTheme } = useTheme();
-
   const [copiedNotice, setCopiedNotice] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -28,7 +27,6 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         e.preventDefault();
         if (isOpen) onClose();
         else {
-          // Open
           setQuery('');
           setSelectedIndex(0);
           setCopiedNotice(false);
@@ -86,7 +84,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     },
     {
       id: 'sec-experience',
-      label: 'Professional Experience (Veedly, Metagen, Nafa Barter, Bitstek)',
+      label: 'Professional Experience (Veedly, Nafa Barter, Bitstek)',
       category: 'Navigation',
       icon: <Briefcase className="w-4 h-4 text-purple-400" />,
       action: () => {
@@ -108,10 +106,30 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       id: 'sec-contact',
       label: 'Contact & Hire Sohail (Direct Form & Email)',
       category: 'Navigation',
-      icon: <Mail className="w-4 h-4 text-pink-400" />,
+      icon: <Mail className="w-4 h-4 text-rose-400" />,
       action: () => {
         window.location.hash = '#contact';
         onClose();
+      },
+    },
+    {
+      id: 'act-ai-agent',
+      label: 'Ask Sohail’s AI Assistant (Gemini 3.8 Flash)',
+      category: 'AI Features',
+      icon: <Sparkles className="w-4 h-4 text-amber-400" />,
+      action: () => {
+        onClose();
+        if (onOpenAIAssistant) onOpenAIAssistant();
+      },
+    },
+    {
+      id: 'act-ai-jd',
+      label: 'AI Job Description Matcher (Recruiter Tool)',
+      category: 'AI Features',
+      icon: <Bot className="w-4 h-4 text-emerald-400" />,
+      action: () => {
+        onClose();
+        if (onOpenAIAssistant) onOpenAIAssistant();
       },
     },
     {
@@ -126,22 +144,12 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     },
     {
       id: 'act-admin',
-      label: 'Open Admin Dashboard & CRUD Management',
+      label: 'Open Admin Dashboard & Management',
       category: 'Actions',
       icon: <Lock className="w-4 h-4 text-emerald-400" />,
       action: () => {
         onClose();
         onOpenAdmin();
-      },
-    },
-    {
-      id: 'act-theme',
-      label: `Switch Theme to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`,
-      category: 'Actions',
-      icon: theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-neutral-700" />,
-      action: () => {
-        toggleTheme();
-        onClose();
       },
     },
     {
@@ -159,7 +167,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       id: 'act-github',
       label: 'Open GitHub Profile (@mohammadsohailshahquadri14)',
       category: 'External',
-      icon: <ExternalLink className="w-4 h-4 text-neutral-400" />,
+      icon: <ExternalLink className="w-4 h-4 text-slate-400" />,
       action: () => {
         const link = document.createElement('a');
         link.href = 'https://github.com/mohammadsohailshahquadri14';
@@ -173,7 +181,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       id: 'act-linkedin',
       label: 'Open LinkedIn Profile (mssq14)',
       category: 'External',
-      icon: <ExternalLink className="w-4 h-4 text-neutral-400" />,
+      icon: <ExternalLink className="w-4 h-4 text-slate-400" />,
       action: () => {
         const link = document.createElement('a');
         link.href = 'https://linkedin.com/in/mssq14/';
@@ -209,16 +217,16 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-neutral-950/80 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-black/80 backdrop-blur-md"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-xl bg-neutral-900 light:bg-white border border-neutral-800 light:border-neutral-200 rounded-xl shadow-2xl overflow-hidden transition-all text-neutral-100 light:text-neutral-900"
+        className="w-full max-w-xl bg-[#0d131f] border border-slate-800 rounded-xl shadow-2xl overflow-hidden text-slate-100 animate-in fade-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input Bar */}
-        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-neutral-800 light:border-neutral-200">
-          <Search className="w-4 h-4 text-neutral-400" />
+        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-slate-800">
+          <Search className="w-4 h-4 text-slate-400" />
           <input
             ref={inputRef}
             type="text"
@@ -229,9 +237,9 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
             }}
             onKeyDown={handleKeyDown}
             placeholder="Type a command or jump to section..."
-            className="w-full bg-transparent text-sm text-neutral-100 light:text-neutral-900 placeholder:text-neutral-500 focus:outline-none"
+            className="w-full bg-transparent text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none font-sans"
           />
-          <kbd className="hidden sm:inline-block font-mono text-[10px] text-neutral-500 bg-neutral-800 light:bg-neutral-100 px-1.5 py-0.5 rounded border border-neutral-700 light:border-neutral-300">
+          <kbd className="hidden sm:inline-block font-mono text-[10px] text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700">
             ESC
           </kbd>
         </div>
@@ -245,7 +253,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         {/* Results List */}
         <div className="max-h-80 overflow-y-auto p-2 space-y-1">
           {filtered.length === 0 ? (
-            <div className="py-8 text-center text-xs text-neutral-500">
+            <div className="py-8 text-center text-xs text-slate-500">
               No matching commands or destinations found.
             </div>
           ) : (
@@ -258,8 +266,8 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                   onMouseEnter={() => setSelectedIndex(index)}
                   className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-xs cursor-pointer transition-colors ${
                     isSelected
-                      ? 'bg-amber-400/10 text-amber-300 light:bg-amber-50 light:text-amber-900 font-medium'
-                      : 'text-neutral-300 light:text-neutral-700 hover:bg-neutral-800/60 light:hover:bg-neutral-100'
+                      ? 'bg-amber-400/10 text-amber-300 font-medium'
+                      : 'text-slate-300 hover:bg-slate-800/60'
                   }`}
                 >
                   <div className="flex items-center gap-2.5">
@@ -267,7 +275,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                     <span>{item.label}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] text-neutral-500">{item.category}</span>
+                    <span className="text-[10px] text-slate-500 font-mono">{item.category}</span>
                     {isSelected && <ArrowRight className="w-3.5 h-3.5 text-amber-400" />}
                   </div>
                 </div>
@@ -277,9 +285,9 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         </div>
 
         {/* Footer shortcuts */}
-        <div className="px-4 py-2 border-t border-neutral-800 light:border-neutral-200 bg-neutral-950/40 light:bg-neutral-50 flex items-center justify-between text-[11px] text-neutral-500">
-          <span>Navigate with ↑ ↓ and press Enter</span>
-          <span>Sohail Shah Quadri Portfolio</span>
+        <div className="px-4 py-2 border-t border-slate-800/80 bg-[#090d16] flex items-center justify-between text-[11px] text-slate-500 font-mono">
+          <span>Navigate ↑ ↓ · Enter to select</span>
+          <span>Sohail Shah Portfolio</span>
         </div>
       </div>
     </div>

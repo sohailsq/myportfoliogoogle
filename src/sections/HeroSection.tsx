@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Github, Linkedin, Mail, FileText, MapPin, Sparkles } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Mail, FileText, MapPin, Sparkles, Terminal as TerminalIcon } from 'lucide-react';
 import { TerminalWidget } from '../components/TerminalWidget';
 
 interface HeroSectionProps {
@@ -10,19 +10,23 @@ interface HeroSectionProps {
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume, onJumpToSection }) => {
   return (
     <section className="relative pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden bg-grid-pattern">
-      {/* Subtle radial glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-amber-500/5 blur-[120px] pointer-events-none rounded-full" />
+      {/* Sophisticated ambient glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[380px] bg-amber-500/[0.04] blur-[140px] pointer-events-none rounded-full" />
+      <div className="absolute top-1/3 right-10 w-[400px] h-[300px] bg-blue-500/[0.03] blur-[120px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Core Positioning & Brand */}
           <div className="lg:col-span-7 space-y-6 text-left">
-            {/* Status indicator (Zero-pill compliant: unboxed clean text) */}
-            <div className="inline-flex items-center gap-2 text-xs font-mono text-neutral-400 light:text-neutral-600">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Available for engineering roles</span>
-              <span aria-hidden="true">·</span>
-              <span className="flex items-center gap-1 text-neutral-400">
+            {/* Status indicator */}
+            <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-slate-900/80 border border-slate-800 text-xs font-mono text-slate-300 shadow-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              <span>Available for Full-Time Roles</span>
+              <span className="text-slate-600">·</span>
+              <span className="flex items-center gap-1 text-slate-400">
                 <MapPin className="w-3 h-3 text-amber-400" />
                 Hyderabad, India
               </span>
@@ -30,17 +34,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume, onJumpTo
 
             {/* Main Headline */}
             <div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-display text-neutral-100 light:text-neutral-900 leading-[1.1] text-balance">
-                Sohail Shah Quadri
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-display leading-[1.1] text-balance">
+                <span className="text-slate-100">Sohail Shah</span>
               </h1>
-              <p className="mt-3 text-lg sm:text-xl font-medium text-amber-400 light:text-amber-800 leading-snug">
-                Software Engineer building scalable web &amp; mobile applications.
+              <p className="mt-3 text-lg sm:text-xl font-medium text-amber-400/95 leading-snug">
+                Software Developer | Full-Stack Web Developer
               </p>
             </div>
 
             {/* Supporting Pitch */}
-            <p className="text-sm sm:text-base text-neutral-400 light:text-neutral-600 leading-relaxed max-w-2xl">
-              I build modern digital products using JavaScript, React, Next.js, Node.js, MongoDB, React Native, AWS and DevOps technologies. From high-frequency trading clients to distributed cloud microservices.
+            <p className="text-sm sm:text-base text-slate-400 leading-relaxed max-w-2xl font-sans">
+              2+ years of hands-on software development experience building responsive web applications, mobile applications, and full-stack solutions. Strong in <span className="text-slate-200 font-medium">JavaScript</span>, <span className="text-slate-200 font-medium">React.js</span>, <span className="text-slate-200 font-medium">Next.js</span>, <span className="text-slate-200 font-medium">Node.js</span>, <span className="text-slate-200 font-medium">Express.js</span>, <span className="text-slate-200 font-medium">MongoDB</span>, <span className="text-slate-200 font-medium">React Native</span>, and <span className="text-slate-200 font-medium">AWS / DevOps</span>.
             </p>
 
             {/* Primary & Secondary CTAs */}
@@ -51,9 +55,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume, onJumpTo
                   e.preventDefault();
                   onJumpToSection('projects');
                 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold text-neutral-950 bg-amber-400 hover:bg-amber-300 rounded-md transition-all shadow-sm active:scale-95 cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold text-slate-950 bg-amber-400 hover:bg-amber-300 rounded-lg transition-all shadow-md shadow-amber-400/10 active:scale-95 cursor-pointer"
               >
-                <span>View My Work</span>
+                <span>View Projects</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </a>
 
@@ -63,15 +67,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume, onJumpTo
                   e.preventDefault();
                   onJumpToSection('contact');
                 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-medium text-neutral-200 light:text-neutral-800 bg-neutral-900 light:bg-neutral-100 hover:bg-neutral-800 light:hover:bg-neutral-200 border border-neutral-800 light:border-neutral-300 rounded-md transition-all active:scale-95 cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-medium text-slate-200 bg-slate-900/80 hover:bg-slate-800 hover:text-white border border-slate-800 hover:border-slate-700 rounded-lg transition-all active:scale-95 cursor-pointer"
               >
-                <span>Let&apos;s Connect</span>
-                <Mail className="w-3.5 h-3.5" />
+                <span>Contact Me</span>
+                <Mail className="w-3.5 h-3.5 text-slate-400" />
               </a>
 
               <button
                 onClick={onOpenResume}
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium text-neutral-400 light:text-neutral-600 hover:text-neutral-100 light:hover:text-neutral-900 transition-colors ml-1"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium text-slate-400 hover:text-amber-400 border border-transparent hover:border-slate-800 rounded-lg transition-colors cursor-pointer"
               >
                 <FileText className="w-3.5 h-3.5" />
                 <span>Curriculum Vitae</span>
@@ -79,7 +83,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume, onJumpTo
             </div>
 
             {/* Social & Channel Links */}
-            <div className="flex items-center gap-5 pt-3 border-t border-neutral-800/60 light:border-neutral-200 text-neutral-400 light:text-neutral-600 text-xs">
+            <div className="flex items-center gap-5 pt-3 border-t border-slate-800/60 text-slate-400 text-xs">
               <a
                 href="https://github.com/mohammadsohailshahquadri14"
                 target="_blank"
@@ -89,7 +93,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume, onJumpTo
                 <Github className="w-4 h-4" />
                 <span>GitHub</span>
               </a>
-              <span aria-hidden="true" className="text-neutral-700">·</span>
+              <span aria-hidden="true" className="text-slate-700">·</span>
               <a
                 href="https://linkedin.com/in/mssq14/"
                 target="_blank"
@@ -99,7 +103,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume, onJumpTo
                 <Linkedin className="w-4 h-4" />
                 <span>LinkedIn</span>
               </a>
-              <span aria-hidden="true" className="text-neutral-700">·</span>
+              <span aria-hidden="true" className="text-slate-700">·</span>
               <a
                 href="mailto:sohailshah14921@gmail.com"
                 className="flex items-center gap-1.5 hover:text-amber-400 transition-colors"
@@ -110,39 +114,45 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume, onJumpTo
             </div>
           </div>
 
-          {/* Right Column: Developer Command Center & Portrait Lockup */}
+          {/* Right Column: Terminal Widget & Profile Snippet */}
           <div className="lg:col-span-5 space-y-4">
-            {/* Developer Headshot Avatar Card */}
-            <div className="flex items-center gap-4 p-3.5 rounded-xl bg-neutral-900/60 light:bg-neutral-100/90 border border-neutral-800/80 light:border-neutral-200">
-              <div className="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-neutral-700/60 light:border-neutral-300 relative bg-neutral-950">
+            {/* Developer profile badge */}
+            <div className="flex items-center gap-4 p-3.5 rounded-xl bg-slate-900/60 border border-slate-800">
+              <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0 border border-slate-700/60 relative bg-slate-950">
                 <img
                   src="/src/assets/images/sohail_developer_portrait_1790605389453.jpg"
-                  alt="Sohail Shah Quadri"
-                  className="w-full h-full object-cover"
+                  alt="Sohail Shah"
+                  className="w-full h-full object-cover object-top"
                   loading="eager"
-                  referrerPolicy="no-referrer"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                  }}
                 />
               </div>
-              <div className="text-xs">
-                <span className="font-bold text-neutral-100 light:text-neutral-900 block font-display">
-                  Sohail Shah Quadri
-                </span>
-                <span className="text-neutral-400 light:text-neutral-600 block text-[11px]">
-                  B.E. Computer Science · Deccan College of Engineering (2021–2025)
-                </span>
-                <div className="flex items-center gap-2 mt-1 text-[11px] font-mono text-amber-400">
-                  <span>2+ Years Experience</span>
-                  <span className="text-neutral-600">·</span>
-                  <span>Full-Stack &amp; DevOps</span>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-sm font-semibold text-slate-100 font-display truncate">
+                    Sohail Shah
+                  </h3>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-400/10 text-amber-400 border border-amber-400/20">
+                    2+ Yrs Exp
+                  </span>
+                </div>
+                <p className="text-xs text-slate-400 truncate mt-0.5 font-mono">
+                  B.E. Computer Science · Deccan College
+                </p>
+                <div className="flex items-center gap-3 mt-1 text-[11px] text-slate-500 font-mono">
+                  <span>Veedly</span>
+                  <span>·</span>
+                  <span>JetFyx</span>
+                  <span>·</span>
+                  <span>NexaDeutsch</span>
                 </div>
               </div>
             </div>
 
-            {/* Interactive Terminal / Command Center */}
-            <TerminalWidget onJumpToSection={onJumpToSection} onOpenResume={onOpenResume} />
+            {/* Interactive Terminal Widget */}
+            <TerminalWidget
+              onJumpToSection={onJumpToSection}
+              onOpenResume={onOpenResume}
+            />
           </div>
         </div>
       </div>

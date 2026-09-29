@@ -4,7 +4,7 @@ import {
   getProjectAudit,
   chatWithAssistant,
   matchJobDescription,
-} from '../controllers/aiController.js';
+} from '../controllers/aiController.ts';
 
 const router = Router();
 

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getGithubStats } from '../controllers/githubController.js';
+import { getGithubStats } from '../controllers/githubController.ts';
 
 const router = Router();
 

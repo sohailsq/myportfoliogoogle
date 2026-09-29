@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import { dbRepo } from '../config/db.js';
+import type { Request, Response } from 'express';
+import { dbRepo } from '../config/db.ts';
 
 export async function getAllSkills(req: Request, res: Response) {
   try {

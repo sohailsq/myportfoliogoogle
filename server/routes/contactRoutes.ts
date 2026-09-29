@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { submitContact, getAllContacts, updateContactStatus, deleteContact } from '../controllers/contactController.js';
-import { authenticate, requireAdmin } from '../middleware/auth.js';
+import { submitContact, getAllContacts, updateContactStatus, deleteContact } from '../controllers/contactController.ts';
+import { authenticate, requireAdmin } from '../middleware/auth.ts';
 
 const router = Router();
 

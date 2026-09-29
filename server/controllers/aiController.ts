@@ -1,6 +1,6 @@
-import { Request, Response } from 'express';
-import { getGeminiClient } from '../config/gemini.js';
-import { initialProjects } from '../data/seedData.js';
+import type { Request, Response } from 'express';
+import { getGeminiClient } from '../config/gemini.ts';
+import { initialProjects } from '../data/seedData.ts';
 
 const SOHAIL_PROFILE_CONTEXT = `
 Candidate Profile:

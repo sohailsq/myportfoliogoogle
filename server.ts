@@ -2,8 +2,8 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import apiRouter from './server/routes/index.js';
-import { connectDB } from './server/config/db.js';
+import apiRouter from './server/routes/index.ts';
+import { connectDB } from './server/config/db.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -31,6 +31,11 @@ async function startServer() {
 
   // Mount API endpoints
   app.use('/api', apiRouter);
+
+  // Return JSON 404 for unhandled API calls
+  app.all('/api/*', (req, res) => {
+    res.status(404).json({ success: false, message: 'API route not found' });
+  });
 
   if (!isProd) {
     // Vite Dev Server middleware mode

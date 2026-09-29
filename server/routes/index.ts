@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import authRoutes from './authRoutes.js';
-import projectRoutes from './projectRoutes.js';
-import experienceRoutes from './experienceRoutes.js';
-import skillRoutes from './skillRoutes.js';
-import contactRoutes from './contactRoutes.js';
-import githubRoutes from './githubRoutes.js';
-import aiRoutes from './aiRoutes.js';
+import authRoutes from './authRoutes.ts';
+import projectRoutes from './projectRoutes.ts';
+import experienceRoutes from './experienceRoutes.ts';
+import skillRoutes from './skillRoutes.ts';
+import contactRoutes from './contactRoutes.ts';
+import githubRoutes from './githubRoutes.ts';
+import aiRoutes from './aiRoutes.ts';
 
 const apiRouter = Router();
 

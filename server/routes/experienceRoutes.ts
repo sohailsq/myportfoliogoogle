@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { getAllExperience, createExperience, updateExperience, deleteExperience } from '../controllers/experienceController.js';
-import { authenticate, requireAdmin } from '../middleware/auth.js';
+import { getAllExperience, createExperience, updateExperience, deleteExperience } from '../controllers/experienceController.ts';
+import { authenticate, requireAdmin } from '../middleware/auth.ts';
 
 const router = Router();
 

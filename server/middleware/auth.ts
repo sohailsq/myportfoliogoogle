@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { dbRepo } from '../config/db.js';
+import { dbRepo } from '../config/db.ts';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'sohail-portfolio-jwt-secret-key-2026';
 

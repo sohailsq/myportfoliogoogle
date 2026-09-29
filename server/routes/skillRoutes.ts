@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { getAllSkills, createSkill, updateSkill, deleteSkill } from '../controllers/skillController.js';
-import { authenticate, requireAdmin } from '../middleware/auth.js';
+import { getAllSkills, createSkill, updateSkill, deleteSkill } from '../controllers/skillController.ts';
+import { authenticate, requireAdmin } from '../middleware/auth.ts';
 
 const router = Router();
 

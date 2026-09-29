@@ -1,7 +1,7 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
-import { dbRepo, isUsingMongoDB } from '../config/db.js';
-import { generateToken, AuthRequest } from '../middleware/auth.js';
+import { dbRepo, isUsingMongoDB } from '../config/db.ts';
+import { generateToken, type AuthRequest } from '../middleware/auth.ts';
 
 export async function login(req: Request, res: Response) {
   try {

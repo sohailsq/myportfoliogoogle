@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import { initialUsers, initialProjects, initialExperience, initialSkills, initialContacts } from '../data/seedData.js';
-import { IUser, IProject, IExperience, ISkill, IContact } from '../types.js';
+import { initialUsers, initialProjects, initialExperience, initialSkills, initialContacts } from '../data/seedData.ts';
+import type { IUser, IProject, IExperience, ISkill, IContact } from '../types.ts';
 
 let isMongoConnected = false;
 

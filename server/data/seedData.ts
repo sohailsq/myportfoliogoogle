@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import { IProject, IExperience, ISkill, IUser, IContact } from '../types.js';
+import type { IProject, IExperience, ISkill, IUser, IContact } from '../types.ts';
 
 export const initialAdminPassword = 'admin123';
 export const initialAdminPasswordHash = bcrypt.hashSync(initialAdminPassword, 10);

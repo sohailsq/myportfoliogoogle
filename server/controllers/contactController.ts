@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import { dbRepo } from '../config/db.js';
+import type { Request, Response } from 'express';
+import { dbRepo } from '../config/db.ts';
 
 // Simple in-memory rate limiting map for spam mitigation
 const rateLimitMap = new Map<string, { count: number; lastReset: number }>();

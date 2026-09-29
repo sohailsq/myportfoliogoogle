@@ -39,13 +39,13 @@ export const GithubSection: React.FC = () => {
           </div>
 
           <a
-            href={stats?.profileUrl || 'https://github.com/sohailshah'}
+            href={stats?.profileUrl || 'https://github.com/mohammadsohailshahquadri14'}
             target="_blank"
             rel="noreferrer noopener"
             className="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium text-neutral-300 light:text-neutral-700 bg-neutral-900 light:bg-neutral-100 hover:bg-neutral-800 border border-neutral-800 light:border-neutral-300 rounded-md transition-colors w-fit"
           >
             <Github className="w-4 h-4" />
-            <span>Visit @sohailshah on GitHub</span>
+            <span>Visit @mohammadsohailshahquadri14 on GitHub</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </div>

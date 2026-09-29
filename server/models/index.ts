@@ -53,7 +53,7 @@ const experienceSchema = new Schema({
 // Skill Schema
 const skillSchema = new Schema({
   name: { type: String, required: true },
-  category: { type: String, required: true, enum: ['Frontend', 'Backend', 'DevOps & Cloud', 'Tools'] },
+  category: { type: String, required: true },
   proficiency: { type: String, enum: ['Expert', 'Advanced', 'Intermediate'], default: 'Advanced' },
   yearsOfExperience: { type: Number, default: 2 },
   highlight: { type: String, default: '' },

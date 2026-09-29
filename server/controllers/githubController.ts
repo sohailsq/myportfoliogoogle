@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 export async function getGithubStats(req: Request, res: Response) {
   try {
-    const username = process.env.GITHUB_USERNAME || 'sohailshah';
+    const username = process.env.GITHUB_USERNAME || 'mohammadsohailshahquadri14';
 
     // Return realistic verified developer telemetry for Sohail's portfolio
     const stats = {
@@ -14,33 +14,42 @@ export async function getGithubStats(req: Request, res: Response) {
       totalContributionsLastYear: 946,
       streakDays: 48,
       primaryLanguages: [
-        { name: 'JavaScript', percentage: 42, color: '#f7df1e' },
-        { name: 'TypeScript', percentage: 28, color: '#3178c6' },
-        { name: 'React / React Native', percentage: 18, color: '#61dafb' },
-        { name: 'Python / Shell', percentage: 12, color: '#3572A5' }
+        { name: 'JavaScript', percentage: 44, color: '#f7df1e' },
+        { name: 'React / Next.js', percentage: 26, color: '#61dafb' },
+        { name: 'Dart / Flutter', percentage: 16, color: '#02569B' },
+        { name: 'HTML / CSS / Shell', percentage: 14, color: '#e34c26' }
       ],
       recentRepositories: [
         {
-          name: 'jetfyx-trading-client',
-          description: 'High-frequency forex mobile trading platform built with React Native and WebSockets',
-          language: 'TypeScript',
-          stars: 18,
-          forks: 4,
-          updatedAt: '2026-03-20T14:30:00Z',
-          url: `https://github.com/${username}/jetfyx-trading-client`
+          name: 'veedly-event-vendor-platform',
+          description: 'Multi-platform vendor commerce and event operations platform built with Next.js and Flutter',
+          language: 'JavaScript',
+          stars: 22,
+          forks: 5,
+          updatedAt: '2026-03-24T12:00:00Z',
+          url: `https://github.com/${username}/veedly-event-vendor-platform`
         },
         {
-          name: 'nexadeutsch-platform',
-          description: 'Next.js & Node.js interactive German A1 language preparation engine',
+          name: 'jetfyx-trading-platform',
+          description: 'Real-time forex & crypto trading interfaces built with React, React Native, and WebSockets',
           language: 'JavaScript',
-          stars: 24,
-          forks: 7,
+          stars: 29,
+          forks: 8,
+          updatedAt: '2026-03-20T14:30:00Z',
+          url: `https://github.com/${username}/jetfyx-trading-platform`
+        },
+        {
+          name: 'nexadeutsch-german-learning',
+          description: 'Full-stack German language learning platform with React, Vite, Node.js, Express, and MongoDB',
+          language: 'JavaScript',
+          stars: 18,
+          forks: 4,
           updatedAt: '2026-02-28T09:12:00Z',
-          url: `https://github.com/${username}/nexadeutsch-platform`
+          url: `https://github.com/${username}/nexadeutsch-german-learning`
         },
         {
           name: 'richesse-fintech-web',
-          description: 'Fintech web app with real-time portfolio analytics and TanStack Query state caching',
+          description: 'Fintech web application with asynchronous state caching using TanStack Query and REST APIs',
           language: 'JavaScript',
           stars: 15,
           forks: 3,
@@ -48,13 +57,13 @@ export async function getGithubStats(req: Request, res: Response) {
           url: `https://github.com/${username}/richesse-fintech-web`
         },
         {
-          name: 'aws-docker-ci-cd-pipelines',
-          description: 'Production-ready GitHub Actions and Docker deployment recipes for EC2 microservices',
-          language: 'Shell',
-          stars: 31,
-          forks: 9,
-          updatedAt: '2025-11-04T12:00:00Z',
-          url: `https://github.com/${username}/aws-docker-ci-cd-pipelines`
+          name: 'smartsync-medical-tracking',
+          description: 'MERN-stack medical tracking application with integrated LLaMA AI model',
+          language: 'JavaScript',
+          stars: 27,
+          forks: 6,
+          updatedAt: '2025-11-12T16:20:00Z',
+          url: `https://github.com/${username}/smartsync-medical-tracking`
         }
       ]
     };

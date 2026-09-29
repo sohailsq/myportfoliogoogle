@@ -23,7 +23,16 @@ export const SkillsSection: React.FC = () => {
     loadSkills();
   }, []);
 
-  const categories = ['All', 'Frontend', 'Backend', 'DevOps & Cloud', 'Tools'];
+  const categories = [
+    'All',
+    'Languages',
+    'Frontend',
+    'Backend',
+    'Mobile',
+    'Databases',
+    'Cloud / DevOps',
+    'Tools',
+  ];
 
   const filteredSkills = skills.filter((skill) => {
     const matchesCategory = selectedCategory === 'All' || skill.category === selectedCategory;

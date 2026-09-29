@@ -103,10 +103,10 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
     } else if (trimmed === 'experience') {
       response = (
         <div className="text-xs space-y-1 text-neutral-300 font-mono">
-          <p>• Metagen Technologies — Software Developer (Sep 2025–Present)</p>
-          <p>• Nafa Barter / JetFyx — Frontend / React Native Developer (May 2025–Apr 2026)</p>
-          <p>• Bitstek Consultancy — Web / Application Developer (Sep 2024–Apr 2025)</p>
-          <p>• Veedly — Software Developer (2024)</p>
+          <p>• Veedly — Software Developer (Current · Hyderabad, India)</p>
+          <p>• Metagen Technologies — Software Developer (Sep 2025–Apr 2026)</p>
+          <p>• Nafa Barter — Frontend Developer (May 2025–Apr 2026)</p>
+          <p>• Bitstek Consulting — Software Engineer Intern (Sep 2024–Apr 2025 · 8 Months)</p>
           <p>• Deccan College of Engineering — B.E. Computer Science (2021–2025)</p>
         </div>
       );

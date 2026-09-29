@@ -69,28 +69,38 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
           {/* Header */}
           <div className="border-b border-neutral-800 light:border-neutral-200 pb-5">
             <h1 className="text-3xl font-extrabold tracking-tight font-display text-neutral-100 light:text-neutral-950">
-              Sohail Shah Quadri
+              SOHAIL SHAH
             </h1>
             <p className="text-base font-medium text-amber-400 light:text-amber-700 mt-1">
-              Software Engineer | Full-Stack Developer | React Native Developer | DevOps Enthusiast
+              Software Developer | Full-Stack Web Developer
             </p>
-            <div className="flex flex-wrap items-center gap-4 text-xs text-neutral-400 light:text-neutral-600 mt-3 font-mono">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-neutral-400 light:text-neutral-600 mt-3 font-mono">
               <span className="flex items-center gap-1">
-                <MapPin className="w-3.5 h-3.5" />
+                <MapPin className="w-3.5 h-3.5 text-amber-400" />
                 Hyderabad, Telangana, India
               </span>
               <span>·</span>
-              <a href="mailto:sohailshah14921@gmail.com" className="flex items-center gap-1 hover:text-amber-400">
-                <Mail className="w-3.5 h-3.5" />
+              <a href="mailto:sohailshah14921@gmail.com" className="flex items-center gap-1 hover:text-amber-400 transition-colors">
+                <Mail className="w-3.5 h-3.5 text-amber-400" />
                 sohailshah14921@gmail.com
               </a>
               <span>·</span>
-              <a href="https://linkedin.com/in/sohailshahquadri" target="_blank" rel="noreferrer" className="hover:text-amber-400">
-                linkedin.com/in/sohailshahquadri
+              <a
+                href="https://linkedin.com/in/mssq14/"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="hover:text-amber-400 transition-colors"
+              >
+                linkedin.com/in/mssq14/
               </a>
               <span>·</span>
-              <a href="https://github.com/sohailshah" target="_blank" rel="noreferrer" className="hover:text-amber-400">
-                github.com/sohailshah
+              <a
+                href="https://github.com/mohammadsohailshahquadri14"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="hover:text-amber-400 transition-colors"
+              >
+                github.com/mohammadsohailshahquadri14
               </a>
             </div>
           </div>
@@ -101,31 +111,43 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
               Professional Summary
             </h2>
             <p className="text-sm leading-relaxed text-neutral-300 light:text-neutral-700">
-              Production-focused Software Engineer with 2+ years of professional development experience specializing in full-stack JavaScript architectures, React, Next.js, Node.js, Express, MongoDB, and React Native mobile applications. Proven track record building high-concurrency fintech trading platforms (JetFyx), interactive learning portals (NexaDeutsch), and microservice APIs with containerized AWS deployments, Docker workflows, and automated CI/CD pipelines.
+              Software Developer with 2+ years of professional and hands-on development experience building responsive web applications, mobile applications, and full-stack solutions. Strong in JavaScript, React.js, Next.js, Node.js, Express.js, MongoDB, REST APIs, responsive UI development, API integration, debugging, testing, deployment, and cloud-based development. Experienced with Next.js web applications, Flutter mobile applications, React.js, and React Native, with a focus on reusable components, application state, performance, and reliable user experiences.
             </p>
           </div>
 
-          {/* Core Technical Proficiencies */}
+          {/* Technical Skills */}
           <div>
             <h2 className="text-xs uppercase tracking-wider font-bold text-amber-400 light:text-amber-800 mb-2">
-              Technical Proficiencies
+              Technical Skills
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
               <div>
+                <span className="font-semibold text-neutral-200 light:text-neutral-900">Languages: </span>
+                <span>JavaScript (ES6+), HTML5, CSS3, Java, SQL</span>
+              </div>
+              <div>
                 <span className="font-semibold text-neutral-200 light:text-neutral-900">Frontend: </span>
-                <span>React.js, Next.js, React Native, JavaScript (ES6+), Redux Toolkit, Tailwind CSS, Framer Motion</span>
+                <span>React.js, Next.js, Vite, React Router, Redux Toolkit, RTK Query, TanStack Query, Bootstrap, Responsive Web Design</span>
               </div>
               <div>
-                <span className="font-semibold text-neutral-200 light:text-neutral-900">Backend & DB: </span>
-                <span>Node.js, Express.js, REST APIs, MongoDB, Mongoose, WebSockets, JWT, Bcrypt, Multer</span>
+                <span className="font-semibold text-neutral-200 light:text-neutral-900">Backend: </span>
+                <span>Node.js, Express.js, REST APIs, JWT Authentication, Mongoose, API Integration</span>
               </div>
               <div>
-                <span className="font-semibold text-neutral-200 light:text-neutral-900">Cloud & DevOps: </span>
-                <span>AWS (EC2, S3, IAM), Docker, GitHub Actions, Jenkins, Terraform, Linux Administration, CI/CD</span>
+                <span className="font-semibold text-neutral-200 light:text-neutral-900">Mobile: </span>
+                <span>Flutter, React Native, Expo</span>
               </div>
               <div>
-                <span className="font-semibold text-neutral-200 light:text-neutral-900">Engineering Tools: </span>
-                <span>Git, Postman, VS Code, Android Studio, Vercel, Render</span>
+                <span className="font-semibold text-neutral-200 light:text-neutral-900">Databases: </span>
+                <span>MongoDB, MongoDB Atlas, MySQL</span>
+              </div>
+              <div>
+                <span className="font-semibold text-neutral-200 light:text-neutral-900">Cloud / DevOps: </span>
+                <span>AWS EC2, Docker, Jenkins, GitHub Actions, CI/CD, Terraform, Linux, Vercel, Render</span>
+              </div>
+              <div className="sm:col-span-2">
+                <span className="font-semibold text-neutral-200 light:text-neutral-900">Tools: </span>
+                <span>Git, GitHub, Postman, VS Code, Browser Developer Tools, Debugging, API Testing</span>
               </div>
             </div>
           </div>
@@ -138,54 +160,56 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
             </h2>
 
             <div className="space-y-4">
-              {/* Metagen */}
-              <div className="text-xs">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between font-semibold text-neutral-200 light:text-neutral-900">
-                  <span>Software Developer — Metagen Technologies</span>
-                  <span className="font-mono text-neutral-400 text-[11px]">Sep 2025 – Present · Hyderabad</span>
-                </div>
-                <ul className="list-disc list-inside mt-1.5 space-y-1 text-neutral-300 light:text-neutral-700">
-                  <li>Spearheading frontend and web application architecture for enterprise-grade digital platforms including JetFyx web platforms.</li>
-                  <li>Implementing high-performance React architectures, optimizing render cycles, and streamlining engineering handoffs.</li>
-                  <li>Deploying production services with containerized Docker environments and AWS cloud pipelines.</li>
-                </ul>
-              </div>
-
-              {/* Nafa Barter / JetFyx */}
-              <div className="text-xs">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between font-semibold text-neutral-200 light:text-neutral-900">
-                  <span>Frontend / React Native Developer — Nafa Barter / JetFyx</span>
-                  <span className="font-mono text-neutral-400 text-[11px]">May 2025 – Apr 2026 · Hyderabad</span>
-                </div>
-                <ul className="list-disc list-inside mt-1.5 space-y-1 text-neutral-300 light:text-neutral-700">
-                  <li>Engineered cross-platform mobile trading platform using React Native for high-frequency forex operations.</li>
-                  <li>Integrated real-time WebSockets delivering uninterrupted market data feeds with custom throttling to prevent mobile UI stutter.</li>
-                  <li>Constructed dynamic candlestick charts, order book visualizations, and automated staging deployments to AWS EC2.</li>
-                </ul>
-              </div>
-
-              {/* Bitstek Consultancy */}
-              <div className="text-xs">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between font-semibold text-neutral-200 light:text-neutral-900">
-                  <span>Web / Application Developer — Bitstek Consultancy</span>
-                  <span className="font-mono text-neutral-400 text-[11px]">Sep 2024 – Apr 2025 · Hyderabad</span>
-                </div>
-                <ul className="list-disc list-inside mt-1.5 space-y-1 text-neutral-300 light:text-neutral-700">
-                  <li>Developed client web applications using React, JavaScript, and Node.js REST API backends.</li>
-                  <li>Delivered 6 client projects on schedule with zero critical production regressions; improved mobile accessibility scores to 98+.</li>
-                  <li>Integrated payment gateways, authentication flows, and dynamic responsive dashboard components.</li>
-                </ul>
-              </div>
-
               {/* Veedly */}
               <div className="text-xs">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between font-semibold text-neutral-200 light:text-neutral-900">
                   <span>Software Developer — Veedly</span>
-                  <span className="font-mono text-neutral-400 text-[11px]">2024 · Hyderabad</span>
+                  <span className="font-mono text-neutral-400 text-[11px]">Current · Hyderabad, Telangana, India</span>
                 </div>
                 <ul className="list-disc list-inside mt-1.5 space-y-1 text-neutral-300 light:text-neutral-700">
-                  <li>Engineered vendor commerce web application using Next.js and assisted in mobile feature rollout using Flutter.</li>
-                  <li>Constructed multi-tenant inventory management tables and catalog synchronization endpoints.</li>
+                  <li>Develop and maintain web and mobile applications for the Veedly platform using Next.js, JavaScript, HTML, CSS, and Flutter.</li>
+                  <li>Build reusable UI components and responsive layouts across screen sizes and devices; integrate REST APIs and dynamic application data.</li>
+                  <li>Debug frontend, API, UI, and application-level issues, and contribute across development, testing, deployment, usability, and performance improvements.</li>
+                  <li>Collaborate with product and business stakeholders to translate requirements into working features; also support vendor research and identification for platform operations.</li>
+                </ul>
+              </div>
+
+              {/* Metagen Technologies */}
+              <div className="text-xs">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between font-semibold text-neutral-200 light:text-neutral-900">
+                  <span>Software Developer — Metagen Technologies</span>
+                  <span className="font-mono text-neutral-400 text-[11px]">September 2025 – April 2026 · Hyderabad, Telangana, India</span>
+                </div>
+                <ul className="list-disc list-inside mt-1.5 space-y-1 text-neutral-300 light:text-neutral-700">
+                  <li>Contributed to production web applications using modern JavaScript technologies, including frontend work for JetFyx.</li>
+                  <li>Built reusable, responsive UI components; integrated backend APIs and implemented dynamic, data-driven workflows.</li>
+                  <li>Investigated frontend and API issues through systematic debugging; used Git/GitHub for collaboration and contributed to cloud based deployment and maintenance.</li>
+                </ul>
+              </div>
+
+              {/* Nafa Barter */}
+              <div className="text-xs">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between font-semibold text-neutral-200 light:text-neutral-900">
+                  <span>Frontend Developer — Nafa Barter</span>
+                  <span className="font-mono text-neutral-400 text-[11px]">May 2025 – April 2026 · Hyderabad, Telangana, India</span>
+                </div>
+                <ul className="list-disc list-inside mt-1.5 space-y-1 text-neutral-300 light:text-neutral-700">
+                  <li>Developed interactive frontend functionality for JetFyx, a trading platform, using modern JavaScript development practices.</li>
+                  <li>Built reusable responsive components, integrated APIs, handled asynchronous data, and worked with application state management.</li>
+                  <li>Debugged frontend issues and collaborated with the development team to deliver features, improve reliability, and enhance user experience.</li>
+                </ul>
+              </div>
+
+              {/* Bitstek Consulting */}
+              <div className="text-xs">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between font-semibold text-neutral-200 light:text-neutral-900">
+                  <span>Software Engineer Intern — Bitstek Consulting</span>
+                  <span className="font-mono text-neutral-400 text-[11px]">September 2024 – April 2025 · 8 Months · Hyderabad, Telangana, India</span>
+                </div>
+                <ul className="list-disc list-inside mt-1.5 space-y-1 text-neutral-300 light:text-neutral-700">
+                  <li>Completed an 8-month software engineering internship contributing to real-world CRM applications and the Howzdat mobile application.</li>
+                  <li>Developed responsive frontend features using React.js, JavaScript, HTML, and CSS; integrated APIs and dynamic application data.</li>
+                  <li>Debugged application issues with senior developers, collaborated through feature development and testing, and used Git-based source-control workflows.</li>
                 </ul>
               </div>
             </div>
@@ -197,14 +221,26 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
               <GraduationCap className="w-4 h-4" />
               <span>Education</span>
             </h2>
-            <div className="text-xs">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between font-semibold text-neutral-200 light:text-neutral-900">
-                <span>Bachelor's in Computer Science — Deccan College of Engineering and Technology</span>
-                <span className="font-mono text-neutral-400 text-[11px]">2021 – 2025 · Hyderabad, India</span>
+            <div className="space-y-3 text-xs">
+              <div>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between font-semibold text-neutral-200 light:text-neutral-900">
+                  <span>Bachelor of Engineering in Computer Science — Deccan College of Engineering and Technology</span>
+                  <span className="font-mono text-neutral-400 text-[11px]">2021 – 2025 · Hyderabad, India</span>
+                </div>
+                <p className="mt-1 text-neutral-400 light:text-neutral-600">
+                  Core modules: Data Structures & Algorithms, Distributed Systems, Database Management Systems, Computer Networks, Software Engineering. Final Year Project: SmartSync (MERN + LLaMA AI Health Monitoring).
+                </p>
               </div>
-              <p className="mt-1 text-neutral-400 light:text-neutral-600">
-                Coursework: Data Structures & Algorithms, Distributed Systems, Database Management Systems, Computer Networks, Software Engineering.
-              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-neutral-800/60 light:border-neutral-200 text-neutral-400 light:text-neutral-600">
+                <div>
+                  <span className="font-medium text-neutral-300 light:text-neutral-700">Intermediate: </span>
+                  <span>Narayana Junior College (88%)</span>
+                </div>
+                <div>
+                  <span className="font-medium text-neutral-300 light:text-neutral-700">Secondary School: </span>
+                  <span>St. Francis Grammar High School (9.2 GPA)</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

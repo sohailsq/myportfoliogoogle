@@ -81,7 +81,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume, onJumpTo
             {/* Social & Channel Links */}
             <div className="flex items-center gap-5 pt-3 border-t border-neutral-800/60 light:border-neutral-200 text-neutral-400 light:text-neutral-600 text-xs">
               <a
-                href="https://github.com/sohailshah"
+                href="https://github.com/mohammadsohailshahquadri14"
                 target="_blank"
                 rel="noreferrer noopener"
                 className="flex items-center gap-1.5 hover:text-amber-400 transition-colors"
@@ -91,7 +91,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume, onJumpTo
               </a>
               <span aria-hidden="true" className="text-neutral-700">·</span>
               <a
-                href="https://linkedin.com/in/sohailshahquadri"
+                href="https://linkedin.com/in/mssq14/"
                 target="_blank"
                 rel="noreferrer noopener"
                 className="flex items-center gap-1.5 hover:text-amber-400 transition-colors"

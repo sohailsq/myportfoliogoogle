@@ -42,7 +42,7 @@ export interface IExperience {
 export interface ISkill {
   id: string;
   name: string;
-  category: 'Frontend' | 'Backend' | 'DevOps & Cloud' | 'Tools';
+  category: 'Frontend' | 'Backend' | 'Mobile' | 'Cloud / DevOps' | 'DevOps & Cloud' | 'Languages' | 'Databases' | 'Tools' | string;
   proficiency: 'Expert' | 'Advanced' | 'Intermediate';
   yearsOfExperience: number;
   highlight: string;

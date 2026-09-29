@@ -20,6 +20,8 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const { theme, toggleTheme } = useTheme();
 
+  const [copiedNotice, setCopiedNotice] = useState(false);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -29,6 +31,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
           // Open
           setQuery('');
           setSelectedIndex(0);
+          setCopiedNotice(false);
         }
       }
       if (e.key === 'Escape' && isOpen) {
@@ -44,6 +47,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 50);
       document.body.style.overflow = 'hidden';
+      setCopiedNotice(false);
     } else {
       document.body.style.overflow = '';
     }
@@ -52,7 +56,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   const items = [
     {
       id: 'sec-about',
-      label: 'About Sohail Shah Quadri',
+      label: 'About Sohail Shah (Engineering Profile)',
       category: 'Navigation',
       icon: <Code2 className="w-4 h-4 text-amber-400" />,
       action: () => {
@@ -62,7 +66,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     },
     {
       id: 'sec-skills',
-      label: 'Technical Skills & Stack',
+      label: 'Technical Skills & Stack (Languages, Frontend, Backend, Mobile, Cloud)',
       category: 'Navigation',
       icon: <Cpu className="w-4 h-4 text-blue-400" />,
       action: () => {
@@ -72,7 +76,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     },
     {
       id: 'sec-projects',
-      label: 'Featured Projects (JetFyx, Richesse, NexaDeutsch...)',
+      label: 'Featured Projects (JetFyx, Veedly, NexaDeutsch, Richesse)',
       category: 'Navigation',
       icon: <Layers className="w-4 h-4 text-emerald-400" />,
       action: () => {
@@ -82,7 +86,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     },
     {
       id: 'sec-experience',
-      label: 'Experience Timeline (Metagen, JetFyx, Bitstek...)',
+      label: 'Professional Experience (Veedly, Metagen, Nafa Barter, Bitstek)',
       category: 'Navigation',
       icon: <Briefcase className="w-4 h-4 text-purple-400" />,
       action: () => {
@@ -102,7 +106,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     },
     {
       id: 'sec-contact',
-      label: 'Contact & Hire Sohail',
+      label: 'Contact & Hire Sohail (Direct Form & Email)',
       category: 'Navigation',
       icon: <Mail className="w-4 h-4 text-pink-400" />,
       action: () => {
@@ -147,17 +151,35 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       icon: <Mail className="w-4 h-4 text-blue-400" />,
       action: () => {
         navigator.clipboard.writeText('sohailshah14921@gmail.com');
-        alert('Email copied to clipboard: sohailshah14921@gmail.com');
-        onClose();
+        setCopiedNotice(true);
+        setTimeout(() => onClose(), 1200);
       },
     },
     {
       id: 'act-github',
-      label: 'Open GitHub Profile (@sohailshah)',
+      label: 'Open GitHub Profile (@mohammadsohailshahquadri14)',
       category: 'External',
       icon: <ExternalLink className="w-4 h-4 text-neutral-400" />,
       action: () => {
-        window.open('https://github.com/sohailshah', '_blank');
+        const link = document.createElement('a');
+        link.href = 'https://github.com/mohammadsohailshahquadri14';
+        link.target = '_blank';
+        link.rel = 'noreferrer noopener';
+        link.click();
+        onClose();
+      },
+    },
+    {
+      id: 'act-linkedin',
+      label: 'Open LinkedIn Profile (mssq14)',
+      category: 'External',
+      icon: <ExternalLink className="w-4 h-4 text-neutral-400" />,
+      action: () => {
+        const link = document.createElement('a');
+        link.href = 'https://linkedin.com/in/mssq14/';
+        link.target = '_blank';
+        link.rel = 'noreferrer noopener';
+        link.click();
         onClose();
       },
     },
@@ -213,6 +235,12 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
             ESC
           </kbd>
         </div>
+
+        {copiedNotice && (
+          <div className="px-4 py-2 bg-emerald-500/10 border-b border-emerald-500/20 text-emerald-400 text-xs font-mono flex items-center justify-between">
+            <span>✓ Email copied to clipboard: sohailshah14921@gmail.com</span>
+          </div>
+        )}
 
         {/* Results List */}
         <div className="max-h-80 overflow-y-auto p-2 space-y-1">

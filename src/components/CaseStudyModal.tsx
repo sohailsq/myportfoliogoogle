@@ -69,6 +69,14 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
             loading="lazy"
             onError={(e) => {
               const target = e.currentTarget;
+              if (target.src.includes('/src/assets/images/')) {
+                target.src = target.src.replace('/src/assets/images/', '/images/');
+                return;
+              }
+              if (!target.src.includes('hero_developer_workspace')) {
+                target.src = '/images/hero_developer_workspace_1790605403219.jpg';
+                return;
+              }
               target.style.display = 'none';
               const parent = target.parentElement;
               if (parent) {

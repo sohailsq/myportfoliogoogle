@@ -273,6 +273,14 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       alt={project.title}
                       className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                       loading="lazy"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (target.src.includes('/src/assets/images/')) {
+                          target.src = target.src.replace('/src/assets/images/', '/images/');
+                        } else if (!target.src.includes('hero_developer_workspace')) {
+                          target.src = '/images/hero_developer_workspace_1790605403219.jpg';
+                        }
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0e131f] via-black/25 to-transparent opacity-90" />
 

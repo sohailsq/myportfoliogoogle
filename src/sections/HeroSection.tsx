@@ -131,10 +131,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume, onJumpTo
             <div className="flex items-center gap-4 p-4 rounded-2xl bg-[#0e131f]/80 border border-slate-800/80 backdrop-blur-sm shadow-md">
               <div className="w-14 h-14 rounded-xl overflow-hidden shrink-0 border border-slate-700/60 relative bg-slate-950 shadow-inner">
                 <img
-                  src="/src/assets/images/sohail_developer_portrait_1790605389453.jpg"
+                  src="/images/sohail_developer_portrait_1790605389453.jpg"
                   alt="Sohail Shah"
                   className="w-full h-full object-cover object-top"
                   loading="eager"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.src.includes('/src/assets/images/')) {
+                      target.src = '/src/assets/images/sohail_developer_portrait_1790605389453.jpg';
+                    }
+                  }}
                 />
               </div>
               <div className="min-w-0 flex-1">

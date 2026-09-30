@@ -59,7 +59,7 @@ export async function createProject(req: Request, res: Response) {
       solution,
       contribution: contribution || 'Full architecture and implementation',
       technologies: Array.isArray(technologies) ? technologies : (technologies ? technologies.split(',').map((t: string) => t.trim()) : ['React', 'Node.js']),
-      image: image || '/src/assets/images/hero_developer_workspace_1790605403219.jpg',
+      image: image || '/images/hero_developer_workspace_1790605403219.jpg',
       githubUrl: githubUrl || 'https://github.com/sohailshah',
       liveUrl: liveUrl || '',
       featured: Boolean(featured),

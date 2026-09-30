@@ -136,7 +136,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
       const created = await api.createProject({
         ...newProject,
         technologies: newProject.technologies.split(',').map((t) => t.trim()),
-        image: '/src/assets/images/hero_developer_workspace_1790605403219.jpg',
+        image: '/images/hero_developer_workspace_1790605403219.jpg',
         order: projects.length + 1,
       });
       setProjects((prev) => [created, ...prev]);

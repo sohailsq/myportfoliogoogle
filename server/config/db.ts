@@ -19,12 +19,16 @@ export async function connectDB(): Promise<boolean> {
   }
 
   try {
-    await mongoose.connect(uri);
+    await mongoose.connect(uri, {
+      serverSelectionTimeoutMS: 5000,
+      connectTimeoutMS: 5000,
+      socketTimeoutMS: 5000,
+    });
     isMongoConnected = true;
     console.log('[Database] Successfully connected to MongoDB Atlas.');
     return true;
-  } catch (error) {
-    console.error('[Database] MongoDB connection failed, falling back to local memory store:', error);
+  } catch (error: any) {
+    console.warn('[Database] MongoDB Atlas connection unavailable (' + (error?.message || error) + '). Seamlessly active with in-memory repository.');
     isMongoConnected = false;
     return false;
   }

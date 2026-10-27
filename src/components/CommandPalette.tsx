@@ -114,8 +114,8 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     },
     {
       id: 'act-ai-agent',
-      label: 'Ask Sohail’s AI Assistant (Gemini 3.8 Flash)',
-      category: 'AI Features',
+      label: 'Ask the local portfolio assistant',
+      category: 'Portfolio Tools',
       icon: <Sparkles className="w-4 h-4 text-amber-400" />,
       action: () => {
         onClose();
@@ -124,8 +124,8 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     },
     {
       id: 'act-ai-jd',
-      label: 'AI Job Description Matcher (Recruiter Tool)',
-      category: 'AI Features',
+      label: 'Keyword-Based Job Description Matcher',
+      category: 'Portfolio Tools',
       icon: <Bot className="w-4 h-4 text-emerald-400" />,
       action: () => {
         onClose();

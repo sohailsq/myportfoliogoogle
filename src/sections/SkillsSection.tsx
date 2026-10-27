@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Cpu, Search, CheckCircle2, Terminal, Code2, Server, Smartphone, Database, Cloud, Wrench } from 'lucide-react';
 import { ISkill } from '../types';
-import { api } from '../services/api';
+import { api, PORTFOLIO_DATA_CHANGE_EVENT } from '../services/api';
 
 export const SkillsSection: React.FC = () => {
   const [skills, setSkills] = useState<ISkill[]>([]);
@@ -10,17 +10,24 @@ export const SkillsSection: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
+    let active = true;
     const loadSkills = async () => {
       try {
         const data = await api.getSkills();
-        setSkills(data);
+        if (active) setSkills(data);
       } catch (err) {
         console.error('Error fetching skills:', err);
       } finally {
-        setLoading(false);
+        if (active) setLoading(false);
       }
     };
+    const handleDataChange = () => loadSkills();
+    window.addEventListener(PORTFOLIO_DATA_CHANGE_EVENT, handleDataChange);
     loadSkills();
+    return () => {
+      active = false;
+      window.removeEventListener(PORTFOLIO_DATA_CHANGE_EVENT, handleDataChange);
+    };
   }, []);
 
   const categories = [

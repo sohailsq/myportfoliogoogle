@@ -95,12 +95,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Zone 3: Actions */}
         <div className="flex items-center gap-2">
-          {/* AI Career & Tech Assistant Trigger */}
+          {/* Portfolio assistant trigger */}
           {onOpenAIAssistant && (
             <button
               onClick={onOpenAIAssistant}
               className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-amber-300 hover:text-amber-200 border border-amber-400/30 hover:border-amber-400/60 rounded-lg transition-all bg-amber-400/10 hover:bg-amber-400/15 cursor-pointer shadow-xs active:scale-95"
-              title="Ask Sohail's AI Career & Architecture Assistant"
+              title="Ask Sohail's local portfolio assistant"
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               <span className="hidden sm:inline font-mono font-medium text-[11px]">AI Agent</span>

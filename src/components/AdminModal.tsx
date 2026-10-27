@@ -170,7 +170,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
                 Portfolio Administration Portal
               </h2>
               <p className="text-xs text-slate-400 font-sans">
-                Manage MongoDB data, inbound contact submissions, and portfolio projects
+                Manage portfolio content saved in this browser. Changes are not published to other visitors.
               </p>
             </div>
           </div>
@@ -207,7 +207,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
                 Administrator Authentication
               </h3>
               <p className="text-xs text-slate-400 mt-1 font-sans">
-                Enter your credentials to access the project management backend and contact messages.
+                Sign in to manage a local copy of portfolio data in this browser.
               </p>
             </div>
 
@@ -245,7 +245,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
               </div>
 
               <div className="p-3 bg-slate-950/60 rounded-lg border border-slate-800 text-xs">
-                <span className="text-slate-400 block font-medium mb-1 font-mono text-[11px]">Verified Demo Credentials:</span>
+                <span className="text-slate-400 block font-medium mb-1 font-mono text-[11px]">Local demo credentials (not secure):</span>
                 <div className="font-mono text-xs text-amber-400">
                   admin@sohailshah.dev / admin123
                 </div>
@@ -256,7 +256,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
                 disabled={loginLoading}
                 className="w-full py-2.5 px-4 bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-semibold rounded-lg transition-colors disabled:opacity-50 cursor-pointer"
               >
-                {loginLoading ? 'Authenticating with JWT...' : 'Authenticate & Open Dashboard'}
+                {loginLoading ? 'Signing in...' : 'Open Local Dashboard'}
               </button>
             </form>
           </div>
@@ -273,7 +273,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
                 <span className="text-slate-600">·</span>
                 <span className="flex items-center gap-1 text-slate-400 font-mono">
                   <Database className="w-3.5 h-3.5 text-amber-400" />
-                  Live REST API / Database
+                  Browser local storage only
                 </span>
               </div>
 
@@ -293,7 +293,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
                 }`}
               >
                 <Mail className="w-3.5 h-3.5" />
-                <span>Inbound Inquiries ({contacts.length})</span>
+                <span>Messages ({contacts.length})</span>
               </button>
 
               <button
@@ -337,7 +337,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
             {activeTab === 'messages' && (
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-xs text-slate-400">
-                  <span>Messages submitted through contact form:</span>
+                  <span>Contact messages are opened in the visitor&apos;s email app and are not collected here:</span>
                   <button onClick={loadAdminData} className="hover:text-amber-400 flex items-center gap-1 font-mono">
                     <RefreshCw className="w-3 h-3" /> Refresh
                   </button>
@@ -526,7 +526,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
                       type="submit"
                       className="px-4 py-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-semibold rounded-lg cursor-pointer"
                     >
-                      Save to Database
+                      Save in This Browser
                     </button>
                   </form>
                 )}

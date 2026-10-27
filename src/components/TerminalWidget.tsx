@@ -30,11 +30,11 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
       ),
     },
     {
-      command: 'curl -s /api/health',
+      command: 'deployment',
       output: (
         <div className="text-xs font-mono text-emerald-400 space-y-0.5">
-          <p>HTTP/1.1 200 OK</p>
-          <p>{`{"status":"healthy","uptime":99.98,"runtime":"Node.js Express + MongoDB"}`}</p>
+          <p>Static Vite application</p>
+          <p>Portfolio content runs in the browser · no backend API</p>
         </div>
       ),
     },
@@ -69,6 +69,7 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
             <span className="text-amber-400">experience</span> <span>Show professional timeline</span>
             <span className="text-amber-400">contact</span> <span>Get email and contact link</span>
             <span className="text-amber-400">resume</span> <span>Open ATS printable resume</span>
+            <span className="text-amber-400">deployment</span> <span>Show frontend deployment model</span>
             <span className="text-amber-400">clear</span> <span>Clear terminal history</span>
           </div>
         </div>
@@ -131,6 +132,14 @@ export const TerminalWidget: React.FC<TerminalWidgetProps> = ({ onJumpToSection,
         </div>
       );
       onOpenResume();
+    } else if (trimmed === 'deployment') {
+      response = (
+        <div className="text-xs text-slate-300 font-mono space-y-1">
+          <p className="text-emerald-400">Static frontend deployment</p>
+          <p>Data is bundled with the site or saved to this browser&apos;s local storage.</p>
+          <p>No backend API or database is required.</p>
+        </div>
+      );
     } else if (trimmed === 'whoami') {
       response = (
         <div className="text-xs text-slate-300 font-mono">

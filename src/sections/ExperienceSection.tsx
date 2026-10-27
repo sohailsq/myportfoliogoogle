@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Briefcase, Calendar, MapPin, CheckCircle2, GraduationCap, Building2, Sparkles, LayoutList, Columns } from 'lucide-react';
 import { IExperience } from '../types';
-import { api } from '../services/api';
+import { api, PORTFOLIO_DATA_CHANGE_EVENT } from '../services/api';
 
 // Canonical experience data array without Metagen Technologies
 const DEFAULT_EXPERIENCE: IExperience[] = [
@@ -105,6 +105,7 @@ export const ExperienceSection: React.FC = () => {
   const [viewMode, setViewMode] = useState<'timeline' | 'compact'>('timeline');
 
   useEffect(() => {
+    let active = true;
     const loadExp = async () => {
       try {
         const data = await api.getExperience();
@@ -113,16 +114,22 @@ export const ExperienceSection: React.FC = () => {
           const sanitized = data.filter(
             (item) => !item.company.toLowerCase().includes('metagen')
           );
-          setExperiences(sanitized.length > 0 ? sanitized : DEFAULT_EXPERIENCE);
+          if (active) setExperiences(sanitized.length > 0 ? sanitized : DEFAULT_EXPERIENCE);
         }
       } catch (err) {
         console.error('Error fetching experience, using clean defaults:', err);
-        setExperiences(DEFAULT_EXPERIENCE);
+        if (active) setExperiences(DEFAULT_EXPERIENCE);
       } finally {
-        setLoading(false);
+        if (active) setLoading(false);
       }
     };
+    const handleDataChange = () => loadExp();
+    window.addEventListener(PORTFOLIO_DATA_CHANGE_EVENT, handleDataChange);
     loadExp();
+    return () => {
+      active = false;
+      window.removeEventListener(PORTFOLIO_DATA_CHANGE_EVENT, handleDataChange);
+    };
   }, []);
 
   return (

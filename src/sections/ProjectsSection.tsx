@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { ExternalLink, Github, BookOpen, ArrowUpRight, Search, X, Filter, Sparkles, Bot } from 'lucide-react';
 import { IProject } from '../types';
-import { api } from '../services/api';
+import { api, PORTFOLIO_DATA_CHANGE_EVENT } from '../services/api';
 
 interface ProjectsSectionProps {
   onOpenCaseStudy: (project: IProject) => void;
@@ -21,17 +21,24 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
+    let active = true;
     const loadProjects = async () => {
       try {
         const data = await api.getProjects();
-        setProjects(data);
+        if (active) setProjects(data);
       } catch (err) {
         console.error('Error fetching projects:', err);
       } finally {
-        setLoading(false);
+        if (active) setLoading(false);
       }
     };
+    const handleDataChange = () => loadProjects();
+    window.addEventListener(PORTFOLIO_DATA_CHANGE_EVENT, handleDataChange);
     loadProjects();
+    return () => {
+      active = false;
+      window.removeEventListener(PORTFOLIO_DATA_CHANGE_EVENT, handleDataChange);
+    };
   }, []);
 
   const filterTabs = [
@@ -156,10 +163,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               <button
                 onClick={onOpenAIAssistant}
                 className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-xl bg-amber-400/10 hover:bg-amber-400 text-amber-300 hover:text-slate-950 border border-amber-400/35 transition-all cursor-pointer whitespace-nowrap shadow-xs active:scale-95"
-                title="Open AI Career & Architecture Assistant"
+                title="Open the local portfolio assistant"
               >
                 <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                <span>AI Architecture Inspector</span>
+                <span>Project &amp; Career Assistant</span>
               </button>
             )}
 
@@ -322,10 +329,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       <button
                         onClick={() => onOpenAIProject(project)}
                         className="absolute bottom-3 right-3 z-10 inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#080b11]/90 hover:bg-amber-400 text-amber-300 hover:text-slate-950 border border-amber-400/35 text-[10px] font-mono font-medium backdrop-blur-md transition-all cursor-pointer shadow-md"
-                        title={`Ask Gemini AI about ${project.title} architecture`}
+                        title={`Ask the local portfolio assistant about ${project.title}`}
                       >
                         <Sparkles className="w-3 h-3 text-amber-400" />
-                        <span>Ask AI</span>
+                        <span>Ask about project</span>
                       </button>
                     )}
                   </div>
@@ -378,10 +385,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       <button
                         onClick={() => onOpenAIProject(project)}
                         className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-amber-400/10 hover:bg-amber-400 text-amber-300 hover:text-slate-950 border border-amber-400/25 text-[11px] font-mono font-medium transition-all cursor-pointer"
-                        title="Ask AI questions about this architecture"
+                        title="Ask the local assistant about this architecture"
                       >
                         <Sparkles className="w-3 h-3 text-amber-400" />
-                        <span>Ask AI</span>
+                        <span>Ask about project</span>
                       </button>
                     )}
 

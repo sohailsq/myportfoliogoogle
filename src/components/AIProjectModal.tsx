@@ -66,7 +66,7 @@ export const AIProjectModal: React.FC<AIProjectModalProps> = ({
       setChatLog([
         {
           sender: 'ai',
-          text: `Hello! I'm Gemini 3.8 Flash, configured with Google Search grounding for Sohail Shah's **${project.title}**. Ask me anything about its system architecture, state management trade-offs, real-time mechanics, or how Sohail built it.`,
+          text: `This portfolio assistant uses the published project details for **${project.title}** directly in your browser. Ask about its architecture, technologies, or implementation.`,
         },
       ]);
     }
@@ -110,9 +110,9 @@ export const AIProjectModal: React.FC<AIProjectModalProps> = ({
         ...prev,
         {
           sender: 'ai',
-          text: `⚠️ **AI Response Note**: ${
+          text: `**Assistant note**: ${
             err.message ||
-            'Could not reach the Gemini service. Please verify server connection and API key.'
+            'Could not read the project details saved in this browser.'
           }`,
         },
       ]);
@@ -162,14 +162,14 @@ export const AIProjectModal: React.FC<AIProjectModalProps> = ({
               <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400 mb-0.5">
                 <span className="text-amber-400 font-semibold">{project.title}</span>
                 <span>·</span>
-                <span className="text-slate-400">Gemini 3.8 Flash</span>
+                <span className="text-slate-400">Local Project Assistant</span>
                 <span>·</span>
                 <span className="px-2 py-0.5 rounded-md bg-slate-800/80 text-[10px] text-emerald-400 border border-emerald-500/25 flex items-center gap-1 font-medium">
-                  <ShieldCheck className="w-3 h-3" /> Grounded with Google Search
+                  <ShieldCheck className="w-3 h-3" /> Runs in your browser
                 </span>
               </div>
               <h2 className="text-xl sm:text-2xl font-bold font-display tracking-tight text-slate-100">
-                AI Architecture &amp; Engineering Explorer
+                Project Q&amp;A &amp; Engineering Explorer
               </h2>
             </div>
           </div>
@@ -256,7 +256,7 @@ export const AIProjectModal: React.FC<AIProjectModalProps> = ({
                 >
                   <div className="flex items-center gap-1.5 mb-1 px-1">
                     <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider">
-                      {msg.sender === 'user' ? 'You' : 'Gemini 3.8 Flash'}
+                      {msg.sender === 'user' ? 'You' : 'Portfolio Assistant'}
                     </span>
                   </div>
                   <div
@@ -296,7 +296,7 @@ export const AIProjectModal: React.FC<AIProjectModalProps> = ({
               {loading && (
                 <div className="flex items-center gap-2 p-3 text-xs text-amber-400 bg-amber-400/5 rounded-lg border border-amber-400/20 animate-pulse">
                   <Loader2 className="w-4 h-4 animate-spin text-amber-400" />
-                  <span>Gemini 3.8 Flash is analyzing the system architecture...</span>
+                  <span>Reviewing the published project details...</span>
                 </div>
               )}
 
@@ -335,7 +335,7 @@ export const AIProjectModal: React.FC<AIProjectModalProps> = ({
               <div className="py-16 text-center space-y-3">
                 <Loader2 className="w-8 h-8 animate-spin text-amber-400 mx-auto" />
                 <p className="text-sm text-slate-300 font-display">
-                  Generating Staff Engineering Audit with Gemini 3.8 Flash...
+                  Building a project summary from the published details...
                 </p>
                 <p className="text-xs text-slate-500 max-w-sm mx-auto font-mono">
                   Evaluating architecture topology, scalability limits, and interview design challenges.
@@ -379,7 +379,7 @@ export const AIProjectModal: React.FC<AIProjectModalProps> = ({
         <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
           <div className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span>Server-side Gemini 3.8 Flash</span>
+            <span>Local project summary</span>
           </div>
           <span>Engineering Knowledge Base · Sohail Shah</span>
         </div>

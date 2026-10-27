@@ -214,7 +214,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
                 className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-semibold text-amber-300 bg-amber-400/10 hover:bg-amber-400 hover:text-slate-950 border border-amber-400/35 rounded-xl transition-all cursor-pointer shadow-xs active:scale-95"
               >
                 <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                <span>Ask AI Architecture</span>
+                <span>Ask the Project Assistant</span>
               </button>
             )}
 

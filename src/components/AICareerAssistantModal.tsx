@@ -38,7 +38,7 @@ export const AICareerAssistantModal: React.FC<AICareerAssistantModalProps> = ({
   >([
     {
       sender: 'ai',
-      text: "Hi there! I'm Sohail's AI Career & Technical Assistant powered by **Gemini 3.8 Flash** with Google Search grounding.\n\nYou can ask me about his engineering background, roles at **Veedly**, **Nafa Barter**, and **Bitstek Consulting**, production projects (JetFyx, NexaDeutsch, etc.), or paste a job description to test role alignment!",
+      text: "Hi there! I'm Sohail's portfolio assistant. I use the skills and project information included with this site, entirely in your browser.\n\nAsk about his engineering background, roles at **Veedly**, **Nafa Barter**, and **Bitstek Consulting**, production projects (JetFyx, NexaDeutsch, etc.), or compare a job description against the listed skills.",
     },
   ]);
 
@@ -123,8 +123,8 @@ export const AICareerAssistantModal: React.FC<AICareerAssistantModalProps> = ({
         ...prev,
         {
           sender: 'ai',
-          text: `⚠️ **AI Notice**: ${
-            err.message || 'Unable to communicate with the Gemini API server.'
+          text: `**Assistant notice**: ${
+            err.message || 'Unable to read the portfolio content in this browser.'
           }`,
         },
       ]);
@@ -168,16 +168,16 @@ export const AICareerAssistantModal: React.FC<AICareerAssistantModalProps> = ({
             </div>
             <div>
               <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400 mb-0.5">
-                <span className="text-amber-400 font-semibold">Sohail Shah Portfolio AI</span>
+                <span className="text-amber-400 font-semibold">Sohail Shah Portfolio Assistant</span>
                 <span>·</span>
-                <span>Gemini 3.8 Flash</span>
+                <span>Local Portfolio Assistant</span>
                 <span>·</span>
                 <span className="px-2 py-0.5 rounded-md bg-slate-800/80 text-[10px] text-emerald-400 border border-emerald-500/25 flex items-center gap-1 font-medium">
-                  <ShieldCheck className="w-3 h-3" /> Grounded with Google Search
+                  <ShieldCheck className="w-3 h-3" /> Runs in your browser
                 </span>
               </div>
               <h2 className="text-xl sm:text-2xl font-bold font-display tracking-tight text-slate-100">
-                AI Career &amp; Technical Assistant
+                Career &amp; Technical Assistant
               </h2>
             </div>
           </div>
@@ -264,7 +264,7 @@ export const AICareerAssistantModal: React.FC<AICareerAssistantModalProps> = ({
                 >
                   <div className="flex items-center gap-1.5 mb-1 px-1">
                     <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider">
-                      {msg.sender === 'user' ? 'You' : 'Sohail AI Assistant (Gemini 3.8 Flash)'}
+                      {msg.sender === 'user' ? 'You' : 'Sohail Portfolio Assistant'}
                     </span>
                   </div>
                   <div
@@ -279,7 +279,7 @@ export const AICareerAssistantModal: React.FC<AICareerAssistantModalProps> = ({
                     {msg.sources && msg.sources.length > 0 && (
                       <div className="mt-2.5 pt-2 border-t border-slate-800 text-[11px] text-slate-400">
                         <span className="font-mono text-amber-400/80 block mb-1">
-                          Verified Web Grounding:
+                          Portfolio references:
                         </span>
                         <div className="flex flex-wrap gap-2">
                           {msg.sources.map((src, sIdx) => (
@@ -304,7 +304,7 @@ export const AICareerAssistantModal: React.FC<AICareerAssistantModalProps> = ({
               {loading && (
                 <div className="flex items-center gap-2 p-3 text-xs text-amber-400 bg-amber-400/5 rounded-lg border border-amber-400/20 animate-pulse">
                   <Loader2 className="w-4 h-4 animate-spin text-amber-400" />
-                  <span>Gemini 3.8 Flash is preparing response...</span>
+                  <span>Preparing a local portfolio response...</span>
                 </div>
               )}
 
@@ -344,7 +344,7 @@ export const AICareerAssistantModal: React.FC<AICareerAssistantModalProps> = ({
                 Paste Job Description (JD) to evaluate compatibility:
               </span>
               <p className="text-[11px] text-slate-400 mb-2 font-sans">
-                Gemini will parse your requirements, cross-reference Sohail’s verified projects and skills, and provide a technical fit report.
+                Your job description is compared in this browser with the skills and projects included on this site.
               </p>
 
               {/* Preset buttons */}
@@ -377,7 +377,7 @@ export const AICareerAssistantModal: React.FC<AICareerAssistantModalProps> = ({
                 {jdLoading ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Evaluating match with Gemini 3.8 Flash...</span>
+                    <span>Comparing listed skills and projects...</span>
                   </>
                 ) : (
                   <>
@@ -416,7 +416,7 @@ export const AICareerAssistantModal: React.FC<AICareerAssistantModalProps> = ({
 
                 <div>
                   <span className="text-xs font-mono uppercase text-slate-400 block mb-1">
-                    AI Assessment Summary
+                    Keyword Match Summary
                   </span>
                   <p className="text-xs text-slate-300 leading-relaxed font-sans">
                     {jdResult.matchSummary}
@@ -479,7 +479,7 @@ export const AICareerAssistantModal: React.FC<AICareerAssistantModalProps> = ({
         <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
           <div className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span>Powered by Gemini 3.8 Flash (Server-Side)</span>
+            <span>Local keyword-based comparison</span>
           </div>
           <span>sohailshah14921@gmail.com</span>
         </div>

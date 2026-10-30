@@ -1,6 +1,7 @@
 import React from 'react';
-import { ArrowRight, Github, Linkedin, Mail, FileText, MapPin, Sparkles, Terminal as TerminalIcon } from 'lucide-react';
+import { ArrowRight, Mail, FileText, MapPin } from 'lucide-react';
 import { TerminalWidget } from '../components/TerminalWidget';
+import { SocialGlowCards } from '../components/SocialGlowCards';
 
 interface HeroSectionProps {
   onOpenResume: () => void;
@@ -93,36 +94,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume, onJumpTo
               </button>
             </div>
 
-            {/* Social & Channel Links */}
-            <div className="flex items-center gap-4 pt-3 border-t border-slate-800/60 text-slate-400 text-xs">
-              <a
-                href="https://github.com/mohammadsohailshahquadri14"
-                target="_blank"
-                rel="noreferrer noopener"
-                className="flex items-center gap-1.5 hover:text-amber-400 transition-colors"
-              >
-                <Github className="w-4 h-4" />
-                <span>GitHub</span>
-              </a>
-              <span aria-hidden="true" className="text-slate-700">·</span>
-              <a
-                href="https://linkedin.com/in/mssq14/"
-                target="_blank"
-                rel="noreferrer noopener"
-                className="flex items-center gap-1.5 hover:text-amber-400 transition-colors"
-              >
-                <Linkedin className="w-4 h-4" />
-                <span>LinkedIn</span>
-              </a>
-              <span aria-hidden="true" className="text-slate-700">·</span>
-              <a
-                href="mailto:sohailshah14921@gmail.com"
-                className="flex items-center gap-1.5 hover:text-amber-400 transition-colors"
-              >
-                <Mail className="w-4 h-4" />
-                <span>Email</span>
-              </a>
-            </div>
+            <SocialGlowCards />
           </div>
 
           {/* Right Column: Terminal Widget & Profile Snippet */}

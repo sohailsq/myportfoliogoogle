@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowUp, Instagram } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
 
           <div className="flex items-center gap-3 text-slate-400">
             <a
-              href="https://github.com/mohammadsohailshahquadri14"
+              href="https://github.com/sohailsq"
               target="_blank"
               rel="noreferrer noopener"
               className="p-2.5 rounded-xl bg-[#0e131f] border border-slate-800/90 hover:text-amber-400 hover:border-slate-700 transition-colors shadow-xs"
@@ -38,6 +38,24 @@ export const Footer: React.FC = () => {
               aria-label="LinkedIn profile"
             >
               <Linkedin className="w-4 h-4" />
+            </a>
+            <a
+              href="https://x.com/shah121311"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="p-2.5 rounded-xl bg-[#0e131f] border border-slate-800/90 hover:text-amber-400 hover:border-slate-700 transition-colors shadow-xs"
+              aria-label="X profile"
+            >
+              <span className="text-sm font-semibold leading-none">𝕏</span>
+            </a>
+            <a
+              href="https://www.instagram.com/sohail_shah_quadri_/"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="p-2.5 rounded-xl bg-[#0e131f] border border-slate-800/90 hover:text-amber-400 hover:border-slate-700 transition-colors shadow-xs"
+              aria-label="Instagram profile"
+            >
+              <Instagram className="w-4 h-4" />
             </a>
             <a
               href="mailto:sohailshah14921@gmail.com"

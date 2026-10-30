@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Github, GitPullRequest, Star, GitFork, ExternalLink, Activity, Code } from 'lucide-react';
+import { Github, GitPullRequest, Star, GitFork, ExternalLink, Activity } from 'lucide-react';
 import { IGithubStats } from '../types';
 import { api } from '../services/api';
 
 export const GithubSection: React.FC = () => {
   const [stats, setStats] = useState<IGithubStats | null>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadStats = async () => {
@@ -15,7 +14,6 @@ export const GithubSection: React.FC = () => {
       } catch (err) {
         console.error('Failed to load GitHub stats:', err);
       } finally {
-        setLoading(false);
       }
     };
     loadStats();
@@ -35,43 +33,29 @@ export const GithubSection: React.FC = () => {
               GitHub Engineering Footprint
             </h2>
             <p className="text-sm sm:text-base text-slate-400 mt-2 font-sans">
-              Public code repositories, active commit velocity, and language distribution across full-stack and mobile projects.
+              I contribute to open source and keep building in public. The latest public repositories and language mix are loaded directly from my GitHub profile.
             </p>
           </div>
 
           <a
-            href={stats?.profileUrl || 'https://github.com/mohammadsohailshahquadri14'}
+            href={stats?.profileUrl || 'https://github.com/sohailsq'}
             target="_blank"
             rel="noreferrer noopener"
             className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-medium text-slate-200 bg-[#0e131f] hover:bg-slate-800 border border-slate-800 hover:border-slate-700 rounded-xl transition-colors w-fit shadow-xs"
           >
             <Github className="w-4 h-4 text-amber-400" />
-            <span>Visit @mohammadsohailshahquadri14</span>
+            <span>Visit @sohailsq</span>
             <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
           </a>
         </div>
 
         {/* Top Summary Metrics */}
         {stats && (
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="mt-10 grid grid-cols-2 gap-4 max-w-xl">
             <div className="p-4 sm:p-5 rounded-2xl bg-[#0e131f]/75 border border-slate-800/80 shadow-xs">
               <span className="text-xs text-slate-400 block font-mono">Public Repos</span>
               <span className="text-2xl font-bold font-mono text-slate-100 mt-1 block tabular-nums">
                 {stats.totalRepos}
-              </span>
-            </div>
-
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#0e131f]/75 border border-slate-800/80 shadow-xs">
-              <span className="text-xs text-slate-400 block font-mono">Contributions</span>
-              <span className="text-2xl font-bold font-mono text-amber-400 mt-1 block tabular-nums">
-                {stats.totalContributionsLastYear}+
-              </span>
-            </div>
-
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#0e131f]/75 border border-slate-800/80 shadow-xs">
-              <span className="text-xs text-slate-400 block font-mono">Current Streak</span>
-              <span className="text-2xl font-bold font-mono text-emerald-400 mt-1 block tabular-nums">
-                {stats.streakDays} days
               </span>
             </div>
 
@@ -170,7 +154,7 @@ export const GithubSection: React.FC = () => {
               </div>
 
               <div className="pt-3 border-t border-slate-800/80 text-[11px] text-slate-500 font-mono">
-                Telemetry aggregated from public Git commit trees &amp; repositories.
+                Language share is based on the latest public repositories returned by GitHub.
               </div>
             </div>
           </div>

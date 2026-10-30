@@ -30,7 +30,19 @@ function readCollection<T>(key: string, defaults: T[]): T[] {
   if (!Array.isArray(parsed)) {
     throw new Error(`Saved portfolio data for "${key}" is invalid. Clear this site's local storage to restore defaults.`);
   }
-  return parsed as T[];
+  const savedItems = parsed as T[];
+  if (key === STORAGE_KEYS.projects) {
+    const savedSlugs = new Set(savedItems.map((item) => (item as { slug?: string }).slug));
+    const newDefaults = defaults.filter((item) => !savedSlugs.has((item as { slug?: string }).slug));
+    const migratedItems = savedItems.map((item) => {
+      const project = item as IProject;
+      return project.githubUrl?.includes('github.com/mohammadsohailshahquadri14')
+        ? { ...project, githubUrl: 'https://github.com/sohailsq' } as T
+        : item;
+    });
+    return [...newDefaults, ...migratedItems];
+  }
+  return savedItems;
 }
 
 function writeCollection<T>(key: string, values: T[]): T[] {
@@ -47,67 +59,9 @@ function sortByOrder<T extends { order: number }>(items: T[]): T[] {
   return [...items].sort((a, b) => a.order - b.order);
 }
 
-const githubStats: IGithubStats = {
-  username: 'mohammadsohailshahquadri14',
-  profileUrl: 'https://github.com/mohammadsohailshahquadri14',
-  totalRepos: 28,
-  publicGists: 6,
-  followers: 42,
-  totalContributionsLastYear: 946,
-  streakDays: 48,
-  primaryLanguages: [
-    { name: 'JavaScript', percentage: 44, color: '#f7df1e' },
-    { name: 'React / Next.js', percentage: 26, color: '#61dafb' },
-    { name: 'Dart / Flutter', percentage: 16, color: '#02569B' },
-    { name: 'HTML / CSS / Shell', percentage: 14, color: '#e34c26' },
-  ],
-  recentRepositories: [
-    {
-      name: 'veedly-event-vendor-platform',
-      description: 'Multi-platform vendor commerce and event operations platform built with Next.js and Flutter',
-      language: 'JavaScript',
-      stars: 22,
-      forks: 5,
-      updatedAt: '2026-03-24T12:00:00Z',
-      url: 'https://github.com/mohammadsohailshahquadri14/veedly-event-vendor-platform',
-    },
-    {
-      name: 'jetfyx-trading-platform',
-      description: 'Real-time forex & crypto trading interfaces built with React, React Native, and WebSockets',
-      language: 'JavaScript',
-      stars: 29,
-      forks: 8,
-      updatedAt: '2026-03-20T14:30:00Z',
-      url: 'https://github.com/mohammadsohailshahquadri14/jetfyx-trading-platform',
-    },
-    {
-      name: 'nexadeutsch-german-learning',
-      description: 'Full-stack German language learning platform with React, Vite, Node.js, Express, and MongoDB',
-      language: 'JavaScript',
-      stars: 18,
-      forks: 4,
-      updatedAt: '2026-02-28T09:12:00Z',
-      url: 'https://github.com/mohammadsohailshahquadri14/nexadeutsch-german-learning',
-    },
-    {
-      name: 'richesse-fintech-web',
-      description: 'Fintech web application with asynchronous state caching using TanStack Query and REST APIs',
-      language: 'JavaScript',
-      stars: 15,
-      forks: 3,
-      updatedAt: '2026-01-18T18:45:00Z',
-      url: 'https://github.com/mohammadsohailshahquadri14/richesse-fintech-web',
-    },
-    {
-      name: 'smartsync-medical-tracking',
-      description: 'MERN-stack medical tracking application with integrated LLaMA AI model',
-      language: 'JavaScript',
-      stars: 27,
-      forks: 6,
-      updatedAt: '2025-11-12T16:20:00Z',
-      url: 'https://github.com/mohammadsohailshahquadri14/smartsync-medical-tracking',
-    },
-  ],
+const githubLanguageColors: Record<string, string> = {
+  JavaScript: '#f7df1e', TypeScript: '#3178c6', HTML: '#e34c26', CSS: '#563d7c',
+  Python: '#3572A5', Dart: '#00B4AB', Java: '#b07219', Go: '#00ADD8',
 };
 
 export const api = {
@@ -143,7 +97,7 @@ export const api = {
       contribution: data.contribution || 'Full architecture and implementation',
       technologies: data.technologies || ['React', 'Node.js'],
       image: data.image || '/images/hero_developer_workspace_1790605403219.jpg',
-      githubUrl: data.githubUrl || 'https://github.com/mohammadsohailshahquadri14',
+      githubUrl: data.githubUrl || 'https://github.com/sohailsq',
       liveUrl: data.liveUrl || '',
       secondaryLiveUrl: data.secondaryLiveUrl,
       featured: data.featured ?? true,
@@ -288,7 +242,42 @@ export const api = {
   },
 
   async getGithubStats(): Promise<IGithubStats> {
-    return githubStats;
+    const username = 'sohailsq';
+    const headers = { Accept: 'application/vnd.github+json' };
+    const [profileResponse, reposResponse] = await Promise.all([
+      fetch(`https://api.github.com/users/${username}`, { headers }),
+      fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`, { headers }),
+    ]);
+    if (!profileResponse.ok || !reposResponse.ok) throw new Error('GitHub profile is temporarily unavailable.');
+    const profile = await profileResponse.json();
+    const repos = await reposResponse.json();
+    const languageCounts = new Map<string, number>();
+    for (const repo of repos) {
+      if (repo.language) languageCounts.set(repo.language, (languageCounts.get(repo.language) || 0) + 1);
+    }
+    const languageTotal = [...languageCounts.values()].reduce((sum, count) => sum + count, 0) || 1;
+    const languages = [...languageCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 5);
+    return {
+      username,
+      profileUrl: `https://github.com/${username}`,
+      totalRepos: profile.public_repos,
+      publicGists: profile.public_gists,
+      followers: profile.followers,
+      totalContributionsLastYear: 0,
+      streakDays: 0,
+      primaryLanguages: languages.map(([name, count]) => ({
+        name, percentage: Math.round((count / languageTotal) * 100), color: githubLanguageColors[name] || '#94a3b8',
+      })),
+      recentRepositories: repos.map((repo: Record<string, any>) => ({
+        name: repo.name,
+        description: repo.description || 'No description provided.',
+        language: repo.language || 'Other',
+        stars: repo.stargazers_count,
+        forks: repo.forks_count,
+        updatedAt: repo.updated_at,
+        url: repo.html_url,
+      })),
+    };
   },
 
   async login(credentials: { email: string; password: string }): Promise<{ token: string; user: IUser }> {

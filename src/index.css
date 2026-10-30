@@ -94,6 +94,80 @@
   box-shadow: 0 16px 32px -10px rgba(0, 0, 0, 0.6), 0 0 20px -6px rgba(245, 158, 11, 0.08);
 }
 
+/* Pointer-following social cards inspired by the supplied glowing-card reference. */
+.social-glow-card {
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --glow-color: rgba(245, 158, 11, 0.85);
+  position: relative;
+  min-height: 190px;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.11);
+  isolation: isolate;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease;
+}
+.social-glow-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  background: radial-gradient(340px circle at var(--mouse-x) var(--mouse-y), var(--glow-color), transparent 65%);
+  transition: opacity 0.25s ease;
+}
+.social-glow-card:hover,
+.social-glow-card:focus-visible {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.2);
+}
+.social-glow-card:hover::before,
+.social-glow-card:focus-visible::before {
+  opacity: 1;
+}
+.social-glow-card__surface {
+  position: absolute;
+  inset: 1px;
+  z-index: 1;
+  border-radius: inherit;
+  background: #0d121d;
+  pointer-events: none;
+}
+.social-glow-card__surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  background: radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), color-mix(in srgb, var(--glow-color) 20%, transparent), transparent 70%);
+  transition: opacity 0.25s ease;
+}
+.social-glow-card:hover .social-glow-card__surface::before,
+.social-glow-card:focus-visible .social-glow-card__surface::before {
+  opacity: 1;
+}
+.social-glow-card__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1.25rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .social-glow-card,
+  .social-glow-card::before,
+  .social-glow-card__surface::before {
+    transition: none;
+  }
+  .social-glow-card:hover,
+  .social-glow-card:focus-visible {
+    transform: none;
+  }
+}
+
 /* Text balance helper */
 .text-balance {
   text-wrap: balance;

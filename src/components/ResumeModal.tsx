@@ -95,12 +95,12 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
               </a>
               <span>·</span>
               <a
-                href="https://github.com/mohammadsohailshahquadri14"
+                href="https://github.com/sohailsq"
                 target="_blank"
                 rel="noreferrer noopener"
                 className="hover:text-amber-400 transition-colors"
               >
-                github.com/mohammadsohailshahquadri14
+                github.com/sohailsq
               </a>
             </div>
           </div>

@@ -38,7 +38,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataC
     solution: '',
     contribution: '',
     technologies: 'React, Node.js, Express, MongoDB',
-    githubUrl: 'https://github.com/mohammadsohailshahquadri14',
+    githubUrl: 'https://github.com/sohailsq',
     liveUrl: '',
     featured: true,
   });

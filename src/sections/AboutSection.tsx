@@ -59,6 +59,9 @@ export const AboutSection: React.FC = () => {
             <p>
               Whether it is keeping a mobile trading chart responsive while consuming real-time WebSocket market streams or setting up automated CI/CD deployment pipelines on AWS EC2, I prioritize clean architecture, systematic debugging, and reliable user experiences.
             </p>
+            <p>
+              I also contribute to open-source projects and share my work publicly. Recent independent work includes interactive Three.js experiences, with more website projects in progress.
+            </p>
 
             {/* Quick Metrics */}
             <div className="pt-4 grid grid-cols-3 gap-3.5 border-t border-slate-800/80">

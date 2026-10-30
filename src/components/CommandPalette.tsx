@@ -165,12 +165,12 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     },
     {
       id: 'act-github',
-      label: 'Open GitHub Profile (@mohammadsohailshahquadri14)',
+      label: 'Open GitHub Profile (@sohailsq)',
       category: 'External',
       icon: <ExternalLink className="w-4 h-4 text-slate-400" />,
       action: () => {
         const link = document.createElement('a');
-        link.href = 'https://github.com/mohammadsohailshahquadri14';
+        link.href = 'https://github.com/sohailsq';
         link.target = '_blank';
         link.rel = 'noreferrer noopener';
         link.click();

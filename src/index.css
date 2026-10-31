@@ -20,13 +20,13 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #080b11;
-    color: #f1f5f9;
+    background-color: #f4f7fb;
+    color: #1e293b;
   }
 
   body {
-    background-color: #080b11;
-    color: #f1f5f9;
+    background-color: #f4f7fb;
+    color: #1e293b;
     overflow-x: hidden;
   }
 
@@ -156,6 +156,97 @@
   justify-content: space-between;
   padding: 1.25rem;
 }
+.legendary-skill-card {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --shine-x: 50%;
+  --shine-y: 50%;
+  position: relative;
+  width: 100%;
+  min-height: 310px;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 1rem;
+  background: linear-gradient(145deg, #17243c, #101421 55%, #1a1230);
+  box-shadow: 0 12px 28px -18px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255,255,255,.1);
+  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transform-style: preserve-3d;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  will-change: transform;
+}
+.legendary-skill-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .55;
+  background:
+    radial-gradient(ellipse at var(--shine-x) var(--shine-y), rgba(255,255,255,.28), transparent 42%),
+    linear-gradient(125deg, transparent 15%, rgba(78, 210, 255, .14) 40%, rgba(255, 74, 217, .16) 62%, transparent 84%);
+  mix-blend-mode: screen;
+}
+.legendary-skill-card:hover {
+  border-color: rgba(103, 232, 249, .65);
+  box-shadow: 0 20px 36px -18px rgba(34, 211, 238, .35), 0 0 22px rgba(217, 70, 239, .12);
+}
+.legendary-skill-card.is-selected {
+  z-index: 3;
+  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(-8px) scale(1.045);
+  border-color: rgba(103, 232, 249, .95);
+  box-shadow: 0 24px 48px -18px rgba(34, 211, 238, .55), 0 0 32px rgba(217, 70, 239, .28), inset 0 0 18px rgba(34, 211, 238, .12);
+}
+.legendary-skill-card.is-selected::before {
+  opacity: 1;
+  background:
+    radial-gradient(ellipse at var(--shine-x) var(--shine-y), rgba(255,255,255,.4), transparent 48%),
+    linear-gradient(125deg, transparent 10%, rgba(78, 210, 255, .24) 40%, rgba(255, 74, 217, .25) 62%, transparent 88%);
+}
+.legendary-skill-card__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 100%;
+  min-height: inherit;
+  flex-direction: column;
+  padding: 1.1rem;
+  transform: translateZ(24px);
+}
+.legendary-skill-card__showcase {
+  position: relative;
+  display: grid;
+  width: 7.25rem;
+  height: 7.25rem;
+  flex: 0 0 auto;
+  align-self: center;
+  margin: 1rem 0 .25rem;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 1.5rem;
+  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.13), rgba(3, 7, 18, .5) 72%);
+  color: #cbd5e1;
+  box-shadow: 0 0 36px rgba(34,211,238,.16), inset 0 1px 0 rgba(255,255,255,.14);
+  transform: translateZ(34px);
+}
+.legendary-skill-card__showcase img {
+  position: relative;
+  z-index: 1;
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+.legendary-skill-card__fallback {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  transform: scale(2.5);
+}
 @media (prefers-reduced-motion: reduce) {
   .social-glow-card,
   .social-glow-card::before,
@@ -165,6 +256,10 @@
   .social-glow-card:hover,
   .social-glow-card:focus-visible {
     transform: none;
+  }
+  .legendary-skill-card {
+    transform: none;
+    transition: none;
   }
 }
 
@@ -186,4 +281,71 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Clean professional light palette across the portfolio UI. */
+.portfolio-theme-light {
+  --bg-base: #f4f7fb;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f8fafc;
+  --border-subtle: rgba(15, 23, 42, 0.1);
+  --border-hover: rgba(180, 83, 9, 0.35);
+  background: #f4f7fb !important;
+  color: #1e293b !important;
+}
+.portfolio-theme-dark {
+  --bg-base: #080b11;
+  --bg-surface: #0e131f;
+  --bg-elevated: #131929;
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(245, 158, 11, 0.35);
+  background: #080b11 !important;
+  color: #f1f5f9 !important;
+}
+.portfolio-theme-light [class*="bg-[#"],
+.portfolio-theme-light [class*="bg-slate-950"],
+.portfolio-theme-light [class*="bg-slate-900"],
+.portfolio-theme-light [class*="bg-slate-800"] {
+  background-color: #ffffff !important;
+}
+.portfolio-theme-light [class*="bg-[#080b11]"],
+.portfolio-theme-light [class*="bg-[#0a0e17]"] {
+  background-color: #f4f7fb !important;
+}
+.portfolio-theme-light [class*="text-slate-100"],
+.portfolio-theme-light [class*="text-slate-200"],
+.portfolio-theme-light [class*="text-slate-300"],
+.portfolio-theme-light [class*="text-white"] {
+  color: #1e293b !important;
+}
+.portfolio-theme-light [class*="text-slate-400"],
+.portfolio-theme-light [class*="text-slate-500"] {
+  color: #64748b !important;
+}
+.portfolio-theme-light [class*="border-slate-800"],
+.portfolio-theme-light [class*="border-slate-700"] {
+  border-color: #dbe3ed !important;
+}
+.portfolio-theme-light [class*="text-amber-400"],
+.portfolio-theme-light [class*="text-amber-300"] {
+  color: #a85308 !important;
+}
+.portfolio-theme-light [class*="text-sky-400"] { color: #0369a1 !important; }
+.portfolio-theme-light [class*="text-emerald-400"] { color: #047857 !important; }
+.portfolio-theme-light [class*="text-purple-400"] { color: #7e22ce !important; }
+.portfolio-theme-light [class*="text-pink-400"] { color: #be185d !important; }
+.portfolio-theme-light [class*="text-amber-200"] { color: #92400e !important; }
+.portfolio-theme-light .social-glow-card__surface { background: #fff; }
+.portfolio-theme-light .social-glow-card__content [class*="text-slate-"] { color: #1e293b !important; }
+.portfolio-theme-light .legendary-skill-card [class*="text-white"],
+.portfolio-theme-light .legendary-skill-card [class*="text-slate-100"],
+.portfolio-theme-light .legendary-skill-card [class*="text-slate-300"],
+.portfolio-theme-light .legendary-skill-card [class*="text-slate-400"] {
+  color: #f8fafc !important;
+}
+.portfolio-theme-light .legendary-skill-card [class*="text-white"] {
+  color: #ffffff !important;
+}
+.portfolio-theme-light .legendary-skill-card {
+  background: linear-gradient(145deg, #17243c, #101421 55%, #1a1230);
 }

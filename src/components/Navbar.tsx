@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Lock, UserCheck, Menu, X, FileText, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Search, Lock, UserCheck, Menu, X, FileText, ArrowUpRight, Sparkles, Sun, Moon } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 interface NavbarProps {
+  theme: 'light' | 'dark';
+  onToggleTheme: () => void;
   onOpenCommandPalette: () => void;
   onOpenResume: () => void;
   onOpenAdmin: () => void;
@@ -10,6 +12,8 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
+  theme,
+  onToggleTheme,
   onOpenCommandPalette,
   onOpenResume,
   onOpenAdmin,
@@ -95,6 +99,15 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Zone 3: Actions */}
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={onToggleTheme}
+            className="p-1.5 border border-slate-800 hover:border-slate-700 text-slate-400 hover:text-slate-200 rounded-lg transition-colors bg-slate-900/60 hover:bg-slate-900 cursor-pointer"
+            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+            title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+          >
+            {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+          </button>
           {/* Portfolio assistant trigger */}
           {onOpenAIAssistant && (
             <button

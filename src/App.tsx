@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -20,6 +20,9 @@ import { FloatingAITrigger } from './components/FloatingAITrigger';
 import { IProject } from './types';
 
 export default function App() {
+  const [theme, setTheme] = useState<'light' | 'dark'>(() =>
+    localStorage.getItem('sohail_portfolio_theme') === 'dark' ? 'dark' : 'light',
+  );
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<IProject | null>(null);
   const [selectedAIProject, setSelectedAIProject] = useState<IProject | null>(null);
   const [aiAssistantOpen, setAiAssistantOpen] = useState(false);
@@ -34,11 +37,20 @@ export default function App() {
     }
   };
 
+  useEffect(() => {
+    localStorage.setItem('sohail_portfolio_theme', theme);
+    const pageBackground = theme === 'light' ? '#f4f7fb' : '#080b11';
+    document.documentElement.style.backgroundColor = pageBackground;
+    document.body.style.backgroundColor = pageBackground;
+  }, [theme]);
+
   return (
     <AuthProvider>
-      <div className="min-h-screen bg-[#080b11] text-slate-100 selection:bg-amber-400/20 selection:text-amber-200 antialiased font-sans">
+      <div className={`${theme === 'light' ? 'portfolio-theme-light bg-[#f4f7fb] text-slate-800' : 'portfolio-theme-dark bg-[#080b11] text-slate-100'} min-h-screen selection:bg-amber-400/20 antialiased font-sans`}>
         {/* Top Bar Navigation */}
         <Navbar
+          theme={theme}
+          onToggleTheme={() => setTheme((current) => current === 'light' ? 'dark' : 'light')}
           onOpenCommandPalette={() => setCommandPaletteOpen(true)}
           onOpenResume={() => setResumeOpen(true)}
           onOpenAdmin={() => setAdminOpen(true)}

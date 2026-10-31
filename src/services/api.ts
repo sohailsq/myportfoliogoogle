@@ -42,6 +42,11 @@ function readCollection<T>(key: string, defaults: T[]): T[] {
     });
     return [...newDefaults, ...migratedItems];
   }
+  if (key === STORAGE_KEYS.skills) {
+    const savedIds = new Set(savedItems.map((item) => (item as { id?: string }).id));
+    const newSkills = defaults.filter((item) => !savedIds.has((item as { id?: string }).id));
+    return [...savedItems, ...newSkills];
+  }
   return savedItems;
 }
 

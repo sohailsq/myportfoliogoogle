@@ -80,9 +80,9 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                 Hyderabad, Telangana, India
               </span>
               <span>·</span>
-              <a href="mailto:sohailshah14921@gmail.com" className="flex items-center gap-1 hover:text-amber-400 transition-colors">
+              <a href="mailto:mohammadsohailshahquadri14@gmail.com" className="flex items-center gap-1 hover:text-amber-400 transition-colors">
                 <Mail className="w-3.5 h-3.5 text-amber-400 print:text-black" />
-                sohailshah14921@gmail.com
+                mohammadsohailshahquadri14@gmail.com
               </a>
               <span>·</span>
               <a

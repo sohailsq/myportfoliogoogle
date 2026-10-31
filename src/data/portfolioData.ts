@@ -285,9 +285,10 @@ export const initialExperience: IExperience[] = [
 export const initialSkills: ISkill[] = [
   // Languages
   { id: 'sk-lang-1', name: 'JavaScript (ES6+)', category: 'Languages', proficiency: 'Expert', yearsOfExperience: 2.5, highlight: 'Modern ES6+, async/await, closures, event loop, functional patterns', order: 1 },
-  { id: 'sk-lang-2', name: 'HTML5 & CSS3', category: 'Languages', proficiency: 'Expert', yearsOfExperience: 3.0, highlight: 'Semantic elements, responsive layouts, flexbox, grid, accessibility', order: 2 },
-  { id: 'sk-lang-3', name: 'Java', category: 'Languages', proficiency: 'Advanced', yearsOfExperience: 2.0, highlight: 'OOP principles, data structures, robust backend logic', order: 3 },
-  { id: 'sk-lang-4', name: 'SQL', category: 'Languages', proficiency: 'Advanced', yearsOfExperience: 2.0, highlight: 'Relational queries, schema design, join optimization, indexing', order: 4 },
+  { id: 'sk-lang-ts', name: 'TypeScript', category: 'Languages', proficiency: 'Intermediate', yearsOfExperience: 1.0, highlight: 'Typed JavaScript, interfaces, generics, and safer application code', order: 2 },
+  { id: 'sk-lang-2', name: 'HTML5 & CSS3', category: 'Languages', proficiency: 'Expert', yearsOfExperience: 3.0, highlight: 'Semantic elements, responsive layouts, flexbox, grid, accessibility', order: 3 },
+  { id: 'sk-lang-3', name: 'Java', category: 'Languages', proficiency: 'Advanced', yearsOfExperience: 2.0, highlight: 'OOP principles, data structures, robust backend logic', order: 4 },
+  { id: 'sk-lang-4', name: 'SQL', category: 'Languages', proficiency: 'Advanced', yearsOfExperience: 2.0, highlight: 'Relational queries, schema design, join optimization, indexing', order: 5 },
 
   // Frontend
   { id: 'sk-fe-1', name: 'React.js', category: 'Frontend', proficiency: 'Expert', yearsOfExperience: 2.5, highlight: 'Reusable UI components, hooks, virtual DOM optimization, state management', order: 5 },

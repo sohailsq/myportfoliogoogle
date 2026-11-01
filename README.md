@@ -8,6 +8,7 @@ A static React portfolio for Sohail Shah Quadri, Software Engineer & Full-Stack 
 - **Portfolio content:** Projects, experience, skills, and GitHub showcase data are bundled with the frontend.
 - **Browser storage:** Optional local admin edits are saved in the current browser's `localStorage`; they are not published or shared.
 - **Images:** Static files in `public/images` are copied into the production build.
+- **Progressive web app:** The site includes an installable web app manifest and a service worker that caches the app shell and portfolio images for offline visits. The service worker is enabled in production builds; installability requires HTTPS (or localhost).
 - **Contact:** The form opens a prefilled email in the visitor's email application.
 - **Assistant:** The portfolio helper and job-description comparison run locally against the content bundled with the site. They do not use a hosted AI service.
 
